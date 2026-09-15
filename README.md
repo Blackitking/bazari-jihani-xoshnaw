@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="ku" dir="rtl">
+<!DOCTYPE html><html lang="ku" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XOSHNAW AI PREMIUM</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
+<title>XOSHNAW AI PREMIUM</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
 *{
   box-sizing:border-box;
   margin:0;
@@ -506,6 +501,55 @@ footer{
   font-weight:bold;
 }
 
+/* ADMIN PREMIUM */
+
+.admin-premium-box{
+  margin-top:20px;
+  background:linear-gradient(135deg,#07111f,#0066cc);
+  color:#fff;
+  padding:20px;
+  border-radius:18px;
+}
+
+.admin-premium-box h3{
+  margin-bottom:8px;
+}
+
+.admin-premium-box p{
+  line-height:1.8;
+  color:#d9e8f5;
+}
+
+.admin-premium-buttons{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:15px;
+}
+
+.admin-premium-btn{
+  border:0;
+  padding:13px 8px;
+  border-radius:12px;
+  background:#00d9ff;
+  color:#00131d;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.admin-premium-btn:hover{
+  opacity:.9;
+}
+
+.admin-premium-status{
+  margin-top:15px;
+  padding:12px;
+  background:rgba(255,255,255,.12);
+  border-radius:10px;
+  text-align:center;
+  font-weight:bold;
+}
+
 .hidden{
   display:none!important;
 }
@@ -526,773 +570,661 @@ footer{
     grid-template-columns:1fr;
   }
 
+  .admin-premium-buttons{
+    grid-template-columns:1fr;
+  }
+
   .header-buttons{
     flex-direction:column;
   }
 }
-</style>
-</head>
-
-<body>
-
-<header>
-
-  <div class="logo">
+</style></head><body><header>  <div class="logo">
     XOSHNAW <span>AI</span> PREMIUM
-  </div>
+  </div>  <div class="header-buttons"><button
+  class="header-btn"
+  onclick="openLogin()">
+  👤 چوونەژوورەوە
+</button>
 
-  <div class="header-buttons">
+<button
+  class="header-btn dark-btn"
+  onclick="openRegister()">
+  📝 تۆمارکردن
+</button>
 
-    <button
-      class="header-btn"
-      onclick="openLogin()">
-      👤 چوونەژوورەوە
-    </button>
-
-    <button
-      class="header-btn dark-btn"
-      onclick="openRegister()">
-      📝 تۆمارکردن
-    </button>
-
-  </div>
-
-</header>
-
-
-<main id="home" class="container">
-
-<section class="hero">
-
-  <div class="icon">🤖</div>
-
-  <h1>
+  </div></header><main id="home" class="container"><section class="hero">  <div class="icon">🤖</div>  <h1>
     بەخێربێیت بۆ
     <span>XOSHNAW AI</span>
-  </h1>
-
-  <p>
+  </h1>  <p>
     شوێنێکی تایبەت بۆ فێربوونی AI Tools،
     ڤیدیۆی فێرکاری، ئامرازە زیرەکەکان و ناوەڕۆکی Premium.
+  </p><button
+class="main-btn"
+onclick="scrollToPlans()">
+👑 بەژداربوونی Premium
+</button>
+
+</section><h2 class="section-title">
+🚀 چی بەدەست دەهێنیت؟
+</h2><section class="features">  <div class="feature"><div class="emoji">🤖</div>
+
+<h3>AI Tools</h3>
+
+<p>
+  فێربوونی ئامرازەکانی AI و چۆنیەتی بەکارهێنانیان.
+</p>
+
+  </div>  <div class="feature"><div class="emoji">🎬</div>
+
+<h3>ڤیدیۆی فێرکاری</h3>
+
+<p>
+  ڤیدیۆی نوێی فێرکاری بە شێوەی ڕوون و ئاسان.
+</p>
+
+  </div>  <div class="feature"><div class="emoji">👑</div>
+
+<h3>Premium</h3>
+
+<p>
+  دەستگەیشتن بە ناوەڕۆکی تایبەت بۆ ئەندامانی Premium.
+</p>
+
+  </div></section><h2 class="section-title">
+🎬 ڤیدیۆکانی فێرکاری
+</h2><section class="videos">  <div class="video-card"><div class="video-placeholder">
+  ▶️
+</div>
+
+<div class="video-info">
+
+  <h3>
+    AI Tool ـی یەکەم
+  </h3>
+
+  <p>
+    ڤیدیۆی فێرکاری بۆ ئەندامانی Premium.
   </p>
 
-  <button
-    class="main-btn"
-    onclick="scrollToPlans()">
-    👑 بەژداربوونی Premium
-  </button>
+</div>
 
-</section>
+  </div>  <div class="video-card"><div class="video-placeholder">
+  ▶️
+</div>
 
+<div class="video-info">
 
-<h2 class="section-title">
-🚀 چی بەدەست دەهێنیت؟
-</h2>
+  <h3>
+    چۆن AI بەکاربهێنین؟
+  </h3>
 
-<section class="features">
+  <p>
+    فێربوونی بنەڕەتی AI بە زمانی کوردی.
+  </p>
 
-  <div class="feature">
+</div>
 
-    <div class="emoji">🤖</div>
+  </div>  <div class="video-card"><div class="video-placeholder">
+  🔒
+</div>
 
-    <h3>AI Tools</h3>
+<div class="video-info">
 
-    <p>
-      فێربوونی ئامرازەکانی AI و چۆنیەتی بەکارهێنانیان.
-    </p>
+  <h3>
+    Premium Video
+  </h3>
 
-  </div>
+  <p>
+    ئەم ڤیدیۆیە تەنها بۆ ئەندامانی Premium ـە.
+  </p>
 
+</div>
 
-  <div class="feature">
-
-    <div class="emoji">🎬</div>
-
-    <h3>ڤیدیۆی فێرکاری</h3>
-
-    <p>
-      ڤیدیۆی نوێی فێرکاری بە شێوەی ڕوون و ئاسان.
-    </p>
-
-  </div>
-
-
-  <div class="feature">
-
-    <div class="emoji">👑</div>
-
-    <h3>Premium</h3>
-
-    <p>
-      دەستگەیشتن بە ناوەڕۆکی تایبەت بۆ ئەندامانی Premium.
-    </p>
-
-  </div>
-
-</section>
-
-
-<h2 class="section-title">
-🎬 ڤیدیۆکانی فێرکاری
-</h2>
-
-<section class="videos">
-
-  <div class="video-card">
-
-    <div class="video-placeholder">
-      ▶️
-    </div>
-
-    <div class="video-info">
-
-      <h3>
-        AI Tool ـی یەکەم
-      </h3>
-
-      <p>
-        ڤیدیۆی فێرکاری بۆ ئەندامانی Premium.
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <div class="video-card">
-
-    <div class="video-placeholder">
-      ▶️
-    </div>
-
-    <div class="video-info">
-
-      <h3>
-        چۆن AI بەکاربهێنین؟
-      </h3>
-
-      <p>
-        فێربوونی بنەڕەتی AI بە زمانی کوردی.
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <div class="video-card">
-
-    <div class="video-placeholder">
-      🔒
-    </div>
-
-    <div class="video-info">
-
-      <h3>
-        Premium Video
-      </h3>
-
-      <p>
-        ئەم ڤیدیۆیە تەنها بۆ ئەندامانی Premium ـە.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<h2 id="plans" class="section-title">
+  </div></section><h2 id="plans" class="section-title">
 👑 پلانەکانی Premium
+</h2><section class="pricing">  <div class="plan"><h3>
+  هەفتانە
+</h3>
+
+<div class="price">
+  1,500
+  <small>د.ع</small>
+</div>
+
+<ul>
+
+  <li>دەستگەیشتن بە Premium</li>
+
+  <li>ڤیدیۆی فێرکاری</li>
+
+  <li>AI Tools</li>
+
+</ul>
+
+<button
+  onclick="choosePlan('هەفتانە',1500)">
+  هەڵبژاردن
+</button>
+
+  </div>  <div class="plan popular"><div class="badge">
+  باشترین هەڵبژاردە
+</div>
+
+<h3>
+  مانگانە
+</h3>
+
+<div class="price">
+  4,000
+  <small>د.ع</small>
+</div>
+
+<ul>
+
+  <li>دەستگەیشتن بە Premium</li>
+
+  <li>هەموو ڤیدیۆکان</li>
+
+  <li>AI Tools</li>
+
+  <li>ناوەڕۆکی نوێ</li>
+
+</ul>
+
+<button
+  onclick="choosePlan('مانگانە',4000)">
+  هەڵبژاردن
+</button>
+
+  </div>  <div class="plan"><h3>
+  ساڵانە
+</h3>
+
+<div class="price">
+  15,000
+  <small>د.ع</small>
+</div>
+
+<ul>
+
+  <li>Premium بۆ ساڵێک</li>
+
+  <li>هەموو ڤیدیۆکان</li>
+
+  <li>AI Tools</li>
+
+  <li>هەموو ناوەڕۆکی داهاتوو</li>
+
+</ul>
+
+<button
+  onclick="choosePlan('ساڵانە',15000)">
+  هەڵبژاردن
+</button>
+
+  </div></section></main><!-- DASHBOARD --><section
+  id="dashboard"
+  class="dashboard container">  <div class="dashboard-box"><h2>
+  👤 بەخێربێیت
 </h2>
 
+<p id="dashboardName"></p>
 
-<section class="pricing">
+<div
+  id="premiumStatus"
+  class="status pending">
+  Premium هێشتا چالاک نەکراوە.
+</div>
 
+<div id="dashboardPlan"></div>
 
-  <div class="plan">
+<div id="myPayments"></div>
 
-    <h3>
-      هەفتانە
-    </h3>
+<button
+  class="logout"
+  onclick="logout()">
+  چوونەدەرەوە
+</button>
 
-    <div class="price">
-      1,500
-      <small>د.ع</small>
-    </div>
-
-    <ul>
-
-      <li>دەستگەیشتن بە Premium</li>
-
-      <li>ڤیدیۆی فێرکاری</li>
-
-      <li>AI Tools</li>
-
-    </ul>
-
-    <button
-      onclick="choosePlan('هەفتانە',1500)">
-      هەڵبژاردن
-    </button>
-
-  </div>
-
-
-  <div class="plan popular">
-
-    <div class="badge">
-      باشترین هەڵبژاردە
-    </div>
-
-    <h3>
-      مانگانە
-    </h3>
-
-    <div class="price">
-      4,000
-      <small>د.ع</small>
-    </div>
-
-    <ul>
-
-      <li>دەستگەیشتن بە Premium</li>
-
-      <li>هەموو ڤیدیۆکان</li>
-
-      <li>AI Tools</li>
-
-      <li>ناوەڕۆکی نوێ</li>
-
-    </ul>
-
-    <button
-      onclick="choosePlan('مانگانە',4000)">
-      هەڵبژاردن
-    </button>
-
-  </div>
-
-
-  <div class="plan">
-
-    <h3>
-      ساڵانە
-    </h3>
-
-    <div class="price">
-      15,000
-      <small>د.ع</small>
-    </div>
-
-    <ul>
-
-      <li>Premium بۆ ساڵێک</li>
-
-      <li>هەموو ڤیدیۆکان</li>
-
-      <li>AI Tools</li>
-
-      <li>هەموو ناوەڕۆکی داهاتوو</li>
-
-    </ul>
-
-    <button
-      onclick="choosePlan('ساڵانە',15000)">
-      هەڵبژاردن
-    </button>
-
-  </div>
-
-
-</section>
-
-</main>
-
-
-<!-- DASHBOARD -->
-
-<section
-  id="dashboard"
-  class="dashboard container">
-
-  <div class="dashboard-box">
-
-    <h2>
-      👤 بەخێربێیت
-    </h2>
-
-    <p id="dashboardName"></p>
-
-    <div
-      id="premiumStatus"
-      class="status pending">
-      Premium هێشتا چالاک نەکراوە.
-    </div>
-
-    <div id="dashboardPlan"></div>
-
-    <div id="myPayments"></div>
-
-    <button
-      class="logout"
-      onclick="logout()">
-      چوونەدەرەوە
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- ADMIN -->
-
-<section
+  </div></section><!-- ADMIN --><section
   id="adminPanel"
-  class="admin container">
+  class="admin container">  <div class="admin-header"><h2>
+  👨‍💼 XOSHNAW ADMIN PANEL
+</h2>
 
-  <div class="admin-header">
+<div class="admin-email">
+  lawaking24@gmail.com
+</div>
 
-    <h2>
-      👨‍💼 XOSHNAW ADMIN PANEL
-    </h2>
+<div class="admin-stats">
 
-    <div class="admin-email">
-      lawaking24@gmail.com
-    </div>
+  <div class="stat">
 
-    <div class="admin-stats">
+    👥
+    <br>
 
-      <div class="stat">
-
-        👥
-        <br>
-
-        <strong id="userCount">
-          0
-        </strong>
-
-        <br>
-
-        Users
-
-      </div>
-
-
-      <div class="stat">
-
-        💰
-        <br>
-
-        <strong id="pendingCount">
-          0
-        </strong>
-
-        <br>
-
-        Pending
-
-      </div>
-
-
-      <div class="stat">
-
-        👑
-        <br>
-
-        <strong id="activeCount">
-          0
-        </strong>
-
-        <br>
-
-        Premium
-
-      </div>
-
-    </div>
+    <strong id="userCount">
+      0
+    </strong>
 
     <br>
 
+    Users
+
+  </div>
+
+
+  <div class="stat">
+
+    💰
+    <br>
+
+    <strong id="pendingCount">
+      0
+    </strong>
+
+    <br>
+
+    Pending
+
+  </div>
+
+
+  <div class="stat">
+
+    👑
+    <br>
+
+    <strong id="activeCount">
+      0
+    </strong>
+
+    <br>
+
+    Premium
+
+  </div>
+
+</div>
+
+
+<!-- ADMIN SELF PREMIUM -->
+
+<div class="admin-premium-box">
+
+  <h3>
+    👑 Premium ـی ئەدمین
+  </h3>
+
+  <p>
+    لێرەوە دەتوانیت بۆ ئەکاونتی ئەدمین
+    Premium چالاک بکەیت، بەبێ ناردنی پارە و وەسڵ.
+  </p>
+
+  <div
+    id="adminPremiumStatus"
+    class="admin-premium-status">
+    ⏳ دۆخی Premium ـی ئەدمین...
+  </div>
+
+  <div class="admin-premium-buttons">
+
     <button
-      class="logout"
-      onclick="adminLogout()">
-      دەرچوون لە Admin
+      class="admin-premium-btn"
+      onclick="activateAdminPremium('هەفتانە',7)">
+      👑 هەفتانە<br>
+      7 ڕۆژ
+    </button>
+
+    <button
+      class="admin-premium-btn"
+      onclick="activateAdminPremium('مانگانە',30)">
+      👑 مانگانە<br>
+      30 ڕۆژ
+    </button>
+
+    <button
+      class="admin-premium-btn"
+      onclick="activateAdminPremium('ساڵانە',365)">
+      👑 ساڵانە<br>
+      365 ڕۆژ
     </button>
 
   </div>
 
+</div>
 
-  <div
+
+<br>
+
+<button
+  class="logout"
+  onclick="adminLogout()">
+  دەرچوون لە Admin
+</button>
+
+  </div>  <div
     id="requests"
     class="requests">
-  </div>
-
-</section>
-
-
-<footer>
-
-  <strong>
+  </div></section><footer>  <strong>
     XOSHNAW AI PREMIUM
+  </strong>  <br>فێربوون • AI • Technology • Premium
+
+</footer><!-- REGISTER --><div
+  class="modal"
+  id="registerModal">  <div class="modal-box"><button
+  class="close"
+  onclick="closeAll()">
+  ×
+</button>
+
+<h2 class="modal-title">
+  📝 تۆمارکردنی ئەکاونت
+</h2>
+
+
+<div class="form-group">
+
+  <label>
+    ناوی تەواو
+  </label>
+
+  <input
+    id="regName"
+    type="text"
+    placeholder="ناوی تەواوت">
+
+</div>
+
+
+<div class="form-group">
+
+  <label>
+    ژمارەی مۆبایل
+  </label>
+
+  <input
+    id="regPhone"
+    type="tel"
+    placeholder="07xxxxxxxxx">
+
+</div>
+
+
+<div class="form-group">
+
+  <label>
+    ئیمەیڵ
+  </label>
+
+  <input
+    id="regEmail"
+    type="email"
+    placeholder="example@gmail.com">
+
+</div>
+
+
+<div class="form-group">
+
+  <label>
+    وشەی نهێنی
+  </label>
+
+  <input
+    id="regPassword"
+    type="password"
+    placeholder="وشەی نهێنی">
+
+</div>
+
+
+<button
+  class="submit-btn"
+  style="margin-top:20px"
+  onclick="registerUser()">
+
+  📝 تۆمارکردن
+
+</button>
+
+
+<p style="text-align:center;margin-top:15px">
+
+  ئەکاونتت هەیە؟
+
+  <button
+    style="border:0;background:none;color:#0066cc;cursor:pointer;font-weight:bold"
+    onclick="openLogin()">
+
+    Login
+
+  </button>
+
+</p>
+
+  </div></div><!-- LOGIN --><div
+  class="modal"
+  id="loginModal">  <div class="modal-box"><button
+  class="close"
+  onclick="closeAll()">
+  ×
+</button>
+
+<h2 class="modal-title">
+  🔐 چوونەژوورەوە
+</h2>
+
+
+<div class="form-group">
+
+  <label>
+    ئیمەیڵ
+  </label>
+
+  <input
+    id="loginEmail"
+    type="email"
+    placeholder="example@gmail.com">
+
+</div>
+
+
+<div class="form-group">
+
+  <label>
+    وشەی نهێنی
+  </label>
+
+  <input
+    id="loginPassword"
+    type="password"
+    placeholder="وشەی نهێنی">
+
+</div>
+
+
+<button
+  class="submit-btn"
+  style="margin-top:20px"
+  onclick="loginUser()">
+
+  🔐 Login
+
+</button>
+
+  </div></div><!-- PAYMENT --><div
+  class="modal"
+  id="paymentModal">  <div class="modal-box"><button
+  class="close"
+  onclick="closePayment()">
+  ×
+</button>
+
+<h2 class="modal-title">
+  💳 تەواوکردنی بەژداری
+</h2>
+
+
+<div class="selected-plan">
+
+  پلان:
+
+  <strong id="selectedPlan">
+    ---
   </strong>
 
   <br>
 
-  فێربوون • AI • Technology • Premium
+  بڕ:
 
-</footer>
+  <strong id="selectedPrice">
+    ---
+  </strong>
 
+  د.ع
 
-<!-- REGISTER -->
-
-<div
-  class="modal"
-  id="registerModal">
-
-  <div class="modal-box">
-
-    <button
-      class="close"
-      onclick="closeAll()">
-      ×
-    </button>
-
-    <h2 class="modal-title">
-      📝 تۆمارکردنی ئەکاونت
-    </h2>
+</div>
 
 
-    <div class="form-group">
+<div class="fib-box">
 
-      <label>
-        ناوی تەواو
-      </label>
+  <h3>
+    🔵 پارەدان بە FIB
+  </h3>
 
-      <input
-        id="regName"
-        type="text"
-        placeholder="ناوی تەواوت">
+  <p style="margin-top:10px">
 
-    </div>
+    تکایە بچۆرە ناو ئەپی FIB ـەکەتەوە
+    و بڕی پارەکە بۆ ئەم ژمارەیە بنێرە:
 
+  </p>
 
-    <div class="form-group">
+  <div class="fib-number">
+    7515176569
+  </div>
 
-      <label>
-        ژمارەی مۆبایل
-      </label>
+  <div class="notice">
 
-      <input
-        id="regPhone"
-        type="tel"
-        placeholder="07xxxxxxxxx">
+    تکایە بڕی پارەکە بە وردی بنێرە.
 
-    </div>
+  </div>
 
+  <div class="warning">
 
-    <div class="form-group">
+    بەژداربووی بەڕێز ❤️
 
-      <label>
-        ئیمەیڵ
-      </label>
+    <br>
 
-      <input
-        id="regEmail"
-        type="email"
-        placeholder="example@gmail.com">
+    تکایە لە بڕی پارەکە و ژمارەکە
+    دڵنیا ببەرەوە.
 
-    </div>
+    <br>
 
-
-    <div class="form-group">
-
-      <label>
-        وشەی نهێنی
-      </label>
-
-      <input
-        id="regPassword"
-        type="password"
-        placeholder="وشەی نهێنی">
-
-    </div>
-
-
-    <button
-      class="submit-btn"
-      style="margin-top:20px"
-      onclick="registerUser()">
-
-      📝 تۆمارکردن
-
-    </button>
-
-
-    <p style="text-align:center;margin-top:15px">
-
-      ئەکاونتت هەیە؟
-
-      <button
-        style="border:0;background:none;color:#0066cc;cursor:pointer;font-weight:bold"
-        onclick="openLogin()">
-
-        Login
-
-      </button>
-
-    </p>
+    لە کاتی بە هەڵە ڕۆشتنی پارە بۆ هەر هەژمارێک،
+    بەرپرسیار نین!
 
   </div>
 
 </div>
 
 
-<!-- LOGIN -->
-
-<div
-  class="modal"
-  id="loginModal">
-
-  <div class="modal-box">
-
-    <button
-      class="close"
-      onclick="closeAll()">
-      ×
-    </button>
-
-    <h2 class="modal-title">
-      🔐 چوونەژوورەوە
-    </h2>
+<div id="paymentForm">
 
 
-    <div class="form-group">
+  <div class="form-group">
 
-      <label>
-        ئیمەیڵ
-      </label>
+    <label>
+      ناوی تەواو
+    </label>
 
-      <input
-        id="loginEmail"
-        type="email"
-        placeholder="example@gmail.com">
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>
-        وشەی نهێنی
-      </label>
-
-      <input
-        id="loginPassword"
-        type="password"
-        placeholder="وشەی نهێنی">
-
-    </div>
-
-
-    <button
-      class="submit-btn"
-      style="margin-top:20px"
-      onclick="loginUser()">
-
-      🔐 Login
-
-    </button>
+    <input
+      id="userName"
+      type="text">
 
   </div>
+
+
+  <div class="form-group">
+
+    <label>
+      ژمارەی مۆبایل
+    </label>
+
+    <input
+      id="userPhone"
+      type="tel">
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>
+      ژمارەی مامەڵە
+    </label>
+
+    <input
+      id="transactionId"
+      type="text"
+      placeholder="ئەگەر هەیە">
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>
+      وێنەی رسید / مامەڵە
+    </label>
+
+    <input
+      id="receiptImage"
+      type="file"
+      accept="image/*">
+
+  </div>
+
+
+  <div class="form-group">
+
+    <label>
+      تێبینی
+    </label>
+
+    <textarea
+      id="message"
+      placeholder="هەر تێبینییەکت هەیە">
+    </textarea>
+
+  </div>
+
+
+  <button
+    class="submit-btn"
+    style="margin-top:20px;background:#00a85a"
+    onclick="sendPayment()">
+
+    📤 ناردنی وەسڵ بۆ ئەدمین
+
+  </button>
 
 </div>
 
 
-<!-- PAYMENT -->
-
 <div
-  class="modal"
-  id="paymentModal">
+  class="success"
+  id="paymentSuccess">
 
-  <div class="modal-box">
+  ✅ داواکارییەکەت تۆمارکرا!
 
-    <button
-      class="close"
-      onclick="closePayment()">
-      ×
-    </button>
+  <br>
 
-    <h2 class="modal-title">
-      💳 تەواوکردنی بەژداری
-    </h2>
-
-
-    <div class="selected-plan">
-
-      پلان:
-
-      <strong id="selectedPlan">
-        ---
-      </strong>
-
-      <br>
-
-      بڕ:
-
-      <strong id="selectedPrice">
-        ---
-      </strong>
-
-      د.ع
-
-    </div>
-
-
-    <div class="fib-box">
-
-      <h3>
-        🔵 پارەدان بە FIB
-      </h3>
-
-      <p style="margin-top:10px">
-
-        تکایە بچۆرە ناو ئەپی FIB ـەکەتەوە
-        و بڕی پارەکە بۆ ئەم ژمارەیە بنێرە:
-
-      </p>
-
-      <div class="fib-number">
-        7515176569
-      </div>
-
-      <div class="notice">
-
-        تکایە بڕی پارەکە بە وردی بنێرە.
-
-      </div>
-
-      <div class="warning">
-
-        بەژداربووی بەڕێز ❤️
-
-        <br>
-
-        تکایە لە بڕی پارەکە و ژمارەکە
-        دڵنیا ببەرەوە.
-
-        <br>
-
-        لە کاتی بە هەڵە ڕۆشتنی پارە بۆ هەر هەژمارێک،
-        بەرپرسیار نین!
-
-      </div>
-
-    </div>
-
-
-    <div id="paymentForm">
-
-
-      <div class="form-group">
-
-        <label>
-          ناوی تەواو
-        </label>
-
-        <input
-          id="userName"
-          type="text">
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          ژمارەی مۆبایل
-        </label>
-
-        <input
-          id="userPhone"
-          type="tel">
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          ژمارەی مامەڵە
-        </label>
-
-        <input
-          id="transactionId"
-          type="text"
-          placeholder="ئەگەر هەیە">
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          وێنەی رسید / مامەڵە
-        </label>
-
-        <input
-          id="receiptImage"
-          type="file"
-          accept="image/*">
-
-      </div>
-
-
-      <div class="form-group">
-
-        <label>
-          تێبینی
-        </label>
-
-        <textarea
-          id="message"
-          placeholder="هەر تێبینییەکت هەیە">
-        </textarea>
-
-      </div>
-
-
-      <button
-        class="submit-btn"
-        style="margin-top:20px;background:#00a85a"
-        onclick="sendPayment()">
-
-        📤 ناردنی وەسڵ بۆ ئەدمین
-
-      </button>
-
-    </div>
-
-
-    <div
-      class="success"
-      id="paymentSuccess">
-
-      ✅ داواکارییەکەت تۆمارکرا!
-
-      <br>
-
-      ئەدمین پشکنینی وەسڵەکەت دەکات.
-
-    </div>
-
-  </div>
+  ئەدمین پشکنینی وەسڵەکەت دەکات.
 
 </div>
 
-
-<script>
+  </div></div><script>
 
 /* =========================================
    SUPABASE SETTINGS
@@ -1472,11 +1404,6 @@ async function registerUser(){
       const user =
         result.data.user;
 
-
-      /*
-       Profile دروست دەکەین
-       ئەگەر پێشتر دروست نەکرابێت.
-      */
 
       const profileResult =
         await supabaseClient
@@ -2176,8 +2103,6 @@ async function sendPayment(){
       safeExtension;
 
 
-    /* Upload */
-
     const upload =
       await supabaseClient
         .storage
@@ -2209,8 +2134,6 @@ async function sendPayment(){
     }
 
 
-    /* URL */
-
     const publicURL =
       supabaseClient
         .storage
@@ -2221,8 +2144,6 @@ async function sendPayment(){
         .data
         .publicUrl;
 
-
-    /* Database */
 
     const insert =
       await supabaseClient
@@ -2332,6 +2253,198 @@ async function showAdmin(){
 
 
 /* =========================================
+   ADMIN SELF PREMIUM
+========================================= */
+
+async function activateAdminPremium(
+  plan,
+  days
+){
+
+  if(!currentUser){
+
+    alert(
+      "❌ ئەدمین Login نەکردووە."
+    );
+
+    return;
+  }
+
+
+  if(
+    currentUser.email?.toLowerCase() !==
+    ADMIN_EMAIL.toLowerCase()
+  ){
+
+    alert(
+      "❌ تۆ دەسەڵاتی ئەدمینت نییە."
+    );
+
+    return;
+  }
+
+
+  const yes =
+    confirm(
+      "دڵنیایت دەتەوێت Premium ـی ئەدمین بۆ " +
+      plan +
+      " چالاک بکەیت؟"
+    );
+
+
+  if(!yes){
+    return;
+  }
+
+
+  try{
+
+    const endDate =
+      new Date();
+
+
+    endDate.setDate(
+      endDate.getDate()+days
+    );
+
+
+    const result =
+      await supabaseClient
+        .from("profiles")
+        .update({
+
+          premium_active:true,
+
+          premium_plan:
+            plan,
+
+          premium_expires_at:
+            endDate.toISOString()
+
+        })
+        .eq(
+          "id",
+          currentUser.id
+        );
+
+
+    if(result.error){
+
+      console.error(
+        result.error
+      );
+
+      alert(
+        "❌ Premium ـی ئەدمین چالاک نەکرا:\n" +
+        result.error.message
+      );
+
+      return;
+    }
+
+
+    currentProfile = {
+
+      ...(currentProfile || {}),
+
+      premium_active:true,
+
+      premium_plan:plan,
+
+      premium_expires_at:
+        endDate.toISOString()
+
+    };
+
+
+    updateAdminPremiumStatus();
+
+
+    alert(
+      "✅ Premium ـی ئەدمین چالاک کرا!\n\n" +
+      "پلان: " +
+      plan +
+      "\n" +
+      "ماوە: " +
+      days +
+      " ڕۆژ"
+    );
+
+
+    await renderAdmin();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ هەڵەیەک ڕوویدا."
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   ADMIN PREMIUM STATUS
+========================================= */
+
+function updateAdminPremiumStatus(){
+
+  const box =
+    document.getElementById(
+      "adminPremiumStatus"
+    );
+
+
+  if(!box){
+    return;
+  }
+
+
+  if(
+    currentProfile &&
+    currentProfile.premium_active === true
+  ){
+
+    let expiry="";
+
+    if(
+      currentProfile.premium_expires_at
+    ){
+
+      expiry =
+        new Date(
+          currentProfile.premium_expires_at
+        ).toLocaleDateString("ku-IQ");
+
+    }
+
+
+    box.innerHTML =
+      "👑 Premium ـی ئەدمین چالاکە ✅" +
+      "<br>" +
+      "پلان: " +
+      escapeHTML(
+        currentProfile.premium_plan || ""
+      ) +
+      "<br>" +
+      "کۆتایی: " +
+      escapeHTML(expiry);
+
+  }else{
+
+    box.innerHTML =
+      "❌ Premium ـی ئەدمین چالاک نییە.";
+
+  }
+
+}
+
+
+/* =========================================
    ADMIN RENDER
 ========================================= */
 
@@ -2345,6 +2458,9 @@ async function renderAdmin(){
 
   container.innerHTML =
     "<div class='empty'>⏳ چاوەڕێ بکە...</div>";
+
+
+  updateAdminPremiumStatus();
 
 
   const usersResult =
@@ -2998,7 +3114,5 @@ supabaseClient
     }
   );
 
-</script>
-
-</body>
+</script></body>
 </html>
