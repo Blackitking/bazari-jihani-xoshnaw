@@ -4,10 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XOSHNAW AI PREMIUM</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0
+}
 
 body{
 font-family:Arial,Tahoma,sans-serif;
@@ -29,7 +34,10 @@ top:0;
 z-index:50
 }
 
-.logo{font-size:21px;font-weight:bold}
+.logo{
+font-size:21px;
+font-weight:bold
+}
 
 .header-actions{
 display:flex;
@@ -131,42 +139,6 @@ color:#666;
 line-height:1.8
 }
 
-.videos{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px
-}
-
-.video-card{
-background:white;
-border-radius:18px;
-overflow:hidden;
-box-shadow:0 8px 30px rgba(0,0,0,.07)
-}
-
-.video-placeholder{
-height:170px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#111827;
-color:white;
-font-size:50px
-}
-
-.video-info{
-padding:20px
-}
-
-.video-info h3{
-margin-bottom:10px
-}
-
-.video-info p{
-color:#666;
-line-height:1.7
-}
-
 .plans{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -228,8 +200,7 @@ font-weight:bold;
 font-size:15px
 }
 
-.dashboard,
-.admin-panel{
+.dashboard{
 display:none;
 margin:30px auto;
 width:min(1100px,92%);
@@ -275,13 +246,6 @@ padding:18px;
 border-radius:14px;
 margin-bottom:12px;
 line-height:1.9
-}
-
-.payment-item img{
-max-width:180px;
-border-radius:10px;
-display:block;
-margin:10px 0
 }
 
 .modal{
@@ -412,8 +376,8 @@ margin-top:30px
 }
 
 @media(max-width:800px){
+
 .cards,
-.videos,
 .plans{
 grid-template-columns:1fr
 }
@@ -421,6 +385,11 @@ grid-template-columns:1fr
 header{
 flex-direction:column
 }
+
+.hero h1{
+font-size:30px
+}
+
 }
 </style>
 </head>
@@ -428,18 +397,35 @@ flex-direction:column
 <body>
 
 <header>
-<div class="logo">XOSHNAW AI PREMIUM</div>
+
+<div class="logo">
+XOSHNAW AI PREMIUM
+</div>
 
 <div class="header-actions">
-<button class="header-btn" onclick="openLogin()">👤 چوونەژوورەوە</button>
-<button class="header-btn dark-btn" onclick="openRegister()">📝 تۆمارکردن</button>
+
+<button class="header-btn" onclick="openLogin()">
+👤 چوونەژوورەوە
+</button>
+
+<button class="header-btn dark-btn" onclick="openRegister()">
+📝 تۆمارکردن
+</button>
+
 </div>
+
 </header>
 
-<section class="hero">
-<div class="big-emoji">🤖</div>
 
-<h1>بەخێربێیت بۆ XOSHNAW AI</h1>
+<section class="hero">
+
+<div class="big-emoji">
+🤖
+</div>
+
+<h1>
+بەخێربێیت بۆ XOSHNAW AI
+</h1>
 
 <p>
 شوێنێکی تایبەت بۆ فێربوونی AI Tools،
@@ -449,80 +435,61 @@ flex-direction:column
 <button class="hero-btn" onclick="scrollToPlans()">
 👑 بەژداربوونی Premium
 </button>
+
 </section>
 
+
 <section>
+
 <div class="container">
 
-<h2 class="section-title">🚀 چی بەدەست دەهێنیت؟</h2>
+<h2 class="section-title">
+🚀 چی بەدەست دەهێنیت؟
+</h2>
 
 <div class="cards">
 
 <div class="card">
 <div class="emoji">🤖</div>
 <h3>AI Tools</h3>
-<p>فێربوونی ئامرازەکانی AI و چۆنیەتی بەکارهێنانیان.</p>
+<p>
+فێربوونی ئامرازەکانی AI و چۆنیەتی بەکارهێنانیان.
+</p>
 </div>
 
 <div class="card">
 <div class="emoji">🎬</div>
 <h3>ڤیدیۆی فێرکاری</h3>
-<p>ڤیدیۆی نوێی فێرکاری بە شێوەی ڕوون و ئاسان.</p>
+<p>
+ڤیدیۆی نوێی فێرکاری بە شێوەی ڕوون و ئاسان.
+</p>
 </div>
 
 <div class="card">
 <div class="emoji">👑</div>
 <h3>Premium</h3>
-<p>دەستگەیشتن بە ناوەڕۆکی تایبەت بۆ ئەندامانی Premium.</p>
+<p>
+دەستگەیشتن بە ناوەڕۆکی تایبەت بۆ ئەندامانی Premium.
+</p>
 </div>
 
 </div>
+
 </div>
+
 </section>
 
-<section>
-
-<div class="container">
-
-<h2 class="section-title">🎬 ڤیدیۆکانی فێرکاری</h2>
-
-<div class="videos">
-
-<div class="video-card">
-<div class="video-placeholder">▶️</div>
-<div class="video-info">
-<h3>AI Tool ـی یەکەم</h3>
-<p>ڤیدیۆی فێرکاری بۆ ئەندامانی Premium.</p>
-</div>
-</div>
-
-<div class="video-card">
-<div class="video-placeholder">▶️</div>
-<div class="video-info">
-<h3>چۆن AI بەکاربهێنین؟</h3>
-<p>فێربوونی بنەڕەتی AI بە زمانی کوردی.</p>
-</div>
-</div>
-
-<div class="video-card">
-<div class="video-placeholder">🔒</div>
-<div class="video-info">
-<h3>Premium Video</h3>
-<p>ئەم ڤیدیۆیە تەنها بۆ ئەندامانی Premium ـە.</p>
-</div>
-</div>
-
-</div>
-</div>
-</section>
 
 <section id="plans">
 
 <div class="container">
 
-<h2 class="section-title">👑 پلانەکانی Premium</h2>
+<h2 class="section-title">
+👑 پلانەکانی Premium
+</h2>
 
 <div class="plans">
+
 
 <div class="plan">
 
@@ -544,9 +511,12 @@ flex-direction:column
 
 </div>
 
+
 <div class="plan featured">
 
-<div class="badge">باشترین هەڵبژاردە</div>
+<div class="badge">
+باشترین هەڵبژاردە
+</div>
 
 <h3>مانگانە</h3>
 
@@ -566,6 +536,7 @@ flex-direction:column
 </button>
 
 </div>
+
 
 <div class="plan">
 
@@ -588,13 +559,19 @@ flex-direction:column
 
 </div>
 
+
 </div>
+
 </div>
+
 </section>
+
 
 <div id="dashboard" class="dashboard">
 
-<h2>👤 بەخێربێیت</h2>
+<h2>
+👤 بەخێربێیت
+</h2>
 
 <p id="dashboardName"></p>
 
@@ -612,7 +589,8 @@ Premium هێشتا چالاک نەکراوە.
 
 </div>
 
-<!-- ADMIN PANEL ناچالاک کراوە بۆ تاقیکردنەوە -->
+
+<!-- REGISTER -->
 
 <div id="registerModal" class="modal">
 
@@ -626,41 +604,34 @@ Premium هێشتا چالاک نەکراوە.
 
 <div class="form-group">
 <label>ناوی تەواو</label>
-<input id="regName" type="text" placeholder="ناوی تەواوت">
+<input id="regName" type="text">
 </div>
 
 <div class="form-group">
 <label>ژمارەی مۆبایل</label>
-<input id="regPhone" type="tel" placeholder="07xxxxxxxxx">
+<input id="regPhone" type="tel">
 </div>
 
 <div class="form-group">
 <label>ئیمەیڵ</label>
-<input id="regEmail" type="email" placeholder="example@gmail.com">
+<input id="regEmail" type="email">
 </div>
 
 <div class="form-group">
 <label>وشەی نهێنی</label>
-<input id="regPassword" type="password" placeholder="وشەی نهێنی">
+<input id="regPassword" type="password">
 </div>
 
 <button class="submit-btn" onclick="registerUser()">
 📝 تۆمارکردن
 </button>
 
-<p style="text-align:center;margin-top:15px">
-ئەکاونتت هەیە؟
-
-<button
-style="border:0;background:none;color:#0066cc;cursor:pointer;font-weight:bold"
-onclick="openLogin()">
-Login
-</button>
-
-</p>
+</div>
 
 </div>
-</div>
+
+
+<!-- LOGIN -->
 
 <div id="loginModal" class="modal">
 
@@ -674,12 +645,12 @@ Login
 
 <div class="form-group">
 <label>ئیمەیڵ</label>
-<input id="loginEmail" type="email" placeholder="example@gmail.com">
+<input id="loginEmail" type="email">
 </div>
 
 <div class="form-group">
 <label>وشەی نهێنی</label>
-<input id="loginPassword" type="password" placeholder="وشەی نهێنی">
+<input id="loginPassword" type="password">
 </div>
 
 <button class="submit-btn" onclick="loginUser()">
@@ -687,7 +658,11 @@ Login
 </button>
 
 </div>
+
 </div>
+
+
+<!-- PAYMENT -->
 
 <div id="paymentModal" class="modal">
 
@@ -712,13 +687,18 @@ Login
 
 </div>
 
+
 <div class="fib-box">
 
-<h3>🔵 پارەدان بە FIB</h3>
+<h3>
+🔵 پارەدان بە FIB
+</h3>
 
 <p style="margin-top:10px">
+
 تکایە بچۆرە ناو ئەپی FIB ـەکەتەوە
 و بڕی پارەکە بۆ ئەم ژمارەیە بنێرە:
+
 </p>
 
 <div class="fib-number">
@@ -746,21 +726,22 @@ Login
 
 </div>
 
+
 <div id="paymentForm">
 
 <div class="form-group">
 <label>ناوی تەواو</label>
-<input id="userName" type="text">
+<input id="userName">
 </div>
 
 <div class="form-group">
 <label>ژمارەی مۆبایل</label>
-<input id="userPhone" type="tel">
+<input id="userPhone">
 </div>
 
 <div class="form-group">
 <label>ژمارەی مامەڵە</label>
-<input id="transactionId" type="text" placeholder="ئەگەر هەیە">
+<input id="transactionId">
 </div>
 
 <div class="form-group">
@@ -770,7 +751,7 @@ Login
 
 <div class="form-group">
 <label>تێبینی</label>
-<textarea id="message" placeholder="هەر تێبینییەکت هەیە"></textarea>
+<textarea id="message"></textarea>
 </div>
 
 <button
@@ -784,28 +765,34 @@ onclick="sendPayment()">
 
 </div>
 
+
 <div class="success" id="paymentSuccess">
 
 ✅ داواکارییەکەت تۆمارکرا!
 
 <br>
 
-ئەدمین پشکنینی وەسڵەکەت دەکات.
+وەسڵەکەت نێردراوە بۆ پشکنین.
 
 </div>
 
 </div>
+
 </div>
+
 
 <footer>
 
-<strong>XOSHNAW AI PREMIUM</strong>
+<strong>
+XOSHNAW AI PREMIUM
+</strong>
 
 <br><br>
 
 فێربوون • AI • Technology • Premium
 
 </footer>
+
 
 <script>
 
@@ -815,26 +802,18 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_9ALxJWahJqUFvtMXR7-5TA_XHBIF6ZK";
 
-/*
-========================================
-ADMIN TEMPORARILY DISABLED
-lawaking24@gmail.com is now a normal user
-========================================
-*/
-
-const ADMIN_EMAIL = "__ADMIN_DISABLED_FOR_TEST__";
-
 const supabaseClient =
 window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
 
-let currentUser = null;
-let currentProfile = null;
 
-let selectedPlan = "";
-let selectedPrice = 0;
+let currentUser=null;
+let currentProfile=null;
+
+let selectedPlan="";
+let selectedPrice=0;
 
 
 function escapeHTML(value){
@@ -856,7 +835,8 @@ function openLogin(){
 
 closeAll();
 
-document.getElementById("loginModal").style.display="flex";
+document.getElementById("loginModal")
+.style.display="flex";
 
 }
 
@@ -865,28 +845,35 @@ function openRegister(){
 
 closeAll();
 
-document.getElementById("registerModal").style.display="flex";
+document.getElementById("registerModal")
+.style.display="flex";
 
 }
 
 
 function closePayment(){
 
-document.getElementById("paymentModal").style.display="none";
+document.getElementById("paymentModal")
+.style.display="none";
 
 }
 
 
 function closeAll(){
 
-document.getElementById("loginModal").style.display="none";
+document.getElementById("loginModal")
+.style.display="none";
 
-document.getElementById("registerModal").style.display="none";
+document.getElementById("registerModal")
+.style.display="none";
 
-document.getElementById("paymentModal").style.display="none";
+document.getElementById("paymentModal")
+.style.display="none";
 
 }
 
+
+/* REGISTER */
 
 async function registerUser(){
 
@@ -912,7 +899,7 @@ return;
 }
 
 
-if(password.length < 6){
+if(password.length<6){
 
 alert("❌ وشەی نهێنی دەبێت لانیکەم 6 پیت بێت.");
 
@@ -926,8 +913,9 @@ try{
 const {data,error} =
 await supabaseClient.auth.signUp({
 
-email,
-password,
+email:email,
+
+password:password,
 
 options:{
 data:{
@@ -943,7 +931,8 @@ if(error){
 
 alert(
 "❌ تۆمارکردن سەرکەوتوو نەبوو:\n"
-+ error.message
++
+error.message
 );
 
 return;
@@ -971,47 +960,52 @@ premium_active:false
 });
 
 
-if(profileError)
+if(profileError){
+
 console.error(profileError);
+
+}
 
 }
 
 
 alert(
-"✅ ئەکاونتەکەت دروست کرا.\n\nئێستا دەتوانیت Login بکەیت."
+"✅ ئەکاونتەکەت دروست کرا.\n\nئێستا Login بکە."
 );
 
 closeAll();
-
-document.getElementById("regName").value="";
-document.getElementById("regPhone").value="";
-document.getElementById("regEmail").value="";
-document.getElementById("regPassword").value="";
-
 
 }catch(error){
 
 console.error(error);
 
-alert("❌ هەڵەیەک ڕوویدا.");
+alert(
+"❌ هەڵەیەک ڕوویدا."
+);
 
 }
 
 }
 
+
+/* LOGIN */
 
 async function loginUser(){
 
 const email =
-document.getElementById("loginEmail").value.trim();
+document.getElementById("loginEmail")
+.value.trim();
 
 const password =
-document.getElementById("loginPassword").value;
+document.getElementById("loginPassword")
+.value;
 
 
 if(!email || !password){
 
-alert("❌ تکایە ئیمەیڵ و وشەی نهێنی بنووسە.");
+alert(
+"❌ تکایە ئیمەیڵ و وشەی نهێنی بنووسە."
+);
 
 return;
 
@@ -1023,8 +1017,9 @@ try{
 const {data,error} =
 await supabaseClient.auth.signInWithPassword({
 
-email,
-password
+email:email,
+
+password:password
 
 });
 
@@ -1033,7 +1028,8 @@ if(error){
 
 alert(
 "❌ Login سەرکەوتوو نەبوو:\n"
-+ error.message
++
+error.message
 );
 
 return;
@@ -1049,16 +1045,21 @@ closeAll();
 
 await showDashboard();
 
+
 }catch(error){
 
 console.error(error);
 
-alert("❌ هەڵەیەک ڕوویدا.");
+alert(
+"❌ هەڵەیەک ڕوویدا."
+);
 
 }
 
 }
 
+
+/* PROFILE */
 
 async function loadProfile(){
 
@@ -1090,19 +1091,7 @@ return data;
 }
 
 
-/*
-========================================
-ADMIN CHECK DISABLED
-Nobody is admin in this test version.
-========================================
-*/
-
-function isAdmin(){
-
-return false;
-
-}
-
+/* USER DASHBOARD */
 
 async function showDashboard(){
 
@@ -1113,7 +1102,8 @@ return;
 await loadProfile();
 
 
-document.getElementById("dashboard").style.display="block";
+document.getElementById("dashboard")
+.style.display="block";
 
 
 const name =
@@ -1122,70 +1112,38 @@ currentUser.user_metadata?.full_name ||
 currentUser.email;
 
 
-document.getElementById("dashboardName").textContent =
-"سڵاو " + name;
+document.getElementById("dashboardName")
+.textContent="سڵاو "+name;
 
 
 const status =
 document.getElementById("premiumStatus");
 
+
 const plan =
 document.getElementById("dashboardPlan");
 
 
-const active =
-currentProfile?.premium_active === true;
-
-
-let expiresText="";
-
-
-if(currentProfile?.premium_expires_at){
-
-const d =
-new Date(currentProfile.premium_expires_at);
-
-if(!isNaN(d.getTime())){
-
-expiresText =
-d.toLocaleDateString("ku-IQ");
-
-}
-
-}
-
-
-if(active){
+if(currentProfile?.premium_active===true){
 
 status.className="status active";
 
-status.innerHTML =
+status.innerHTML=
 "👑 Premium ـەکەت چالاکە.";
 
-plan.innerHTML =
+
+plan.innerHTML=
 "<p><strong>پلان:</strong> "
 +
 escapeHTML(currentProfile.premium_plan||"")
 +
-"</p>"
-+
-(
-expiresText
-?
-"<p><strong>کۆتایی:</strong> "
-+
-escapeHTML(expiresText)
-+
-"</p>"
-:
-""
-);
+"</p>";
 
 }else{
 
 status.className="status pending";
 
-status.innerHTML =
+status.innerHTML=
 "Premium هێشتا چالاک نەکراوە.";
 
 plan.innerHTML="";
@@ -1198,19 +1156,16 @@ await loadMyPayments();
 }
 
 
+/* USER PAYMENTS */
+
 async function loadMyPayments(){
 
 const box =
 document.getElementById("myPayments");
 
 
-if(!currentUser){
-
-box.innerHTML="";
-
+if(!currentUser)
 return;
-
-}
 
 
 const {data,error} =
@@ -1234,7 +1189,7 @@ return;
 
 if(!data || data.length===0){
 
-box.innerHTML =
+box.innerHTML=
 "<p style='color:#777'>هیچ داواکارییەکت نییە.</p>";
 
 return;
@@ -1242,25 +1197,23 @@ return;
 }
 
 
-let html =
+let html=
 "<h3 style='margin-bottom:12px'>📋 داواکارییەکانت</h3>";
 
 
 data.forEach(item=>{
 
-const status =
-item.status==="accepted"
-?
-"✅ پەسەندکراو"
-:
-item.status==="rejected"
-?
-"❌ ڕەتکرایەوە"
-:
-"⏳ چاوەڕوان";
+let status="⏳ چاوەڕوان";
 
 
-html +=
+if(item.status==="accepted")
+status="✅ پەسەندکراو";
+
+if(item.status==="rejected")
+status="❌ ڕەتکرایەوە";
+
+
+html+=
 
 "<div class='payment-item'>"
 
@@ -1297,12 +1250,14 @@ box.innerHTML=html;
 }
 
 
+/* CHOOSE PLAN */
+
 function choosePlan(plan,price){
 
 if(!currentUser){
 
 alert(
-"تکایە سەرەتا Register یان Login بکە."
+"❌ تکایە سەرەتا Login بکە."
 );
 
 openLogin();
@@ -1317,13 +1272,6 @@ selectedPlan=plan;
 selectedPrice=Number(price);
 
 
-/*
-No admin bypass.
-Everyone including lawaking
-must use normal payment flow.
-*/
-
-
 document.getElementById("selectedPlan")
 .textContent=plan;
 
@@ -1333,19 +1281,17 @@ document.getElementById("selectedPrice")
 selectedPrice.toLocaleString("en-US");
 
 
-const metadata =
-currentUser.user_metadata || {};
-
-
-document.getElementById("userName").value =
+document.getElementById("userName")
+.value=
 currentProfile?.full_name ||
-metadata.full_name ||
+currentUser.user_metadata?.full_name ||
 "";
 
 
-document.getElementById("userPhone").value =
+document.getElementById("userPhone")
+.value=
 currentProfile?.phone ||
-metadata.phone ||
+currentUser.user_metadata?.phone ||
 "";
 
 
@@ -1370,6 +1316,8 @@ document.getElementById("paymentModal")
 }
 
 
+/* SEND PAYMENT */
+
 async function sendPayment(){
 
 if(!currentUser){
@@ -1382,19 +1330,24 @@ return;
 
 
 const name =
-document.getElementById("userName").value.trim();
+document.getElementById("userName")
+.value.trim();
 
 const phone =
-document.getElementById("userPhone").value.trim();
+document.getElementById("userPhone")
+.value.trim();
 
 const transactionId =
-document.getElementById("transactionId").value.trim();
+document.getElementById("transactionId")
+.value.trim();
 
 const file =
-document.getElementById("receiptImage").files[0];
+document.getElementById("receiptImage")
+.files[0];
 
 const message =
-document.getElementById("message").value.trim();
+document.getElementById("message")
+.value.trim();
 
 
 if(!name || !phone){
@@ -1421,8 +1374,10 @@ return;
 
 try{
 
+/* UPLOAD RECEIPT */
+
 const extension =
-file.name.split(".").pop();
+file.name.split(".").pop().toLowerCase();
 
 
 const fileName =
@@ -1442,12 +1397,17 @@ await supabaseClient
 .storage
 .from("receipts")
 .upload(
+
 fileName,
+
 file,
+
 {
 cacheControl:"3600",
-upsert:false
+upsert:false,
+contentType:file.type
 }
+
 );
 
 
@@ -1466,6 +1426,8 @@ return;
 }
 
 
+/* GET PUBLIC URL */
+
 const {data:urlData} =
 supabaseClient
 .storage
@@ -1477,10 +1439,20 @@ const receiptUrl =
 urlData?.publicUrl || "";
 
 
-const {error} =
-await supabaseClient
-.from("payment_requests")
-.insert({
+if(!receiptUrl){
+
+alert(
+"❌ لینکی وەسڵ دروست نەکرا."
+);
+
+return;
+
+}
+
+
+/* INSERT PAYMENT REQUEST */
+
+const paymentData={
 
 user_id:currentUser.id,
 
@@ -1498,23 +1470,36 @@ transactionId || null,
 message:
 message || null
 
-});
+};
+
+
+const {data,error} =
+await supabaseClient
+.from("payment_requests")
+.insert(paymentData)
+.select()
+.single();
 
 
 if(error){
 
-console.error(error);
+console.error(
+"PAYMENT INSERT ERROR:",
+error
+);
 
 alert(
-"❌ داواکارییەکە نەنێردرا:\n"
+"❌ داواکارییەکە نەنێردرا:\n\n"
 +
-error.message
+(error.message || "Unknown error")
 );
 
 return;
 
 }
 
+
+/* SUCCESS */
 
 document.getElementById("paymentForm")
 .style.display="none";
@@ -1529,14 +1514,23 @@ await loadMyPayments();
 
 }catch(error){
 
-console.error(error);
+console.error(
+"SEND PAYMENT ERROR:",
+error
+);
 
-alert("❌ هەڵەیەک ڕوویدا.");
+alert(
+"❌ هەڵەیەک ڕوویدا:\n\n"
++
+(error.message || error)
+);
 
 }
 
 }
 
+
+/* LOGOUT */
 
 async function logout(){
 
@@ -1549,10 +1543,14 @@ currentProfile=null;
 document.getElementById("dashboard")
 .style.display="none";
 
-alert("✅ چوویتە دەرەوە.");
+alert(
+"✅ چوویتە دەرەوە."
+);
 
 }
 
+
+/* SCROLL */
 
 function scrollToPlans(){
 
@@ -1563,6 +1561,8 @@ behavior:"smooth"
 
 }
 
+
+/* CLOSE MODALS */
 
 document.addEventListener(
 "click",
@@ -1576,6 +1576,8 @@ e.target.style.display="none";
 
 });
 
+
+/* AUTH STATE */
 
 supabaseClient.auth.onAuthStateChange(
 (event,session)=>{
@@ -1608,6 +1610,8 @@ document.getElementById("dashboard")
 
 });
 
+
+/* START */
 
 async function startApp(){
 
