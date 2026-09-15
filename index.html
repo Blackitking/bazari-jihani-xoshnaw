@@ -977,11 +977,6 @@ const SUPABASE_KEY =
 const ADMIN_EMAIL =
 "lawaking24@gmail.com";
 
-
-/*
-دروستکردنی Supabase
-*/
-
 let supabaseClient = null;
 
 let currentUser = null;
@@ -1192,11 +1187,6 @@ async function ensureProfile(){
 if(!currentUser)
 return null;
 
-
-/*
-هەوڵی خوێندنەوەی Profile
-*/
-
 const {
 data,
 error
@@ -1217,10 +1207,6 @@ return data;
 
 }
 
-
-/*
-ئەگەر profile نەبوو
-*/
 
 const name =
 currentUser.user_metadata?.full_name ||
@@ -1262,10 +1248,6 @@ return null;
 
 }
 
-
-/*
-دووبارە بخوێنەوە
-*/
 
 const {
 data:createdProfile,
@@ -1416,11 +1398,6 @@ return;
 
 
 if(data?.user){
-
-/*
-گرنگ:
-phone لە profiles نانووسرێت.
-*/
 
 const {
 error:profileError
@@ -2158,9 +2135,7 @@ await loadAdminRequests();
 ADMIN PREMIUM FREE
 ========================= */
 
-async function activateAdminPremium(
-plan
-){
+async function activateAdminPremium(plan){
 
 if(!isAdmin())
 return;
@@ -2180,22 +2155,17 @@ expires.getDate()+days
 
 
 /*
-هیچ phone ـێک لێرە نییە.
+ADMIN PREMIUM
+تەنها Profile ـی خۆی نوێ دەکاتەوە.
 */
 
 const {
+data,
 error
 } =
 await supabaseClient
 .from("profiles")
-.upsert({
-
-id:currentUser.id,
-
-full_name:
-currentProfile?.full_name ||
-currentUser.user_metadata?.full_name ||
-"Admin",
+.update({
 
 is_admin:true,
 
@@ -2206,9 +2176,10 @@ premium_plan:plan,
 premium_expires_at:
 expires.toISOString()
 
-},{
-onConflict:"id"
-});
+})
+.eq("id",currentUser.id)
+.select("*")
+.maybeSingle();
 
 
 if(error){
@@ -2231,25 +2202,12 @@ return;
 }
 
 
-const {
-data,
-error:readError
-} =
-await supabaseClient
-.from("profiles")
-.select("*")
-.eq("id",currentUser.id)
-.maybeSingle();
-
-
-if(readError){
+if(!data){
 
 alert(
 
-"❌ Premium نوێکرایەوە، "+
-"بەڵام Profile نەخوێندرایەوە:\n\n"+
-
-readError.message
+"❌ Profile ـی Admin نەدۆزرایەوە.\n\n"+
+"تکایە Logout بکە و دووبارە Login بکە."
 
 );
 
@@ -2369,10 +2327,6 @@ currentUser.user_metadata?.full_name ||
 
 }
 
-
-/*
-phone تەنها لە Auth Metadata ـە.
-*/
 
 if(userPhone){
 
@@ -2531,11 +2485,6 @@ return;
 
 try{
 
-
-/*
-FILE EXTENSION
-*/
-
 const extension =
 file.name
 .split(".")
@@ -2548,10 +2497,6 @@ currentUser.id+
 "_"+Date.now()+
 "."+extension;
 
-
-/*
-UPLOAD
-*/
 
 const {
 error:uploadError
@@ -2593,10 +2538,6 @@ return;
 }
 
 
-/*
-PUBLIC URL
-*/
-
 const {
 data:urlData
 } =
@@ -2622,10 +2563,6 @@ return;
 
 }
 
-
-/*
-PAYMENT REQUEST
-*/
 
 const paymentData = {
 
