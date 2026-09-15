@@ -1,398 +1,423 @@
 <!DOCTYPE html>
 <html lang="ku" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>XOSHNAW AI PREMIUM</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0
+box-sizing:border-box;
+margin:0;
+padding:0
 }
 
 body{
-  font-family:Arial,Tahoma,sans-serif;
-  background:#f5f7fb;
-  color:#151515;
-  direction:rtl
+font-family:Arial,Tahoma,sans-serif;
+background:#f5f7fb;
+color:#151515;
+direction:rtl
 }
 
 header{
-  background:#111827;
-  color:white;
-  padding:15px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  position:sticky;
-  top:0;
-  z-index:50
+background:#111827;
+color:white;
+padding:15px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+position:sticky;
+top:0;
+z-index:50
 }
 
 .logo{
-  font-size:21px;
-  font-weight:bold
+font-size:21px;
+font-weight:bold
 }
 
 .header-actions{
-  display:flex;
-  gap:8px
+display:flex;
+gap:8px
 }
 
 button{
-  border:0;
-  cursor:pointer
+border:0;
+cursor:pointer
 }
 
 .header-btn{
-  padding:10px 15px;
-  border-radius:10px;
-  background:#fff;
-  color:#111827;
-  font-weight:bold
+padding:10px 15px;
+border-radius:10px;
+background:#fff;
+color:#111827;
+font-weight:bold
 }
 
 .dark-btn{
-  background:#2563eb;
-  color:white
+background:#2563eb;
+color:white
+}
+
+.logout-header{
+background:#dc2626;
+color:white
 }
 
 .hero{
-  padding:70px 20px;
-  text-align:center;
-  background:linear-gradient(135deg,#111827,#2563eb);
-  color:white
+padding:70px 20px;
+text-align:center;
+background:linear-gradient(135deg,#111827,#2563eb);
+color:white
 }
 
 .hero .big-emoji{
-  font-size:65px;
-  margin-bottom:15px
+font-size:65px;
+margin-bottom:15px
 }
 
 .hero h1{
-  font-size:38px;
-  margin-bottom:15px
+font-size:38px;
+margin-bottom:15px
 }
 
 .hero p{
-  max-width:700px;
-  margin:auto;
-  line-height:1.9;
-  font-size:17px
+max-width:700px;
+margin:auto;
+line-height:1.9;
+font-size:17px
 }
 
 .hero-btn{
-  margin-top:25px;
-  padding:14px 25px;
-  border-radius:12px;
-  background:#fff;
-  color:#111827;
-  font-size:16px;
-  font-weight:bold
+margin-top:25px;
+padding:14px 25px;
+border-radius:12px;
+background:#fff;
+color:#111827;
+font-size:16px;
+font-weight:bold
 }
 
 .container{
-  width:min(1100px,92%);
-  margin:auto
+width:min(1100px,92%);
+margin:auto
 }
 
 section{
-  padding:55px 0
+padding:55px 0
 }
 
 .section-title{
-  text-align:center;
-  font-size:28px;
-  margin-bottom:30px
+text-align:center;
+font-size:28px;
+margin-bottom:30px
 }
 
 .cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px
 }
 
 .card{
-  background:white;
-  border-radius:18px;
-  padding:28px;
-  box-shadow:0 8px 30px rgba(0,0,0,.07);
-  text-align:center
+background:white;
+border-radius:18px;
+padding:28px;
+box-shadow:0 8px 30px rgba(0,0,0,.07);
+text-align:center
 }
 
 .emoji{
-  font-size:45px;
-  margin-bottom:15px
+font-size:45px;
+margin-bottom:15px
 }
 
 .card h3{
-  margin-bottom:12px
+margin-bottom:12px
 }
 
 .card p{
-  color:#666;
-  line-height:1.8
+color:#666;
+line-height:1.8
 }
 
 .plans{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px
 }
 
 .plan{
-  position:relative;
-  background:white;
-  border-radius:20px;
-  padding:30px 25px;
-  box-shadow:0 8px 30px rgba(0,0,0,.08);
-  text-align:center
+position:relative;
+background:white;
+border-radius:20px;
+padding:30px 25px;
+box-shadow:0 8px 30px rgba(0,0,0,.08);
+text-align:center
 }
 
 .plan.featured{
-  border:3px solid #2563eb
+border:3px solid #2563eb
 }
 
 .badge{
-  position:absolute;
-  top:0;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:#2563eb;
-  color:white;
-  padding:7px 15px;
-  border-radius:20px;
-  font-size:13px;
-  white-space:nowrap
+position:absolute;
+top:0;
+left:50%;
+transform:translate(-50%,-50%);
+background:#2563eb;
+color:white;
+padding:7px 15px;
+border-radius:20px;
+font-size:13px;
+white-space:nowrap
 }
 
 .price{
-  font-size:34px;
-  font-weight:bold;
-  margin:18px 0;
-  color:#2563eb
+font-size:34px;
+font-weight:bold;
+margin:18px 0;
+color:#2563eb
 }
 
 .price small{
-  font-size:14px
+font-size:14px
 }
 
 .plan ul{
-  list-style:none;
-  text-align:right;
-  line-height:2.2;
-  margin:15px 0 25px
+list-style:none;
+text-align:right;
+line-height:2.2;
+margin:15px 0 25px
 }
 
 .plan button,
 .submit-btn{
-  width:100%;
-  padding:13px;
-  border-radius:11px;
-  background:#2563eb;
-  color:white;
-  font-weight:bold;
-  font-size:15px
+width:100%;
+padding:13px;
+border-radius:11px;
+background:#2563eb;
+color:white;
+font-weight:bold;
+font-size:15px
 }
 
 .dashboard{
-  display:none;
-  margin:30px auto;
-  width:min(1100px,92%);
-  background:white;
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 8px 30px rgba(0,0,0,.08)
+display:none;
+margin:30px auto;
+width:min(1100px,92%);
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 8px 30px rgba(0,0,0,.08)
 }
 
 .status{
-  padding:15px;
-  border-radius:12px;
-  margin:15px 0;
-  font-weight:bold
+padding:15px;
+border-radius:12px;
+margin:15px 0;
+font-weight:bold
 }
 
 .status.pending{
-  background:#fff3cd;
-  color:#856404
+background:#fff3cd;
+color:#856404
 }
 
 .status.active{
-  background:#d1fae5;
-  color:#065f46
+background:#d1fae5;
+color:#065f46
+}
+
+.admin-box{
+display:none;
+background:#ede9fe;
+color:#5b21b6;
+padding:14px;
+border-radius:12px;
+margin:15px 0;
+font-weight:bold;
+text-align:center
 }
 
 .logout{
-  margin-top:20px;
-  padding:12px 20px;
-  border-radius:10px;
-  background:#dc2626;
-  color:white;
-  font-weight:bold
+margin-top:20px;
+padding:12px 20px;
+border-radius:10px;
+background:#dc2626;
+color:white;
+font-weight:bold
 }
 
 .payment-list{
-  margin-top:20px
+margin-top:20px
 }
 
 .payment-item{
-  background:#f8fafc;
-  padding:18px;
-  border-radius:14px;
-  margin-bottom:12px;
-  line-height:1.9
+background:#f8fafc;
+padding:18px;
+border-radius:14px;
+margin-bottom:12px;
+line-height:1.9
 }
 
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  z-index:100;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
-  overflow:auto
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+z-index:100;
+align-items:center;
+justify-content:center;
+padding:15px;
+overflow:auto
 }
 
 .modal-box{
-  width:min(520px,100%);
-  max-height:92vh;
-  overflow:auto;
-  background:white;
-  border-radius:20px;
-  padding:25px;
-  position:relative
+width:min(520px,100%);
+max-height:92vh;
+overflow:auto;
+background:white;
+border-radius:20px;
+padding:25px;
+position:relative
 }
 
 .close{
-  position:absolute;
-  top:10px;
-  left:12px;
-  width:35px;
-  height:35px;
-  border-radius:50%;
-  background:#f1f5f9;
-  font-size:25px
+position:absolute;
+top:10px;
+left:12px;
+width:35px;
+height:35px;
+border-radius:50%;
+background:#f1f5f9;
+font-size:25px
 }
 
 .modal-title{
-  text-align:center;
-  margin-bottom:25px
+text-align:center;
+margin-bottom:25px
 }
 
 .form-group{
-  margin-bottom:16px
+margin-bottom:16px
 }
 
 .form-group label{
-  display:block;
-  margin-bottom:7px;
-  font-weight:bold
+display:block;
+margin-bottom:7px;
+font-weight:bold
 }
 
 input,
 textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #d1d5db;
-  border-radius:10px;
-  font-family:inherit;
-  font-size:15px
+width:100%;
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:10px;
+font-family:inherit;
+font-size:15px
 }
 
 textarea{
-  min-height:90px;
-  resize:vertical
+min-height:90px;
+resize:vertical
 }
 
 .selected-plan{
-  background:#eff6ff;
-  padding:15px;
-  border-radius:12px;
-  text-align:center;
-  line-height:2;
-  margin-bottom:20px
+background:#eff6ff;
+padding:15px;
+border-radius:12px;
+text-align:center;
+line-height:2;
+margin-bottom:20px
 }
 
 .fib-box{
-  background:#eff6ff;
-  border:1px solid #bfdbfe;
-  padding:20px;
-  border-radius:15px;
-  margin-bottom:20px
+background:#eff6ff;
+border:1px solid #bfdbfe;
+padding:20px;
+border-radius:15px;
+margin-bottom:20px
 }
 
 .fib-number{
-  background:white;
-  padding:15px;
-  text-align:center;
-  font-size:24px;
-  font-weight:bold;
-  letter-spacing:2px;
-  border-radius:10px;
-  margin:15px 0
+background:white;
+padding:15px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+letter-spacing:2px;
+border-radius:10px;
+margin:15px 0
 }
 
 .notice{
-  background:#dcfce7;
-  color:#166534;
-  padding:10px;
-  border-radius:8px;
-  text-align:center
+background:#dcfce7;
+color:#166534;
+padding:10px;
+border-radius:8px;
+text-align:center
 }
 
 .warning{
-  margin-top:12px;
-  background:#fee2e2;
-  color:#991b1b;
-  padding:12px;
-  border-radius:10px;
-  line-height:1.8;
-  text-align:center
+margin-top:12px;
+background:#fee2e2;
+color:#991b1b;
+padding:12px;
+border-radius:10px;
+line-height:1.8;
+text-align:center
 }
 
 .success{
-  display:none;
-  background:#dcfce7;
-  color:#166534;
-  padding:18px;
-  border-radius:12px;
-  text-align:center;
-  line-height:1.8
+display:none;
+background:#dcfce7;
+color:#166534;
+padding:18px;
+border-radius:12px;
+text-align:center;
+line-height:1.8
 }
 
 footer{
-  background:#111827;
-  color:white;
-  text-align:center;
-  padding:30px 15px;
-  margin-top:30px
+background:#111827;
+color:white;
+text-align:center;
+padding:30px 15px;
+margin-top:30px
 }
 
 @media(max-width:800px){
-  .cards,
-  .plans{
-    grid-template-columns:1fr
-  }
 
-  header{
-    flex-direction:column
-  }
-
-  .hero h1{
-    font-size:30px
-  }
+.cards,
+.plans{
+grid-template-columns:1fr
 }
+
+header{
+flex-direction:column
+}
+
+.hero h1{
+font-size:30px
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
+
 
 <header>
 
@@ -400,14 +425,46 @@ footer{
 XOSHNAW AI PREMIUM
 </div>
 
-<div class="header-actions">
 
-<button class="header-btn" onclick="openLogin()">
+<!-- ئەمانە بۆ کەسی نەچووەتە ژوورەوە -->
+
+<div
+class="header-actions"
+id="authButtons">
+
+<button
+class="header-btn"
+onclick="openLogin()">
+
 👤 چوونەژوورەوە
+
 </button>
 
-<button class="header-btn dark-btn" onclick="openRegister()">
+
+<button
+class="header-btn dark-btn"
+onclick="openRegister()">
+
 📝 تۆمارکردن
+
+</button>
+
+</div>
+
+
+<!-- تەنها دوای Login دەردەکەوێت -->
+
+<div
+class="header-actions"
+id="logoutArea"
+style="display:none">
+
+<button
+class="header-btn logout-header"
+onclick="logout()">
+
+🚪 چوونەدەرەوە
+
 </button>
 
 </div>
@@ -426,12 +483,17 @@ XOSHNAW AI PREMIUM
 </h1>
 
 <p>
-شوێنێکی تایبەت بۆ فێربوونی AI Tools، ڤیدیۆی فێرکاری،
-ئامرازە زیرەکەکان و ناوەڕۆکی Premium.
+شوێنێکی تایبەت بۆ فێربوونی AI Tools،
+ڤیدیۆی فێرکاری، ئامرازە زیرەکەکان
+و ناوەڕۆکی Premium.
 </p>
 
-<button class="hero-btn" onclick="scrollToPlans()">
+<button
+class="hero-btn"
+onclick="scrollToPlans()">
+
 👑 بەژداربوونی Premium
+
 </button>
 
 </section>
@@ -447,29 +509,54 @@ XOSHNAW AI PREMIUM
 
 <div class="cards">
 
+
 <div class="card">
+
 <div class="emoji">🤖</div>
-<h3>AI Tools</h3>
+
+<h3>
+AI Tools
+</h3>
+
 <p>
-فێربوونی ئامرازەکانی AI و چۆنیەتی بەکارهێنانیان.
+فێربوونی ئامرازەکانی AI
+و چۆنیەتی بەکارهێنانیان.
 </p>
+
 </div>
 
+
 <div class="card">
+
 <div class="emoji">🎬</div>
-<h3>ڤیدیۆی فێرکاری</h3>
+
+<h3>
+ڤیدیۆی فێرکاری
+</h3>
+
 <p>
-ڤیدیۆی نوێی فێرکاری بە شێوەی ڕوون و ئاسان.
+ڤیدیۆی نوێی فێرکاری
+بە شێوەی ڕوون و ئاسان.
 </p>
+
 </div>
 
+
 <div class="card">
+
 <div class="emoji">👑</div>
-<h3>Premium</h3>
+
+<h3>
+Premium
+</h3>
+
 <p>
-دەستگەیشتن بە ناوەڕۆکی تایبەت بۆ ئەندامانی Premium.
+دەستگەیشتن بە ناوەڕۆکی تایبەت
+بۆ ئەندامانی Premium.
 </p>
+
 </div>
+
 
 </div>
 
@@ -491,7 +578,9 @@ XOSHNAW AI PREMIUM
 
 <div class="plan">
 
-<h3>هەفتانە</h3>
+<h3>
+هەفتانە
+</h3>
 
 <div class="price">
 1,500 <small>د.ع</small>
@@ -503,8 +592,11 @@ XOSHNAW AI PREMIUM
 <li>✓ AI Tools</li>
 </ul>
 
-<button onclick="choosePlan('هەفتانە',1500)">
+<button
+onclick="choosePlan('هەفتانە',1500)">
+
 هەڵبژاردن
+
 </button>
 
 </div>
@@ -516,7 +608,9 @@ XOSHNAW AI PREMIUM
 باشترین هەڵبژاردە
 </div>
 
-<h3>مانگانە</h3>
+<h3>
+مانگانە
+</h3>
 
 <div class="price">
 4,000 <small>د.ع</small>
@@ -529,8 +623,11 @@ XOSHNAW AI PREMIUM
 <li>✓ ناوەڕۆکی نوێ</li>
 </ul>
 
-<button onclick="choosePlan('مانگانە',4000)">
+<button
+onclick="choosePlan('مانگانە',4000)">
+
 هەڵبژاردن
+
 </button>
 
 </div>
@@ -538,7 +635,9 @@ XOSHNAW AI PREMIUM
 
 <div class="plan">
 
-<h3>ساڵانە</h3>
+<h3>
+ساڵانە
+</h3>
 
 <div class="price">
 15,000 <small>د.ع</small>
@@ -551,11 +650,15 @@ XOSHNAW AI PREMIUM
 <li>✓ هەموو ناوەڕۆکی داهاتوو</li>
 </ul>
 
-<button onclick="choosePlan('ساڵانە',15000)">
+<button
+onclick="choosePlan('ساڵانە',15000)">
+
 هەڵبژاردن
+
 </button>
 
 </div>
+
 
 </div>
 
@@ -564,7 +667,9 @@ XOSHNAW AI PREMIUM
 </section>
 
 
-<div id="dashboard" class="dashboard">
+<div
+id="dashboard"
+class="dashboard">
 
 <h2>
 👤 بەخێربێیت
@@ -572,16 +677,40 @@ XOSHNAW AI PREMIUM
 
 <p id="dashboardName"></p>
 
-<div id="premiumStatus" class="status pending">
-Premium هێشتا چالاک نەکراوە.
+
+<div
+id="adminBox"
+class="admin-box">
+
+👑 تۆ بەڕێوەبەری XOSHNAW AI PREMIUM ـیت
+
 </div>
+
+
+<div
+id="premiumStatus"
+class="status pending">
+
+Premium هێشتا چالاک نەکراوە.
+
+</div>
+
 
 <div id="dashboardPlan"></div>
 
-<div id="myPayments" class="payment-list"></div>
 
-<button class="logout" onclick="logout()">
-چوونەدەرەوە
+<div
+id="myPayments"
+class="payment-list">
+</div>
+
+
+<button
+class="logout"
+onclick="logout()">
+
+🚪 چوونەدەرەوە
+
 </button>
 
 </div>
@@ -589,38 +718,82 @@ Premium هێشتا چالاک نەکراوە.
 
 <!-- REGISTER -->
 
-<div id="registerModal" class="modal">
+<div
+id="registerModal"
+class="modal">
 
 <div class="modal-box">
 
-<button class="close" onclick="closeAll()">×</button>
+<button
+class="close"
+onclick="closeAll()">
+
+×
+</button>
 
 <h2 class="modal-title">
 📝 تۆمارکردنی ئەکاونت
 </h2>
 
-<div class="form-group">
-<label>ناوی تەواو</label>
-<input id="regName" type="text">
-</div>
 
 <div class="form-group">
-<label>ژمارەی مۆبایل</label>
-<input id="regPhone" type="tel">
+
+<label>
+ناوی تەواو
+</label>
+
+<input
+id="regName"
+type="text">
+
 </div>
+
 
 <div class="form-group">
-<label>ئیمەیڵ</label>
-<input id="regEmail" type="email">
+
+<label>
+ژمارەی مۆبایل
+</label>
+
+<input
+id="regPhone"
+type="tel">
+
 </div>
+
 
 <div class="form-group">
-<label>وشەی نهێنی</label>
-<input id="regPassword" type="password">
+
+<label>
+ئیمەیڵ
+</label>
+
+<input
+id="regEmail"
+type="email">
+
 </div>
 
-<button class="submit-btn" onclick="registerUser()">
+
+<div class="form-group">
+
+<label>
+وشەی نهێنی
+</label>
+
+<input
+id="regPassword"
+type="password">
+
+</div>
+
+
+<button
+class="submit-btn"
+onclick="registerUser()">
+
 📝 تۆمارکردن
+
 </button>
 
 </div>
@@ -630,28 +803,56 @@ Premium هێشتا چالاک نەکراوە.
 
 <!-- LOGIN -->
 
-<div id="loginModal" class="modal">
+<div
+id="loginModal"
+class="modal">
 
 <div class="modal-box">
 
-<button class="close" onclick="closeAll()">×</button>
+<button
+class="close"
+onclick="closeAll()">
+
+×
+</button>
 
 <h2 class="modal-title">
 🔐 چوونەژوورەوە
 </h2>
 
-<div class="form-group">
-<label>ئیمەیڵ</label>
-<input id="loginEmail" type="email">
-</div>
 
 <div class="form-group">
-<label>وشەی نهێنی</label>
-<input id="loginPassword" type="password">
+
+<label>
+ئیمەیڵ
+</label>
+
+<input
+id="loginEmail"
+type="email">
+
 </div>
 
-<button class="submit-btn" onclick="loginUser()">
+
+<div class="form-group">
+
+<label>
+وشەی نهێنی
+</label>
+
+<input
+id="loginPassword"
+type="password">
+
+</div>
+
+
+<button
+class="submit-btn"
+onclick="loginUser()">
+
 🔐 Login
+
 </button>
 
 </div>
@@ -661,25 +862,38 @@ Premium هێشتا چالاک نەکراوە.
 
 <!-- PAYMENT -->
 
-<div id="paymentModal" class="modal">
+<div
+id="paymentModal"
+class="modal">
 
 <div class="modal-box">
 
-<button class="close" onclick="closePayment()">×</button>
+<button
+class="close"
+onclick="closePayment()">
+
+×
+</button>
 
 <h2 class="modal-title">
 💳 تەواوکردنی بەژداری
 </h2>
 
+
 <div class="selected-plan">
 
 پلان:
-<strong id="selectedPlan">---</strong>
+<strong id="selectedPlan">
+---
+</strong>
 
 <br>
 
 بڕ:
-<strong id="selectedPrice">---</strong>
+<strong id="selectedPrice">
+---
+</strong>
+
 د.ع
 
 </div>
@@ -698,13 +912,16 @@ Premium هێشتا چالاک نەکراوە.
 
 </p>
 
+
 <div class="fib-number">
 7515176569
 </div>
 
+
 <div class="notice">
 تکایە بڕی پارەکە بە وردی بنێرە.
 </div>
+
 
 <div class="warning">
 
@@ -712,11 +929,13 @@ Premium هێشتا چالاک نەکراوە.
 
 <br>
 
-تکایە لە بڕی پارەکە و ژمارەکە دڵنیا ببەرەوە.
+تکایە لە بڕی پارەکە و ژمارەکە
+دڵنیا ببەرەوە.
 
 <br>
 
-لە کاتی بە هەڵە ڕۆشتنی پارە بۆ هەر هەژمارێک،
+لە کاتی بە هەڵە ڕۆشتنی پارە
+بۆ هەر هەژمارێک،
 بەرپرسیار نین!
 
 </div>
@@ -725,6 +944,7 @@ Premium هێشتا چالاک نەکراوە.
 
 
 <div id="paymentForm">
+
 
 <div class="form-group">
 
@@ -768,8 +988,7 @@ Premium هێشتا چالاک نەکراوە.
 <input
 id="receiptImage"
 type="file"
-accept="image/*"
->
+accept="image/*">
 
 </div>
 
@@ -788,8 +1007,7 @@ accept="image/*"
 <button
 class="submit-btn"
 style="background:#00a85a"
-onclick="sendPayment()"
->
+onclick="sendPayment()">
 
 📤 ناردنی وەسڵ بۆ ئەدمین
 
@@ -798,7 +1016,9 @@ onclick="sendPayment()"
 </div>
 
 
-<div class="success" id="paymentSuccess">
+<div
+class="success"
+id="paymentSuccess">
 
 ✅ داواکارییەکەت تۆمارکرا!
 
@@ -828,11 +1048,23 @@ XOSHNAW AI PREMIUM
 
 <script>
 
+
+/* =========================
+   SUPABASE
+========================= */
+
 const SUPABASE_URL =
 "https://wpjqvpcqaufrpstnziad.supabase.co";
 
 const SUPABASE_KEY =
 "sb_publishable_9ALxJWahJqUFvtMXR7-5TA_XHBIF6ZK";
+
+
+/* ئەمە Admin ـە */
+
+const ADMIN_EMAIL =
+"lawaking24@gmail.com";
+
 
 const supabaseClient =
 window.supabase.createClient(
@@ -842,11 +1074,17 @@ SUPABASE_KEY
 
 
 let currentUser = null;
+
 let currentProfile = null;
 
 let selectedPlan = "";
+
 let selectedPrice = 0;
 
+
+/* =========================
+   ESCAPE HTML
+========================= */
 
 function escapeHTML(value){
 
@@ -863,6 +1101,87 @@ return String(value)
 }
 
 
+/* =========================
+   ADMIN CHECK
+========================= */
+
+function isAdmin(){
+
+if(!currentUser)
+return false;
+
+
+/*
+ئیمەیڵەکە بە تەنها
+Admin ـە.
+*/
+
+if(
+currentUser.email &&
+currentUser.email.toLowerCase()
+===
+ADMIN_EMAIL.toLowerCase()
+){
+
+return true;
+
+}
+
+
+/*
+ئەگەر لە profiles ـیش
+is_admin=true بێت.
+*/
+
+if(
+currentProfile &&
+currentProfile.is_admin === true
+){
+
+return true;
+
+}
+
+
+return false;
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+function updateAuthButtons(){
+
+const authButtons =
+document.getElementById("authButtons");
+
+const logoutArea =
+document.getElementById("logoutArea");
+
+
+if(currentUser){
+
+authButtons.style.display="none";
+
+logoutArea.style.display="flex";
+
+}else{
+
+authButtons.style.display="flex";
+
+logoutArea.style.display="none";
+
+}
+
+}
+
+
+/* =========================
+   OPEN LOGIN
+========================= */
+
 function openLogin(){
 
 closeAll();
@@ -872,6 +1191,10 @@ document.getElementById("loginModal")
 
 }
 
+
+/* =========================
+   OPEN REGISTER
+========================= */
 
 function openRegister(){
 
@@ -883,6 +1206,10 @@ document.getElementById("registerModal")
 }
 
 
+/* =========================
+   CLOSE PAYMENT
+========================= */
+
 function closePayment(){
 
 document.getElementById("paymentModal")
@@ -890,6 +1217,10 @@ document.getElementById("paymentModal")
 
 }
 
+
+/* =========================
+   CLOSE ALL
+========================= */
 
 function closeAll(){
 
@@ -905,24 +1236,35 @@ document.getElementById("paymentModal")
 }
 
 
-/* REGISTER */
+/* =========================
+   REGISTER
+========================= */
 
 async function registerUser(){
 
 const name =
-document.getElementById("regName").value.trim();
+document.getElementById("regName")
+.value.trim();
 
 const phone =
-document.getElementById("regPhone").value.trim();
+document.getElementById("regPhone")
+.value.trim();
 
 const email =
-document.getElementById("regEmail").value.trim();
+document.getElementById("regEmail")
+.value.trim();
 
 const password =
-document.getElementById("regPassword").value;
+document.getElementById("regPassword")
+.value;
 
 
-if(!name || !phone || !email || !password){
+if(
+!name ||
+!phone ||
+!email ||
+!password
+){
 
 alert(
 "❌ تکایە هەموو خانەکان پڕ بکەرەوە."
@@ -946,6 +1288,7 @@ return;
 
 try{
 
+
 const {data,error} =
 await supabaseClient.auth.signUp({
 
@@ -966,14 +1309,19 @@ phone:phone
 if(error){
 
 alert(
-"❌ تۆمارکردن سەرکەوتوو نەبوو:\n"
-+ error.message
+"❌ تۆمارکردن سەرکەوتوو نەبوو:\n\n"
++
+error.message
 );
 
 return;
 
 }
 
+
+/*
+دروستکردنی Profile
+*/
 
 if(data.user){
 
@@ -997,7 +1345,10 @@ premium_active:false
 
 if(profileError){
 
-console.error(profileError);
+console.error(
+"profileError:",
+profileError
+);
 
 }
 
@@ -1008,14 +1359,36 @@ alert(
 "✅ ئەکاونتەکەت دروست کرا.\n\nئێستا Login بکە."
 );
 
+
+/*
+تەنها ئەگەر session هەبێت
+header دەگۆڕێت.
+*/
+
+if(data.session){
+
+currentUser=data.user;
+
+await loadProfile();
+
+updateAuthButtons();
+
+await showDashboard();
+
+}
+
+
 closeAll();
+
 
 }catch(error){
 
 console.error(error);
 
 alert(
-"❌ هەڵەیەک ڕوویدا."
+"❌ هەڵەیەک ڕوویدا:\n\n"
++
+(error.message || error)
 );
 
 }
@@ -1023,7 +1396,9 @@ alert(
 }
 
 
-/* LOGIN */
+/* =========================
+   LOGIN
+========================= */
 
 async function loginUser(){
 
@@ -1049,8 +1424,10 @@ return;
 
 try{
 
+
 const {data,error} =
-await supabaseClient.auth.signInWithPassword({
+await supabaseClient.auth
+.signInWithPassword({
 
 email:email,
 
@@ -1062,8 +1439,9 @@ password:password
 if(error){
 
 alert(
-"❌ Login سەرکەوتوو نەبوو:\n"
-+ error.message
+"❌ Login سەرکەوتوو نەبوو:\n\n"
++
+error.message
 );
 
 return;
@@ -1073,9 +1451,21 @@ return;
 
 currentUser=data.user;
 
+
 await loadProfile();
 
+
+/*
+دوای Login:
+Login و Register دەشاردرێن.
+تەنها Logout دەردەکەوێت.
+*/
+
+updateAuthButtons();
+
+
 closeAll();
+
 
 await showDashboard();
 
@@ -1085,7 +1475,9 @@ await showDashboard();
 console.error(error);
 
 alert(
-"❌ هەڵەیەک ڕوویدا."
+"❌ هەڵەیەک ڕوویدا:\n\n"
++
+(error.message || error)
 );
 
 }
@@ -1093,7 +1485,9 @@ alert(
 }
 
 
-/* PROFILE */
+/* =========================
+   LOAD PROFILE
+========================= */
 
 async function loadProfile(){
 
@@ -1111,7 +1505,12 @@ await supabaseClient
 
 if(error){
 
-console.error(error);
+console.error(
+"PROFILE ERROR:",
+error
+);
+
+currentProfile=null;
 
 return null;
 
@@ -1125,7 +1524,9 @@ return data;
 }
 
 
-/* DASHBOARD */
+/* =========================
+   DASHBOARD
+========================= */
 
 async function showDashboard(){
 
@@ -1151,6 +1552,29 @@ document.getElementById("dashboardName")
 "سڵاو " + name;
 
 
+/*
+Admin Box
+*/
+
+const adminBox =
+document.getElementById("adminBox");
+
+
+if(isAdmin()){
+
+adminBox.style.display="block";
+
+}else{
+
+adminBox.style.display="none";
+
+}
+
+
+/*
+Premium Status
+*/
+
 const status =
 document.getElementById("premiumStatus");
 
@@ -1158,20 +1582,52 @@ const plan =
 document.getElementById("dashboardPlan");
 
 
-if(currentProfile?.premium_active === true){
+if(
+currentProfile?.premium_active === true
+){
 
 status.className="status active";
 
 status.innerHTML =
 "👑 Premium ـەکەت چالاکە.";
 
-plan.innerHTML =
-"<p><strong>پلان:</strong> "
+
+let expiryText="";
+
+
+if(currentProfile.premium_expires_at){
+
+const expiry =
+new Date(
+currentProfile.premium_expires_at
+);
+
+expiryText =
+"<br><strong>کۆتایی:</strong> "
 +
+expiry.toLocaleDateString("ku-IQ");
+
+}
+
+
+plan.innerHTML =
+
+"<p>" +
+
+"<strong>پلان:</strong> "
+
++
+
 escapeHTML(
 currentProfile.premium_plan || ""
 )
+
 +
+
+expiryText
+
++
+
 "</p>";
 
 }else{
@@ -1186,12 +1642,18 @@ plan.innerHTML="";
 }
 
 
+/*
+Payment history
+*/
+
 await loadMyPayments();
 
 }
 
 
-/* USER PAYMENTS */
+/* =========================
+   USER PAYMENTS
+========================= */
 
 async function loadMyPayments(){
 
@@ -1208,12 +1670,18 @@ await supabaseClient
 .from("payment_requests")
 .select("*")
 .eq("user_id",currentUser.id)
-.order("created_at",{ascending:false});
+.order(
+"created_at",
+{ascending:false}
+);
 
 
 if(error){
 
-console.error(error);
+console.error(
+"PAYMENTS ERROR:",
+error
+);
 
 box.innerHTML="";
 
@@ -1241,11 +1709,11 @@ data.forEach(item=>{
 let status="⏳ چاوەڕوان";
 
 
-if(item.status==="accepted")
+if(item.status === "accepted")
 status="✅ پەسەندکراو";
 
 
-if(item.status==="rejected")
+if(item.status === "rejected")
 status="❌ ڕەتکرایەوە";
 
 
@@ -1256,8 +1724,13 @@ html +=
 +
 
 "<strong>پلان:</strong> "
+
 +
-escapeHTML(item.plan || "")
+
+escapeHTML(
+item.plan || ""
+)
+
 +
 
 "<br>"
@@ -1265,9 +1738,15 @@ escapeHTML(item.plan || "")
 +
 
 "<strong>بڕ:</strong> "
+
 +
-escapeHTML(item.amount || "")
+
+escapeHTML(
+item.amount || ""
+)
+
 +
+
 " د.ع"
 
 +
@@ -1277,7 +1756,9 @@ escapeHTML(item.amount || "")
 +
 
 "<strong>دۆخ:</strong> "
+
 +
+
 status
 
 +
@@ -1292,7 +1773,9 @@ box.innerHTML=html;
 }
 
 
-/* CHOOSE PLAN */
+/* =========================
+   CHOOSE PLAN
+========================= */
 
 function choosePlan(plan,price){
 
@@ -1314,12 +1797,34 @@ selectedPlan=plan;
 selectedPrice=Number(price);
 
 
+/*
+ADMIN
+ڕاستەوخۆ Premium
+*/
+
+if(isAdmin()){
+
+activateAdminPremium(
+plan,
+price
+);
+
+return;
+
+}
+
+
+/*
+NORMAL USER
+دەچێتە FIB
+*/
+
 document.getElementById("selectedPlan")
 .textContent=plan;
 
 
 document.getElementById("selectedPrice")
-.textContent=
+.textContent =
 selectedPrice.toLocaleString("en-US");
 
 
@@ -1363,7 +1868,125 @@ document.getElementById("paymentModal")
 }
 
 
-/* SEND PAYMENT - FIXED */
+/* =========================
+   ADMIN PREMIUM
+========================= */
+
+async function activateAdminPremium(
+plan,
+price
+){
+
+if(!currentUser || !isAdmin())
+return;
+
+
+/*
+ماوەی پلان
+*/
+
+let days=7;
+
+
+if(plan === "مانگانە"){
+days=30;
+}
+
+
+if(plan === "ساڵانە"){
+days=365;
+}
+
+
+const expires =
+new Date();
+
+
+expires.setDate(
+expires.getDate()+days
+);
+
+
+/*
+Update profile
+*/
+
+const {error} =
+await supabaseClient
+.from("profiles")
+.update({
+
+is_admin:true,
+
+premium_active:true,
+
+premium_plan:plan,
+
+premium_expires_at:
+expires.toISOString()
+
+})
+.eq(
+"id",
+currentUser.id
+);
+
+
+if(error){
+
+console.error(
+"ADMIN PREMIUM ERROR:",
+error
+);
+
+alert(
+"❌ Premium ـی Admin چالاک نەکرا:\n\n"
++
+error.message
+);
+
+return;
+
+}
+
+
+await loadProfile();
+
+await showDashboard();
+
+
+alert(
+
+"👑 Premium چالاک کرا!"
+
++
+
+"\n\nپلان: "
++
+plan
+
++
+
+"\nبڕ: "
++
+Number(price)
+.toLocaleString("en-US")
++
+" د.ع"
+
++
+
+"\n\nبۆ Admin پارەدان پێویست نییە."
+
+);
+
+}
+
+
+/* =========================
+   SEND PAYMENT
+   NORMAL USERS ONLY
+========================= */
 
 async function sendPayment(){
 
@@ -1371,6 +1994,21 @@ if(!currentUser){
 
 alert(
 "❌ تکایە Login بکە."
+);
+
+return;
+
+}
+
+
+/*
+Admin نابێت ئەم function ـە بەکاربهێنێت.
+*/
+
+if(isAdmin()){
+
+alert(
+"👑 تۆ Admin ـیت.\nPremium ـەکەت بەبێ پارەدان چالاک دەکرێت."
 );
 
 return;
@@ -1415,12 +2053,17 @@ return;
 }
 
 
-/* CHECK FILE SIZE */
+/*
+Maximum 5MB
+*/
 
-if(file.size > 5 * 1024 * 1024){
+if(
+file.size >
+5 * 1024 * 1024
+){
 
 alert(
-"❌ قەبارەی وێنەکە زۆرە. تکایە وێنەیەکی کەمتر لە 5MB هەڵبژێرە."
+"❌ قەبارەی وێنەکە زۆرە.\nتکایە وێنەیەکی کەمتر لە 5MB هەڵبژێرە."
 );
 
 return;
@@ -1430,13 +2073,20 @@ return;
 
 try{
 
-/* UPLOAD RECEIPT */
+
+/*
+UPLOAD RECEIPT
+*/
 
 const extension =
-file.name.split(".").pop().toLowerCase();
+file.name
+.split(".")
+.pop()
+.toLowerCase();
 
 
 const fileName =
+
 currentUser.id
 +
 "_"
@@ -1469,7 +2119,10 @@ contentType:file.type
 
 if(uploadError){
 
-console.error(uploadError);
+console.error(
+"UPLOAD ERROR:",
+uploadError
+);
 
 alert(
 "❌ ناردنی وێنەی وەسڵ سەرکەوتوو نەبوو:\n\n"
@@ -1482,13 +2135,17 @@ return;
 }
 
 
-/* GET PUBLIC URL */
+/*
+PUBLIC URL
+*/
 
 const {data:urlData} =
 supabaseClient
 .storage
 .from("receipts")
-.getPublicUrl(fileName);
+.getPublicUrl(
+fileName
+);
 
 
 const receiptUrl =
@@ -1506,9 +2163,14 @@ return;
 }
 
 
-/* INSERT PAYMENT REQUEST */
+/*
+PAYMENT DATA
 
-const paymentData = {
+تەنها column ـە دڵنیابووەکان.
+message و transaction_id نەنێردراون.
+*/
+
+const paymentData={
 
 user_id:currentUser.id,
 
@@ -1524,23 +2186,16 @@ status:"pending"
 
 
 /*
-IMPORTANT:
-
-تەنها ئەو column ـانە دەنێرین
-کە لە payment_requests بوونیان دڵنیاین.
-
-message و transaction_id
-بۆیە لێرە نەنێردراون.
+INSERT
 */
-
 
 const {error} =
 await supabaseClient
 .from("payment_requests")
-.insert(paymentData);
+.insert(
+paymentData
+);
 
-
-/* ERROR */
 
 if(error){
 
@@ -1560,7 +2215,9 @@ return;
 }
 
 
-/* SUCCESS */
+/*
+SUCCESS
+*/
 
 document.getElementById("paymentForm")
 .style.display="none";
@@ -1591,11 +2248,55 @@ alert(
 }
 
 
-/* LOGOUT */
+/* =========================
+   LOGOUT
+========================= */
 
 async function logout(){
 
-await supabaseClient.auth.signOut();
+/*
+پرسیاری دڵنیایی
+*/
+
+const answer =
+confirm(
+"🚪 ئایا دڵنیایت لە چوونەدەرەوە؟"
+);
+
+
+/*
+نەخێر
+*/
+
+if(!answer){
+
+return;
+
+}
+
+
+/*
+بەڵێ
+*/
+
+const {error} =
+await supabaseClient
+.auth
+.signOut();
+
+
+if(error){
+
+alert(
+"❌ چوونەدەرەوە سەرکەوتوو نەبوو:\n\n"
++
+error.message
+);
+
+return;
+
+}
+
 
 currentUser=null;
 
@@ -1606,32 +2307,43 @@ document.getElementById("dashboard")
 .style.display="none";
 
 
+updateAuthButtons();
+
+
 alert(
-"✅ چوویتە دەرەوە."
+"✅ بە سەرکەوتوویی چوویتە دەرەوە."
 );
 
 }
 
 
-/* SCROLL */
+/* =========================
+   SCROLL
+========================= */
 
 function scrollToPlans(){
 
 document.getElementById("plans")
 .scrollIntoView({
+
 behavior:"smooth"
+
 });
 
 }
 
 
-/* CLOSE MODALS */
+/* =========================
+   CLOSE MODALS
+========================= */
 
 document.addEventListener(
 "click",
 function(e){
 
-if(e.target.classList.contains("modal")){
+if(
+e.target.classList.contains("modal")
+){
 
 e.target.style.display="none";
 
@@ -1641,14 +2353,25 @@ e.target.style.display="none";
 );
 
 
-/* AUTH STATE */
+/* =========================
+   AUTH STATE
+========================= */
 
 supabaseClient.auth.onAuthStateChange(
+
 (event,session)=>{
+
 
 if(session?.user){
 
 currentUser=session.user;
+
+
+/*
+header update
+*/
+
+updateAuthButtons();
 
 
 setTimeout(
@@ -1656,17 +2379,28 @@ async()=>{
 
 await loadProfile();
 
+updateAuthButtons();
+
 await showDashboard();
 
 },
 100
 );
 
+
 }else{
+
 
 currentUser=null;
 
 currentProfile=null;
+
+
+/*
+Login/Register دووبارە دەردەکەون
+*/
+
+updateAuthButtons();
 
 
 document.getElementById("dashboard")
@@ -1678,26 +2412,46 @@ document.getElementById("dashboard")
 );
 
 
-/* START */
+/* =========================
+   START APP
+========================= */
 
 async function startApp(){
 
 const {data} =
-await supabaseClient.auth.getSession();
+await supabaseClient
+.auth
+.getSession();
 
 
 if(data?.session?.user){
 
-currentUser=data.session.user;
+currentUser=
+data.session.user;
+
 
 await loadProfile();
 
+
+updateAuthButtons();
+
+
 await showDashboard();
 
-}
+}else{
+
+currentUser=null;
+
+currentProfile=null;
+
+updateAuthButtons();
 
 }
 
+}
+
+
+/* START */
 
 startApp();
 
