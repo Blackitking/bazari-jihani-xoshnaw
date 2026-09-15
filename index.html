@@ -1,162 +1,98 @@
 <!DOCTYPE html>
 <html lang="ku" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>XOSHNAW AI PREMIUM</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Arial,Tahoma,sans-serif;
-  background:#f4f7fb;color:#172033;direction:rtl;
-}
-button,input,textarea{font-family:inherit}
+body{font-family:Arial,Tahoma,sans-serif;background:#f5f7fb;color:#151515;direction:rtl}
+header{background:#111827;color:white;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:10px;position:sticky;top:0;z-index:50}
+.logo{font-size:21px;font-weight:bold}
+.header-actions{display:flex;gap:8px}
 button{border:0;cursor:pointer}
-header{
-  position:sticky;top:0;z-index:50;
-  background:#111827;color:#fff;padding:14px 5%;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  box-shadow:0 3px 15px #0002;
-}
-.logo{font-size:21px;font-weight:800}
-.header-actions{display:flex;gap:8px;align-items:center}
-.header-btn{
-  padding:10px 15px;border-radius:10px;background:#fff;color:#111827;
-  font-weight:700
-}
-.blue{background:#2563eb;color:#fff}
-.red{background:#dc2626!important;color:#fff!important}
-.hero{
-  padding:75px 20px;text-align:center;color:#fff;
-  background:linear-gradient(135deg,#111827,#2563eb);
-}
-.big-emoji{font-size:65px;margin-bottom:12px}
-.hero h1{font-size:38px;margin-bottom:14px}
-.hero p{max-width:720px;margin:auto;line-height:2;font-size:17px}
-.hero-btn{
-  margin-top:25px;padding:14px 24px;border-radius:12px;
-  background:#fff;color:#111827;font-weight:800;font-size:15px
-}
+.header-btn{padding:10px 15px;border-radius:10px;background:#fff;color:#111827;font-weight:bold}
+.dark-btn{background:#2563eb;color:white}
+.logout-header{background:#dc2626;color:white}
+.hero{padding:70px 20px;text-align:center;background:linear-gradient(135deg,#111827,#2563eb);color:white}
+.big-emoji{font-size:65px;margin-bottom:15px}
+.hero h1{font-size:38px;margin-bottom:15px}
+.hero p{max-width:700px;margin:auto;line-height:1.9;font-size:17px}
+.hero-btn{margin-top:25px;padding:14px 25px;border-radius:12px;background:#fff;color:#111827;font-size:16px;font-weight:bold}
 .container{width:min(1100px,92%);margin:auto}
-section{padding:50px 0}
-.title{text-align:center;font-size:28px;margin-bottom:28px}
-.cards,.plans,.premium-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:20px
-}
-.card,.plan,.dashboard,.modal-box{
-  background:#fff;border-radius:20px;box-shadow:0 8px 30px #00000010
-}
-.card{padding:27px;text-align:center}
-.emoji{font-size:44px;margin-bottom:12px}
-.card h3{margin-bottom:10px}.card p{color:#667085;line-height:1.9}
-.plan{position:relative;padding:28px 23px;text-align:center}
+section{padding:55px 0}
+.section-title{text-align:center;font-size:28px;margin-bottom:30px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:white;border-radius:18px;padding:28px;box-shadow:0 8px 30px rgba(0,0,0,.07);text-align:center}
+.emoji{font-size:45px;margin-bottom:15px}
+.card h3{margin-bottom:12px}
+.card p{color:#666;line-height:1.8}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plan{position:relative;background:white;border-radius:20px;padding:30px 25px;box-shadow:0 8px 30px rgba(0,0,0,.08);text-align:center}
 .plan.featured{border:3px solid #2563eb}
-.badge{
-  position:absolute;top:0;left:50%;transform:translate(-50%,-50%);
-  background:#2563eb;color:#fff;border-radius:20px;padding:7px 15px;
-  white-space:nowrap;font-size:13px
-}
-.price{font-size:34px;font-weight:800;color:#2563eb;margin:18px 0}
+.badge{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);background:#2563eb;color:white;padding:7px 15px;border-radius:20px;font-size:13px;white-space:nowrap}
+.price{font-size:34px;font-weight:bold;margin:18px 0;color:#2563eb}
 .price small{font-size:14px}
-.plan ul{list-style:none;text-align:right;line-height:2.2;margin:12px 0 22px}
-.main-btn,.submit-btn{
-  width:100%;padding:13px;border-radius:11px;background:#2563eb;
-  color:#fff;font-weight:800;font-size:15px
-}
-.dashboard{
-  display:none;width:min(1100px,92%);margin:30px auto;padding:28px
-}
-.status{padding:15px;border-radius:12px;margin:16px 0;font-weight:700}
+.plan ul{list-style:none;text-align:right;line-height:2.2;margin:15px 0 25px}
+.plan button,.submit-btn{width:100%;padding:13px;border-radius:11px;background:#2563eb;color:white;font-weight:bold;font-size:15px}
+.dashboard{display:none;margin:30px auto;width:min(1100px,92%);background:white;padding:30px;border-radius:20px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.status{padding:15px;border-radius:12px;margin:15px 0;font-weight:bold}
 .status.pending{background:#fff3cd;color:#856404}
 .status.active{background:#d1fae5;color:#065f46}
-.admin-box{
-  display:none;background:#ede9fe;color:#4c1d95;padding:20px;
-  border-radius:15px;margin:20px 0
-}
-.admin-title{text-align:center;font-size:24px;font-weight:800;margin-bottom:18px}
-.admin-request,.payment-item{
-  background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;
-  padding:17px;margin:12px 0;line-height:2
-}
-.accept-btn,.reject-btn{
-  padding:9px 15px;border-radius:9px;color:#fff;font-weight:700;margin:4px
-}
-.accept-btn{background:#16a34a}.reject-btn{background:#dc2626}
-.receipt-btn{
-  display:inline-block;background:#2563eb;color:#fff;text-decoration:none;
-  padding:8px 13px;border-radius:9px;font-weight:700;margin:6px 0
-}
-.premium-section{display:none}
-.premium-box{
-  background:linear-gradient(135deg,#111827,#2563eb);
-  color:#fff;border-radius:22px;padding:28px
-}
+.admin-box{display:none;background:#ede9fe;color:#5b21b6;padding:18px;border-radius:14px;margin:20px 0;font-weight:bold}
+.admin-title{font-size:24px;margin-bottom:20px;text-align:center}
+.admin-request{background:#f8fafc;border:1px solid #e5e7eb;padding:18px;border-radius:15px;margin-bottom:15px;line-height:2}
+.receipt-btn{display:inline-block;background:#2563eb;color:white;padding:9px 15px;border-radius:9px;text-decoration:none;font-weight:bold;margin:8px 0}
+.accept-btn{background:#16a34a;color:white;padding:10px 16px;border-radius:9px;font-weight:bold;margin:5px}
+.reject-btn{background:#dc2626;color:white;padding:10px 16px;border-radius:9px;font-weight:bold;margin:5px}
+.logout{margin-top:20px;padding:12px 20px;border-radius:10px;background:#dc2626;color:white;font-weight:bold}
+.payment-list{margin-top:20px}
+.payment-item{background:#f8fafc;padding:18px;border-radius:14px;margin-bottom:12px;line-height:1.9}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:100;align-items:center;justify-content:center;padding:15px;overflow:auto}
+.modal-box{width:min(520px,100%);max-height:92vh;overflow:auto;background:white;border-radius:20px;padding:25px;position:relative}
+.close{position:absolute;top:10px;left:12px;width:35px;height:35px;border-radius:50%;background:#f1f5f9;font-size:25px}
+.modal-title{text-align:center;margin-bottom:25px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;margin-bottom:7px;font-weight:bold}
+input,textarea{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:10px;font-family:inherit;font-size:15px}
+textarea{min-height:90px;resize:vertical}
+.selected-plan{background:#eff6ff;padding:15px;border-radius:12px;text-align:center;line-height:2;margin-bottom:20px}
+.fib-box{background:#eff6ff;border:1px solid #bfdbfe;padding:20px;border-radius:15px;margin-bottom:20px}
+.fib-number{background:white;padding:15px;text-align:center;font-size:24px;font-weight:bold;letter-spacing:2px;border-radius:10px;margin:15px 0}
+.notice{background:#dcfce7;color:#166534;padding:10px;border-radius:8px;text-align:center}
+.warning{margin-top:12px;background:#fee2e2;color:#991b1b;padding:12px;border-radius:10px;line-height:1.8;text-align:center}
+.success{display:none;background:#dcfce7;color:#166534;padding:18px;border-radius:12px;text-align:center;line-height:1.8}
+.empty{text-align:center;padding:20px;color:#777;background:#f8fafc;border-radius:12px}
+.error-box{margin:15px 0;padding:15px;background:#fee2e2;color:#991b1b;border-radius:12px;line-height:1.8;display:none}
+
+/* =========================
+PREMIUM CONTENT
+========================= */
+#premiumSection{display:none}
+.premium-box{background:linear-gradient(135deg,#111827,#2563eb);color:white;border-radius:22px;padding:30px;box-shadow:0 10px 35px rgba(0,0,0,.12)}
 .premium-header{text-align:center;margin-bottom:25px}
 .premium-header h2{font-size:30px;margin-bottom:10px}
-.premium-header p{line-height:1.9}
-.premium-card{
-  background:#fff;color:#172033;border-radius:16px;padding:22px;text-align:center
-}
-.premium-icon{font-size:42px;margin-bottom:10px}
-.premium-card p{color:#667085;line-height:1.8;margin-top:8px}
-.premium-link{
-  display:inline-block;margin-top:15px;padding:10px 15px;
-  border-radius:10px;background:#2563eb;color:#fff;text-decoration:none;font-weight:700
-}
-.locked{
-  display:none;background:#fff7ed;color:#9a3412;border:1px solid #fed7aa;
-  border-radius:18px;padding:25px;text-align:center;line-height:2
-}
-.expiry{text-align:center;margin-top:20px;background:#ffffff20;padding:12px;border-radius:12px}
-.modal{
-  display:none;position:fixed;inset:0;z-index:100;
-  background:#000a;align-items:center;justify-content:center;padding:15px;overflow:auto
-}
-.modal-box{width:min(520px,100%);max-height:92vh;overflow:auto;padding:25px;position:relative}
-.close{
-  position:absolute;top:10px;left:12px;width:35px;height:35px;
-  border-radius:50%;background:#eef2f7;font-size:24px
-}
-.modal-title{text-align:center;margin-bottom:23px}
-.group{margin-bottom:15px}
-.group label{display:block;font-weight:700;margin-bottom:7px}
-input,textarea{
-  width:100%;padding:12px;border:1px solid #d1d5db;border-radius:10px;
-  outline:none;font-size:15px
-}
-input:focus,textarea:focus{border-color:#2563eb}
-textarea{min-height:90px;resize:vertical}
-.selected{
-  background:#eff6ff;padding:14px;border-radius:12px;text-align:center;
-  line-height:2;margin-bottom:18px
-}
-.fib{
-  background:#eff6ff;border:1px solid #bfdbfe;padding:18px;border-radius:15px;
-  margin-bottom:18px
-}
-.fib-number{
-  background:#fff;padding:14px;text-align:center;font-size:24px;
-  font-weight:800;letter-spacing:2px;border-radius:10px;margin:12px 0
-}
-.notice{background:#dcfce7;color:#166534;padding:10px;border-radius:9px;text-align:center}
-.success{
-  display:none;background:#dcfce7;color:#166534;padding:18px;
-  border-radius:12px;text-align:center;line-height:2
-}
-.error{
-  display:none;background:#fee2e2;color:#991b1b;padding:12px;
-  border-radius:10px;margin-bottom:14px;line-height:1.8
-}
-.empty{text-align:center;color:#777;padding:15px}
-footer{background:#111827;color:#fff;text-align:center;padding:28px 15px;margin-top:30px}
+.premium-header p{line-height:1.9;opacity:.92}
+.premium-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.premium-card{background:white;color:#151515;border-radius:16px;padding:22px;text-align:center}
+.premium-card .premium-icon{font-size:42px;margin-bottom:12px}
+.premium-card h3{margin-bottom:10px}
+.premium-card p{color:#666;line-height:1.8}
+.premium-link{display:inline-block;margin-top:15px;background:#2563eb;color:white;text-decoration:none;padding:10px 15px;border-radius:10px;font-weight:bold}
+.locked-premium{display:none;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:18px;padding:25px;text-align:center;line-height:2}
+.premium-expiry{text-align:center;margin-top:20px;background:rgba(255,255,255,.14);padding:12px;border-radius:12px}
+
+footer{background:#111827;color:white;text-align:center;padding:30px 15px;margin-top:30px}
 
 @media(max-width:800px){
-  header{flex-direction:column}
-  .cards,.plans,.premium-grid{grid-template-columns:1fr}
-  .hero h1{font-size:30px}
-  .logo{font-size:18px}
+.cards,.plans,.premium-grid{grid-template-columns:1fr}
+header{flex-direction:column}
+.hero h1{font-size:30px}
 }
 </style>
 </head>
@@ -164,444 +100,390 @@ footer{background:#111827;color:#fff;text-align:center;padding:28px 15px;margin-
 <body>
 
 <header>
-  <div class="logo">XOSHNAW AI PREMIUM</div>
+<div class="logo">XOSHNAW AI PREMIUM</div>
 
-  <div id="authButtons" class="header-actions">
-    <button class="header-btn" onclick="openModal('loginModal')">👤 چوونەژوورەوە</button>
-    <button class="header-btn blue" onclick="openModal('registerModal')">📝 تۆمارکردن</button>
-  </div>
+<div class="header-actions" id="authButtons">
+<button class="header-btn" onclick="openLogin()">👤 چوونەژوورەوە</button>
+<button class="header-btn dark-btn" onclick="openRegister()">📝 تۆمارکردن</button>
+</div>
 
-  <div id="logoutArea" class="header-actions" style="display:none">
-    <button class="header-btn red" onclick="logout()">🚪 چوونەدەرەوە</button>
-  </div>
+<div class="header-actions" id="logoutArea" style="display:none">
+<button class="header-btn logout-header" onclick="logout()">🚪 چوونەدەرەوە</button>
+</div>
 </header>
 
 <section class="hero">
-  <div class="big-emoji">🤖</div>
-  <h1>بەخێربێیت بۆ XOSHNAW AI</h1>
-  <p>
-    شوێنێکی تایبەت بۆ فێربوونی AI Tools، ڤیدیۆی فێرکاری،
-    ئامرازە زیرەکەکان و ناوەڕۆکی Premium.
-  </p>
-  <button class="hero-btn" onclick="scrollToPlans()">👑 بەژداربوونی Premium</button>
+<div class="big-emoji">🤖</div>
+<h1>بەخێربێیت بۆ XOSHNAW AI</h1>
+<p>شوێنێکی تایبەت بۆ فێربوونی AI Tools، ڤیدیۆی فێرکاری، ئامرازە زیرەکەکان و ناوەڕۆکی Premium.</p>
+<button class="hero-btn" onclick="scrollToPlans()">👑 بەژداربوونی Premium</button>
 </section>
 
 <section>
-  <div class="container">
-    <h2 class="title">🚀 چی بەدەست دەهێنیت؟</h2>
-    <div class="cards">
-      <div class="card">
-        <div class="emoji">🤖</div>
-        <h3>AI Tools</h3>
-        <p>فێربوونی ئامرازەکانی AI و چۆنیەتی بەکارهێنانیان.</p>
-      </div>
-      <div class="card">
-        <div class="emoji">🎬</div>
-        <h3>ڤیدیۆی فێرکاری</h3>
-        <p>ڤیدیۆی فێرکاری بە شێوەی ڕوون و ئاسان.</p>
-      </div>
-      <div class="card">
-        <div class="emoji">👑</div>
-        <h3>Premium</h3>
-        <p>دەستگەیشتن بە ناوەڕۆکی تایبەت بۆ ئەندامانی Premium.</p>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<h2 class="section-title">🚀 چی بەدەست دەهێنیت؟</h2>
+<div class="cards">
+<div class="card"><div class="emoji">🤖</div><h3>AI Tools</h3><p>فێربوونی ئامرازەکانی AI و چۆنیەتی بەکارهێنانیان.</p></div>
+<div class="card"><div class="emoji">🎬</div><h3>ڤیدیۆی فێرکاری</h3><p>ڤیدیۆی نوێی فێرکاری بە شێوەی ڕوون و ئاسان.</p></div>
+<div class="card"><div class="emoji">👑</div><h3>Premium</h3><p>دەستگەیشتن بە ناوەڕۆکی تایبەت بۆ ئەندامانی Premium.</p></div>
+</div>
+</div>
 </section>
 
 <section id="plans">
-  <div class="container">
-    <h2 class="title">👑 پلانەکانی Premium</h2>
+<div class="container">
+<h2 class="section-title">👑 پلانەکانی Premium</h2>
+<div class="plans">
 
-    <div class="plans">
+<div class="plan">
+<h3>هەفتانە</h3>
+<div class="price">1,500 <small>د.ع</small></div>
+<ul>
+<li>✓ دەستگەیشتن بە Premium</li>
+<li>✓ ڤیدیۆی فێرکاری</li>
+<li>✓ AI Tools</li>
+</ul>
+<button onclick="choosePlan('هەفتانە',1500)">هەڵبژاردن</button>
+</div>
 
-      <div class="plan">
-        <h3>هەفتانە</h3>
-        <div class="price">1,500 <small>د.ع</small></div>
-        <ul>
-          <li>✓ دەستگەیشتن بە Premium</li>
-          <li>✓ ڤیدیۆی فێرکاری</li>
-          <li>✓ AI Tools</li>
-        </ul>
-        <button class="main-btn" onclick="choosePlan('هەفتانە',1500)">هەڵبژاردن</button>
-      </div>
+<div class="plan featured">
+<div class="badge">باشترین هەڵبژاردە</div>
+<h3>مانگانە</h3>
+<div class="price">4,000 <small>د.ع</small></div>
+<ul>
+<li>✓ دەستگەیشتن بە Premium</li>
+<li>✓ هەموو ڤیدیۆکان</li>
+<li>✓ AI Tools</li>
+<li>✓ ناوەڕۆکی نوێ</li>
+</ul>
+<button onclick="choosePlan('مانگانە',4000)">هەڵبژاردن</button>
+</div>
 
-      <div class="plan featured">
-        <div class="badge">باشترین هەڵبژاردە</div>
-        <h3>مانگانە</h3>
-        <div class="price">4,000 <small>د.ع</small></div>
-        <ul>
-          <li>✓ دەستگەیشتن بە Premium</li>
-          <li>✓ هەموو ڤیدیۆکان</li>
-          <li>✓ AI Tools</li>
-          <li>✓ ناوەڕۆکی نوێ</li>
-        </ul>
-        <button class="main-btn" onclick="choosePlan('مانگانە',4000)">هەڵبژاردن</button>
-      </div>
+<div class="plan">
+<h3>ساڵانە</h3>
+<div class="price">15,000 <small>د.ع</small></div>
+<ul>
+<li>✓ Premium بۆ ساڵێک</li>
+<li>✓ هەموو ڤیدیۆکان</li>
+<li>✓ AI Tools</li>
+<li>✓ هەموو ناوەڕۆکی داهاتوو</li>
+</ul>
+<button onclick="choosePlan('ساڵانە',15000)">هەڵبژاردن</button>
+</div>
 
-      <div class="plan">
-        <h3>ساڵانە</h3>
-        <div class="price">15,000 <small>د.ع</small></div>
-        <ul>
-          <li>✓ Premium بۆ ساڵێک</li>
-          <li>✓ هەموو ڤیدیۆکان</li>
-          <li>✓ AI Tools</li>
-          <li>✓ هەموو ناوەڕۆکی داهاتوو</li>
-        </ul>
-        <button class="main-btn" onclick="choosePlan('ساڵانە',15000)">هەڵبژاردن</button>
-      </div>
-
-    </div>
-  </div>
+</div>
+</div>
 </section>
 
-<section id="premiumSection" class="premium-section">
-  <div class="container">
+<!-- PREMIUM CONTENT -->
+<section id="premiumSection">
+<div class="container">
 
-    <div id="lockedPremium" class="locked">
-      <h2>🔒 ناوەڕۆکی Premium داخراوە</h2>
-      <p>تکایە Premium ـەکەت چالاک بکە بۆ دەستگەیشتن.</p>
-      <button class="hero-btn" onclick="scrollToPlans()">👑 بینینی پلانەکان</button>
-    </div>
+<div id="lockedPremium" class="locked-premium">
+<h2>🔒 ناوەڕۆکی Premium داخراوە</h2>
+<p>تکایە Premium ـەکەت چالاک بکە بۆ دەستگەیشتن بە ئەم ناوەڕۆکە.</p>
+<button class="hero-btn" onclick="scrollToPlans()">👑 بینینی پلانەکان</button>
+</div>
 
-    <div id="premiumContent" class="premium-box">
-      <div class="premium-header">
-        <h2>👑 XOSHNAW AI PREMIUM</h2>
-        <p>بەخێربێیت بۆ بەشی تایبەتی ئەندامانی Premium.</p>
-      </div>
+<div id="premiumContent" class="premium-box">
 
-      <div class="premium-grid">
-        <div class="premium-card">
-          <div class="premium-icon">🤖</div>
-          <h3>AI Tools Pro</h3>
-          <p>ئامرازە تایبەتەکانی AI و ڕێنمایی بەکارهێنانیان.</p>
-          <a class="premium-link" href="#" onclick="return false">کردنەوە</a>
-        </div>
+<div class="premium-header">
+<h2>👑 XOSHNAW AI PREMIUM</h2>
+<p>بەخێربێیت بۆ بەشی تایبەتی ئەندامانی Premium.</p>
+</div>
 
-        <div class="premium-card">
-          <div class="premium-icon">🎬</div>
-          <h3>ڤیدیۆی Premium</h3>
-          <p>ڤیدیۆی فێرکاری تایبەت بۆ ئەندامانی Premium.</p>
-          <a class="premium-link" href="#" onclick="return false">بینین</a>
-        </div>
+<div class="premium-grid">
 
-        <div class="premium-card">
-          <div class="premium-icon">🔥</div>
-          <h3>ناوەڕۆکی نوێ</h3>
-          <p>ناوەڕۆکی نوێی تایبەت کە بۆ Premium زیاد دەکرێت.</p>
-          <a class="premium-link" href="#" onclick="return false">بینین</a>
-        </div>
-      </div>
+<div class="premium-card">
+<div class="premium-icon">🤖</div>
+<h3>AI Tools Pro</h3>
+<p>ئامرازە تایبەتەکانی AI و ڕێنمایی بەکارهێنانیان.</p>
+<a class="premium-link" href="#" onclick="return false">کردنەوە</a>
+</div>
 
-      <div id="premiumExpiry" class="expiry"></div>
-    </div>
+<div class="premium-card">
+<div class="premium-icon">🎬</div>
+<h3>ڤیدیۆی Premium</h3>
+<p>ڤیدیۆی فێرکاری تایبەت بۆ ئەندامانی Premium.</p>
+<a class="premium-link" href="#" onclick="return false">بینین</a>
+</div>
 
-  </div>
+<div class="premium-card">
+<div class="premium-icon">🔥</div>
+<h3>ناوەڕۆکی نوێ</h3>
+<p>ناوەڕۆکی نوێی تایبەت کە بۆ Premium زیاد دەکرێت.</p>
+<a class="premium-link" href="#" onclick="return false">بینین</a>
+</div>
+
+</div>
+
+<div class="premium-expiry" id="premiumExpiry"></div>
+
+</div>
+</div>
 </section>
 
+<!-- DASHBOARD -->
 <div id="dashboard" class="dashboard">
-  <h2>👤 بەخێربێیت</h2>
-  <p id="dashboardName" style="margin-top:8px"></p>
 
-  <div id="adminBox" class="admin-box">
-    <div class="admin-title">👑 ADMIN PANEL</div>
-    <p style="text-align:center">بەخێربێیت بەڕێوەبەر ❤️</p>
-    <div id="adminRequests" style="margin-top:15px"></div>
-  </div>
+<h2>👤 بەخێربێیت</h2>
+<p id="dashboardName"></p>
 
-  <div id="premiumStatus" class="status pending">
-    Premium هێشتا چالاک نەکراوە.
-  </div>
+<div id="adminBox" class="admin-box">
+<div class="admin-title">👑 ADMIN PANEL</div>
+<p>بەخێربێیت بەڕێوەبەر ❤️</p>
+<br>
+<div id="adminRequests">داواکارییەکان لێرە دەردەکەون.</div>
+</div>
 
-  <div id="dashboardPlan"></div>
-  <div id="myPayments"></div>
+<div id="premiumStatus" class="status pending">Premium هێشتا چالاک نەکراوە.</div>
+<div id="dashboardPlan"></div>
+<div id="myPayments" class="payment-list"></div>
 
-  <button class="main-btn red" style="margin-top:20px" onclick="logout()">
-    🚪 چوونەدەرەوە
-  </button>
+<button class="logout" onclick="logout()">🚪 چوونەدەرەوە</button>
 </div>
 
 <!-- REGISTER -->
 <div id="registerModal" class="modal">
-  <div class="modal-box">
-    <button class="close" onclick="closeAll()">×</button>
-    <h2 class="modal-title">📝 تۆمارکردنی ئەکاونت</h2>
-    <div id="registerError" class="error"></div>
+<div class="modal-box">
+<button class="close" onclick="closeAll()">×</button>
+<h2 class="modal-title">📝 تۆمارکردنی ئەکاونت</h2>
 
-    <div class="group">
-      <label>ناوی تەواو</label>
-      <input id="regName" type="text" autocomplete="name">
-    </div>
+<div class="form-group"><label>ناوی تەواو</label><input id="regName" type="text"></div>
+<div class="form-group"><label>ژمارەی مۆبایل</label><input id="regPhone" type="tel"></div>
+<div class="form-group"><label>ئیمەیڵ</label><input id="regEmail" type="email"></div>
+<div class="form-group"><label>وشەی نهێنی</label><input id="regPassword" type="password"></div>
 
-    <div class="group">
-      <label>ژمارەی مۆبایل</label>
-      <input id="regPhone" type="tel" autocomplete="tel">
-    </div>
-
-    <div class="group">
-      <label>ئیمەیڵ</label>
-      <input id="regEmail" type="email" autocomplete="email">
-    </div>
-
-    <div class="group">
-      <label>وشەی نهێنی</label>
-      <input id="regPassword" type="password" autocomplete="new-password">
-    </div>
-
-    <button class="submit-btn" onclick="registerUser()">📝 تۆمارکردن</button>
-  </div>
+<button class="submit-btn" onclick="registerUser()">📝 تۆمارکردن</button>
+</div>
 </div>
 
 <!-- LOGIN -->
 <div id="loginModal" class="modal">
-  <div class="modal-box">
-    <button class="close" onclick="closeAll()">×</button>
-    <h2 class="modal-title">🔐 چوونەژوورەوە</h2>
-    <div id="loginError" class="error"></div>
+<div class="modal-box">
+<button class="close" onclick="closeAll()">×</button>
+<h2 class="modal-title">🔐 چوونەژوورەوە</h2>
 
-    <div class="group">
-      <label>ئیمەیڵ</label>
-      <input id="loginEmail" type="email" autocomplete="email">
-    </div>
+<div class="form-group"><label>ئیمەیڵ</label><input id="loginEmail" type="email"></div>
+<div class="form-group"><label>وشەی نهێنی</label><input id="loginPassword" type="password"></div>
 
-    <div class="group">
-      <label>وشەی نهێنی</label>
-      <input id="loginPassword" type="password" autocomplete="current-password">
-    </div>
-
-    <button class="submit-btn" onclick="loginUser()">🔐 Login</button>
-  </div>
+<button class="submit-btn" onclick="loginUser()">🔐 Login</button>
+</div>
 </div>
 
 <!-- PAYMENT -->
 <div id="paymentModal" class="modal">
-  <div class="modal-box">
-    <button class="close" onclick="closeAll()">×</button>
-    <h2 class="modal-title">💳 تەواوکردنی بەژداری</h2>
+<div class="modal-box">
 
-    <div class="selected">
-      پلان: <strong id="selectedPlan">---</strong><br>
-      بڕ: <strong id="selectedPrice">---</strong> د.ع
-    </div>
+<button class="close" onclick="closePayment()">×</button>
+<h2 class="modal-title">💳 تەواوکردنی بەژداری</h2>
 
-    <div class="fib">
-      <h3>🔵 پارەدان بە FIB</h3>
-      <p style="margin-top:10px;line-height:1.8">
-        تکایە بڕی پارەکە بۆ ئەم ژمارەیە بنێرە:
-      </p>
-      <div class="fib-number">7515176569</div>
-      <div class="notice">تکایە بڕی پارەکە بە وردی بنێرە.</div>
-    </div>
+<div class="selected-plan">
+پلان: <strong id="selectedPlan">---</strong><br>
+بڕ: <strong id="selectedPrice">---</strong> د.ع
+</div>
 
-    <div id="paymentError" class="error"></div>
+<div class="fib-box">
+<h3>🔵 پارەدان بە FIB</h3>
+<p style="margin-top:10px">تکایە بچۆرە ناو ئەپی FIB ـەکەتەوە و بڕی پارەکە بۆ ئەم ژمارەیە بنێرە:</p>
+<div class="fib-number">7515176569</div>
+<div class="notice">تکایە بڕی پارەکە بە وردی بنێرە.</div>
 
-    <div id="paymentForm">
-      <div class="group">
-        <label>ناوی تەواو</label>
-        <input id="userName">
-      </div>
+<div class="warning">
+بەژداربووی بەڕێز ❤️<br>
+تکایە لە بڕی پارەکە و ژمارەکە دڵنیا ببەرەوە.<br>
+لە کاتی بە هەڵە ڕۆشتنی پارە بۆ هەر هەژمارێک، بەرپرسیار نین!
+</div>
+</div>
 
-      <div class="group">
-        <label>ژمارەی مۆبایل</label>
-        <input id="userPhone">
-      </div>
+<div id="paymentForm">
+<div class="form-group"><label>ناوی تەواو</label><input id="userName"></div>
+<div class="form-group"><label>ژمارەی مۆبایل</label><input id="userPhone"></div>
+<div class="form-group"><label>وێنەی رسید / مامەڵە</label><input id="receiptImage" type="file" accept="image/*"></div>
+<div class="form-group"><label>تێبینی</label><textarea id="message"></textarea></div>
 
-      <div class="group">
-        <label>وێنەی رسید / مامەڵە</label>
-        <input id="receiptImage" type="file" accept="image/*">
-      </div>
+<button class="submit-btn" style="background:#00a85a" onclick="sendPayment()">📤 ناردنی وەسڵ بۆ ئەدمین</button>
+</div>
 
-      <div class="group">
-        <label>تێبینی</label>
-        <textarea id="message"></textarea>
-      </div>
+<div class="success" id="paymentSuccess">
+✅ داواکارییەکەت تۆمارکرا!<br>
+وەسڵەکەت نێردراوە بۆ پشکنین.
+</div>
 
-      <button class="submit-btn" style="background:#00a85a" onclick="sendPayment()">
-        📤 ناردنی وەسڵ بۆ ئەدمین
-      </button>
-    </div>
-
-    <div id="paymentSuccess" class="success">
-      ✅ داواکارییەکەت تۆمارکرا!<br>
-      وەسڵەکەت نێردراوە بۆ پشکنین.
-    </div>
-  </div>
+</div>
 </div>
 
 <footer>
-  <strong>XOSHNAW AI PREMIUM</strong><br><br>
-  فێربوون • AI • Technology • Premium
+<strong>XOSHNAW AI PREMIUM</strong><br><br>
+فێربوون • AI • Technology • Premium
 </footer>
 
 <script>
-const SUPABASE_URL = "https://wpjqvpcqaufrpstnziad.supabase.co";
-const SUPABASE_KEY = "sb_publishable_9ALxJWahJqUFvtMXR7-5TA_XHBIF6ZK";
-const ADMIN_EMAIL = "lawaking24@gmail.com";
+const SUPABASE_URL="https://wpjqvpcqaufrpstnziad.supabase.co";
+const SUPABASE_KEY="sb_publishable_9ALxJWahJqUFvtMXR7-5TA_XHBIF6ZK";
+const ADMIN_EMAIL="lawaking24@gmail.com";
 
-let supabaseClient = null;
-let currentUser = null;
-let currentProfile = null;
-let selectedPlan = "";
-let selectedPrice = 0;
+let supabaseClient=null;
+let currentUser=null;
+let currentProfile=null;
+let selectedPlan="";
+let selectedPrice=0;
 
 function initSupabase(){
-  if(!window.supabase){
-    alert("❌ Supabase library نەهاتووە.");
-    return false;
-  }
-  supabaseClient = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-  return true;
+if(!window.supabase){console.error("Supabase library نەهاتووە.");return false;}
+supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+return true;
 }
 
 function isAdmin(){
-  return !!(
-    currentUser &&
-    currentUser.email &&
-    currentUser.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()
-  );
+return !!(currentUser&&currentUser.email&&currentUser.email.toLowerCase()===ADMIN_EMAIL.toLowerCase());
 }
 
 function escapeHTML(value){
-  if(value === null || value === undefined) return "";
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
-
-function updateHeader(){
-  const authButtons = document.getElementById("authButtons");
-  const logoutArea = document.getElementById("logoutArea");
-
-  if(!authButtons || !logoutArea) return;
-
-  if(currentUser){
-    authButtons.style.display = "none";
-    logoutArea.style.display = "flex";
-  }else{
-    authButtons.style.display = "flex";
-    logoutArea.style.display = "none";
-  }
-}
-
-function openModal(id){
-  closeAll();
-  const el = document.getElementById(id);
-  if(el) el.style.display = "flex";
-}
-
-function closeAll(){
-  document.querySelectorAll(".modal").forEach(m => m.style.display = "none");
-}
-
-function showError(id,message){
-  const el = document.getElementById(id);
-  if(!el) return;
-  el.textContent = message || "";
-  el.style.display = message ? "block" : "none";
+if(value===null||value===undefined)return "";
+return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 }
 
 function getPlanDays(plan){
-  if(plan === "هەفتانە") return 7;
-  if(plan === "مانگانە") return 30;
-  if(plan === "ساڵانە") return 365;
-  return 7;
+if(plan==="هەفتانە")return 7;
+if(plan==="مانگانە")return 30;
+if(plan==="ساڵانە")return 365;
+return 7;
+}
+
+function updateHeader(){
+const authButtons=document.getElementById("authButtons");
+const logoutArea=document.getElementById("logoutArea");
+if(!authButtons||!logoutArea)return;
+if(currentUser){authButtons.style.display="none";logoutArea.style.display="flex";}
+else{authButtons.style.display="flex";logoutArea.style.display="none";}
+}
+
+function openLogin(){
+closeAll();
+const modal=document.getElementById("loginModal");
+if(modal)modal.style.display="flex";
+}
+
+function openRegister(){
+closeAll();
+const modal=document.getElementById("registerModal");
+if(modal)modal.style.display="flex";
+}
+
+function closeAll(){
+const login=document.getElementById("loginModal");
+const register=document.getElementById("registerModal");
+const payment=document.getElementById("paymentModal");
+if(login)login.style.display="none";
+if(register)register.style.display="none";
+if(payment)payment.style.display="none";
+}
+
+function closePayment(){
+const payment=document.getElementById("paymentModal");
+if(payment)payment.style.display="none";
 }
 
 async function ensureProfile(){
-  if(!currentUser) return null;
+if(!currentUser)return null;
 
-  const {data,error} = await supabaseClient
-    .from("profiles")
-    .select("*")
-    .eq("id",currentUser.id)
-    .maybeSingle();
+const {data,error}=await supabaseClient
+.from("profiles")
+.select("*")
+.eq("id",currentUser.id)
+.maybeSingle();
 
-  if(!error && data){
-    currentProfile = data;
-    return data;
-  }
-
-  const name = currentUser.user_metadata?.full_name || "";
-
-  const {error:createError} = await supabaseClient
-    .from("profiles")
-    .upsert({
-      id: currentUser.id,
-      full_name: name,
-      is_admin: isAdmin(),
-      premium_active: false
-    },{onConflict:"id"});
-
-  if(createError){
-    console.error("PROFILE CREATE ERROR:",createError);
-    currentProfile = null;
-    return null;
-  }
-
-  const {data:createdProfile,error:readError} = await supabaseClient
-    .from("profiles")
-    .select("*")
-    .eq("id",currentUser.id)
-    .maybeSingle();
-
-  if(readError){
-    console.error("PROFILE READ ERROR:",readError);
-    currentProfile = null;
-    return null;
-  }
-
-  currentProfile = createdProfile;
-  return createdProfile;
+if(!error&&data){
+currentProfile=data;
+return data;
 }
 
+const name=currentUser.user_metadata?.full_name||"";
+
+const {error:createError}=await supabaseClient
+.from("profiles")
+.upsert({
+id:currentUser.id,
+full_name:name,
+is_admin:isAdmin(),
+premium_active:false
+},{onConflict:"id"});
+
+if(createError){
+console.error("PROFILE CREATE ERROR:",createError);
+currentProfile=null;
+return null;
+}
+
+const {data:createdProfile,error:readError}=await supabaseClient
+.from("profiles")
+.select("*")
+.eq("id",currentUser.id)
+.maybeSingle();
+
+if(readError){
+console.error("PROFILE READ ERROR:",readError);
+currentProfile=null;
+return null;
+}
+
+currentProfile=createdProfile;
+return createdProfile;
+}
+
+async function loadProfile(){
+if(!currentUser)return null;
+return await ensureProfile();
+}
+
+/* =========================
+PREMIUM ACCESS
+========================= */
 function hasPremium(){
-  if(!currentProfile) return false;
-  if(currentProfile.premium_active !== true) return false;
+if(!currentProfile)return false;
+if(currentProfile.premium_active!==true)return false;
 
-  if(currentProfile.premium_expires_at){
-    const expires = new Date(currentProfile.premium_expires_at);
-    if(!isNaN(expires.getTime()) && expires <= new Date()){
-      return false;
-    }
-  }
-  return true;
+if(currentProfile.premium_expires_at){
+const expires=new Date(currentProfile.premium_expires_at);
+if(!isNaN(expires.getTime()) && expires <= new Date()){
+return false;
+}
+}
+return true;
 }
 
-function renderPremium(){
-  const section = document.getElementById("premiumSection");
-  const content = document.getElementById("premiumContent");
-  const locked = document.getElementById("lockedPremium");
-  const expiry = document.getElementById("premiumExpiry");
+function renderPremiumContent(){
+const section=document.getElementById("premiumSection");
+const content=document.getElementById("premiumContent");
+const locked=document.getElementById("lockedPremium");
+const expiry=document.getElementById("premiumExpiry");
 
-  if(!section || !content || !locked) return;
+if(!section||!content||!locked)return;
 
-  if(!currentUser){
-    section.style.display = "none";
-    return;
-  }
+if(!currentUser){
+section.style.display="none";
+return;
+}
 
-  section.style.display = "block";
+section.style.display="block";
 
-  if(hasPremium()){
-    content.style.display = "block";
-    locked.style.display = "none";
+if(hasPremium()){
+content.style.display="block";
+locked.style.display="none";
 
-    if(expiry){
-      if(currentProfile?.premium_expires_at){
-        const d = new Date(currentProfile.premium_expires_at);
-        expiry.textContent =
-          "📅 بەرواری کۆتایی Premium: " + d.toLocaleString("ku-IQ");
-      }else{
-        expiry.textContent = "👑 Premium ـەکەت چالاکە.";
-      }
-    }
-  }else{
-    content.style.display = "none";
-    locked.style.display = "block";
-  }
+if(expiry){
+if(currentProfile?.premium_expires_at){
+const d=new Date(currentProfile.premium_expires_at);
+expiry.textContent="📅 بەرواری کۆتایی Premium: "+d.toLocaleString("ku-IQ");
+}else{
+expiry.textContent="👑 Premium ـەکەت چالاکە.";
+}
+}
+}else{
+content.style.display="none";
+locked.style.display="block";
+}
 }
 
 async function registerUser(){
@@ -644,11 +526,9 @@ async function registerUser(){
       return;
     }
 
-    /*
-      گرنگ:
-      لە Supabase ـدا Confirm email دەبێت OFF بێت.
-      لەو حاڵەتەدا session دەگەڕێتەوە و بەکارهێنەر ڕاستەوخۆ Login دەبێت.
-    */
+    // Supabase:
+    // session هەبوو = Confirm Email OFF
+    // user هەیە بەڵام session نییە = Confirm Email ON
     if(data?.user && data?.session){
       currentUser = data.user;
       await ensureProfile();
@@ -656,14 +536,28 @@ async function registerUser(){
       closeAll();
       await showDashboard();
 
-      alert("✅ ئەکاونتەکەت بە سەرکەوتوویی دروست کرا و چوویتە ژوورەوە.");
-    }else{
-      closeAll();
-      openModal("loginModal");
       alert(
-        "✅ ئەکاونتەکەت دروست کرا.\n\n" +
-        "ئەگەر Login نەکرا، لە Supabase → Authentication → Providers → Email، " +
-        "Confirm email بکە OFF."
+        "🟢 Confirm Email = OFF\n\n" +
+        "ئەکاونتەکەت دروست کرا و ڕاستەوخۆ چوویتە ژوورەوە."
+      );
+
+    }else if(data?.user && !data?.session){
+      closeAll();
+
+      alert(
+        "🔴 Confirm Email = ON\n\n" +
+        "Supabase داوای پشتڕاستکردنەوەی ئیمەیڵ دەکات.\n\n" +
+        "بۆ ڕاستەوخۆ Login بوون لە دوای Register،\n" +
+        "بڕۆ بۆ Supabase → Authentication → Providers → Email\n" +
+        "و Confirm email بکە OFF."
+      );
+
+      openModal("loginModal");
+
+    }else{
+      showError(
+        "registerError",
+        "⚠️ ئەکاونتەکە دروست نەکرا بە شێوەی چاوەڕوانکراو. دووبارە هەوڵ بدەرەوە."
       );
     }
 
@@ -673,560 +567,513 @@ async function registerUser(){
 }
 
 async function loginUser(){
-  showError("loginError","");
+if(!supabaseClient){alert("❌ Supabase ئامادە نییە.");return;}
 
-  if(!supabaseClient){
-    showError("loginError","❌ Supabase ئامادە نییە.");
-    return;
-  }
+const email=document.getElementById("loginEmail").value.trim();
+const password=document.getElementById("loginPassword").value;
 
-  const email = document.getElementById("loginEmail").value.trim();
-  const password = document.getElementById("loginPassword").value;
+if(!email||!password){
+alert("❌ تکایە ئیمەیڵ و وشەی نهێنی بنووسە.");return;
+}
 
-  if(!email || !password){
-    showError("loginError","❌ تکایە ئیمەیڵ و وشەی نهێنی بنووسە.");
-    return;
-  }
+try{
+const {data,error}=await supabaseClient.auth.signInWithPassword({email:email,password:password});
 
-  try{
-    const {data,error} = await supabaseClient.auth.signInWithPassword({
-      email,password
-    });
+if(error){
+alert("❌ Login سەرکەوتوو نەبوو:\n\n"+error.message);return;
+}
 
-    if(error){
-      showError("loginError","❌ Login سەرکەوتوو نەبوو: " + error.message);
-      return;
-    }
+currentUser=data.user;
+await loadProfile();
+updateHeader();
+closeAll();
+await showDashboard();
 
-    currentUser = data.user;
-    await ensureProfile();
-    updateHeader();
-    closeAll();
-    await showDashboard();
-
-  }catch(error){
-    showError("loginError","❌ هەڵەیەک ڕوویدا: " + (error.message || error));
-  }
+}catch(error){
+alert("❌ هەڵەیەک ڕوویدا:\n\n"+(error.message||error));
+}
 }
 
 async function showDashboard(){
-  if(!currentUser) return;
+if(!currentUser)return;
 
-  await ensureProfile();
+await loadProfile();
 
-  const dashboard = document.getElementById("dashboard");
-  if(!dashboard) return;
+const dashboard=document.getElementById("dashboard");
+if(!dashboard)return;
 
-  dashboard.style.display = "block";
+dashboard.style.display="block";
 
-  const name =
-    currentProfile?.full_name ||
-    currentUser.user_metadata?.full_name ||
-    currentUser.email;
+const name=currentProfile?.full_name||currentUser.user_metadata?.full_name||currentUser.email;
+const dashboardName=document.getElementById("dashboardName");
+if(dashboardName)dashboardName.textContent="سڵاو "+name;
 
-  document.getElementById("dashboardName").textContent = "سڵاو " + name;
+const adminBox=document.getElementById("adminBox");
 
-  const adminBox = document.getElementById("adminBox");
+if(isAdmin()){
+if(adminBox)adminBox.style.display="block";
+await loadAdminRequests();
+}else{
+if(adminBox)adminBox.style.display="none";
+}
 
-  if(isAdmin()){
-    adminBox.style.display = "block";
-    await loadAdminRequests();
-  }else{
-    adminBox.style.display = "none";
-    await loadMyPayments();
-  }
+const status=document.getElementById("premiumStatus");
+const plan=document.getElementById("dashboardPlan");
 
-  const status = document.getElementById("premiumStatus");
-  const plan = document.getElementById("dashboardPlan");
+if(hasPremium()){
+if(status){
+status.className="status active";
+status.innerHTML="👑 Premium ـەکەت چالاکە.";
+}
+if(plan){
+let expiryText="";
+if(currentProfile?.premium_expires_at){
+expiryText="<br><strong>کۆتایی:</strong> "+escapeHTML(new Date(currentProfile.premium_expires_at).toLocaleString("ku-IQ"));
+}
+plan.innerHTML="<p><strong>پلان:</strong> "+escapeHTML(currentProfile.premium_plan||"")+expiryText+"</p>";
+}
+}else{
+if(status){
+status.className="status pending";
+status.innerHTML="Premium هێشتا چالاک نەکراوە.";
+}
+if(plan)plan.innerHTML="";
+}
 
-  if(hasPremium()){
-    status.className = "status active";
-    status.innerHTML = "👑 Premium ـەکەت چالاکە.";
+if(!isAdmin())await loadMyPayments();
+else{
+const myPayments=document.getElementById("myPayments");
+if(myPayments)myPayments.innerHTML="";
+}
 
-    let expiryText = "";
-    if(currentProfile?.premium_expires_at){
-      expiryText =
-        "<br><strong>کۆتایی:</strong> " +
-        escapeHTML(
-          new Date(currentProfile.premium_expires_at).toLocaleString("ku-IQ")
-        );
-    }
-
-    plan.innerHTML =
-      "<p><strong>پلان:</strong> " +
-      escapeHTML(currentProfile.premium_plan || "") +
-      expiryText + "</p>";
-  }else{
-    status.className = "status pending";
-    status.innerHTML = "Premium هێشتا چالاک نەکراوە.";
-    plan.innerHTML = "";
-  }
-
-  renderPremium();
+renderPremiumContent();
 }
 
 async function loadAdminRequests(){
-  if(!isAdmin()) return;
+if(!isAdmin())return;
 
-  const box = document.getElementById("adminRequests");
-  if(!box) return;
+const box=document.getElementById("adminRequests");
+if(!box)return;
 
-  box.innerHTML = "⏳ داواکارییەکان بار دەکرێن...";
+box.innerHTML="⏳ داواکارییەکان بار دەکرێن...";
 
-  const {data,error} = await supabaseClient
-    .from("payment_requests")
-    .select("*")
-    .order("created_at",{ascending:false});
+const {data,error}=await supabaseClient
+.from("payment_requests")
+.select("*")
+.order("created_at",{ascending:false});
 
-  if(error){
-    box.innerHTML =
-      "<div class='admin-request'>❌ " +
-      escapeHTML(error.message) + "</div>";
-    return;
-  }
+if(error){
+console.error(error);
+box.innerHTML="<div class='empty'>❌ هەڵە:<br>"+escapeHTML(error.message)+"</div>";
+return;
+}
 
-  if(!data || data.length === 0){
-    box.innerHTML = "<div class='empty'>📭 هیچ داواکارییەک نییە.</div>";
-    return;
-  }
+if(!data||data.length===0){
+box.innerHTML="<div class='empty'>📭 هیچ داواکارییەک نییە.</div>";
+return;
+}
 
-  let html = "";
+let html="";
 
-  data.forEach(item => {
-    let status = "⏳ چاوەڕوان";
-    if(item.status === "accepted") status = "✅ پەسەندکراو";
-    if(item.status === "rejected") status = "❌ ڕەتکراوە";
+data.forEach(item=>{
+const created=item.created_at?new Date(item.created_at).toLocaleString("ku-IQ"):"";
+let statusText="⏳ چاوەڕوان";
+if(item.status==="accepted")statusText="✅ پەسەندکراو";
+if(item.status==="rejected")statusText="❌ ڕەتکراوە";
 
-    html +=
-      "<div class='admin-request'>" +
-      "<strong>👤 User ID:</strong><br>" +
-      escapeHTML(item.user_id) + "<br><br>" +
-      "<strong>👑 پلان:</strong> " +
-      escapeHTML(item.plan || "") + "<br>" +
-      "<strong>💰 بڕ:</strong> " +
-      escapeHTML(item.amount || "") + " د.ع<br>" +
-      "<strong>📅 کات:</strong> " +
-      escapeHTML(
-        item.created_at
-          ? new Date(item.created_at).toLocaleString("ku-IQ")
-          : ""
-      ) + "<br>" +
-      "<strong>📌 دۆخ:</strong> " + status + "<br>";
+html+="<div class='admin-request'>"+
+"<strong>👤 User ID:</strong><br>"+escapeHTML(item.user_id)+"<br><br>"+
+"<strong>👑 پلان:</strong> "+escapeHTML(item.plan||"")+"<br>"+
+"<strong>💰 بڕ:</strong> "+escapeHTML(item.amount||"")+" د.ع<br>"+
+"<strong>📅 کات:</strong> "+escapeHTML(created)+"<br>"+
+"<strong>📌 دۆخ:</strong> "+statusText+"<br>";
 
-    if(item.receipt_url){
-      html +=
-        "<a class='receipt-btn' href='" +
-        escapeHTML(item.receipt_url) +
-        "' target='_blank' rel='noopener'>📷 بینینی وەسڵ</a>";
-    }
+if(item.receipt_url){
+html+="<a class='receipt-btn' href='"+escapeHTML(item.receipt_url)+"' target='_blank'>📷 بینینی وەسڵ</a>";
+}
 
-    if(item.status === "pending"){
-      html +=
-        "<div style='margin-top:10px'>" +
-        "<button class='accept-btn' onclick=\"acceptPayment('" +
-        escapeHTML(item.id) + "','" +
-        escapeHTML(item.user_id) + "','" +
-        escapeHTML(item.plan) + "')\">✅ پەسەندکردن</button>" +
+if(item.status==="pending"){
+html+="<div style='margin-top:10px'>"+
+"<button class='accept-btn' onclick=\"acceptPayment('"+escapeHTML(item.id)+"','"+escapeHTML(item.user_id)+"','"+escapeHTML(item.plan)+"')\">✅ پەسەندکردن</button>"+
+"<button class='reject-btn' onclick=\"rejectPayment('"+escapeHTML(item.id)+"')\">❌ ڕەتکردنەوە</button>"+
+"</div>";
+}
 
-        "<button class='reject-btn' onclick=\"rejectPayment('" +
-        escapeHTML(item.id) + "')\">❌ ڕەتکردنەوە</button>" +
-        "</div>";
-    }
+html+="</div>";
+});
 
-    html += "</div>";
-  });
-
-  box.innerHTML = html;
+box.innerHTML=html;
 }
 
 async function activateUserPremium(userId,plan){
-  const days = getPlanDays(plan);
-  const expires = new Date();
-  expires.setDate(expires.getDate() + days);
+const days=getPlanDays(plan);
+const expires=new Date();
+expires.setDate(expires.getDate()+days);
 
-  const {error} = await supabaseClient
-    .from("profiles")
-    .upsert({
-      id:userId,
-      premium_active:true,
-      premium_plan:plan,
-      premium_expires_at:expires.toISOString()
-    },{onConflict:"id"});
+const {error}=await supabaseClient
+.from("profiles")
+.upsert({
+id:userId,
+premium_active:true,
+premium_plan:plan,
+premium_expires_at:expires.toISOString()
+},{onConflict:"id"});
 
-  if(error){
-    return {success:false,error:error.message};
-  }
+if(error){
+console.error("PREMIUM UPDATE ERROR:",error);
+return {success:false,error:error.message};
+}
 
-  return {success:true};
+const {data,error:readError}=await supabaseClient
+.from("profiles")
+.select("*")
+.eq("id",userId)
+.maybeSingle();
+
+if(readError)return {success:false,error:readError.message};
+if(!data)return {success:false,error:"Profile ـی بەکارهێنەر نەدۆزرایەوە."};
+
+return {success:true,data:data};
 }
 
 async function acceptPayment(paymentId,userId,plan){
-  if(!isAdmin()){
-    alert("❌ تەنها Admin دەتوانێت.");
-    return;
-  }
+if(!isAdmin()){alert("❌ تەنها Admin دەتوانێت.");return;}
 
-  if(!confirm("ئایا دڵنیایت لە پەسەندکردنی ئەم داواکارییە؟")) return;
+if(!confirm("ئایا دڵنیایت لە پەسەندکردنی ئەم داواکارییە؟"))return;
 
-  const result = await activateUserPremium(userId,plan);
+const premiumResult=await activateUserPremium(userId,plan);
 
-  if(!result.success){
-    alert("❌ Premium چالاک نەکرا:\n\n" + result.error);
-    return;
-  }
+if(!premiumResult.success){
+alert("❌ وەسڵەکە پەسەند نەکرا.\n\n"+premiumResult.error);
+return;
+}
 
-  const {error} = await supabaseClient
-    .from("payment_requests")
-    .update({status:"accepted"})
-    .eq("id",paymentId);
+const {error:paymentError}=await supabaseClient
+.from("payment_requests")
+.update({status:"accepted"})
+.eq("id",paymentId);
 
-  if(error){
-    alert(
-      "⚠️ Premium چالاک بوو، بەڵام دۆخی وەسڵ نەگۆڕدرا:\n\n" +
-      error.message
-    );
-    return;
-  }
+if(paymentError){
+alert("❌ Premium چالاک بوو، بەڵام دۆخی وەسڵ نەگۆڕدرا:\n\n"+paymentError.message);
+return;
+}
 
-  alert(
-    "✅ وەسڵەکە پەسەند کرا!\n\n" +
-    "👑 Premium ـی بەکارهێنەر چالاک کرا.\n\n" +
-    "پلان: " + plan
-  );
-
-  await loadAdminRequests();
+alert("✅ وەسڵەکە پەسەند کرا!\n\n👑 Premium ـی بەکارهێنەر چالاک کرا.\n\nپلان: "+plan);
+await loadAdminRequests();
 }
 
 async function rejectPayment(paymentId){
-  if(!isAdmin()){
-    alert("❌ تەنها Admin دەتوانێت.");
-    return;
-  }
+if(!isAdmin()){alert("❌ تەنها Admin دەتوانێت.");return;}
+if(!confirm("ئایا دڵنیایت لە ڕەتکردنەوەی ئەم داواکارییە؟"))return;
 
-  if(!confirm("ئایا دڵنیایت لە ڕەتکردنەوەی ئەم داواکارییە؟")) return;
+const {error}=await supabaseClient
+.from("payment_requests")
+.update({status:"rejected"})
+.eq("id",paymentId);
 
-  const {error} = await supabaseClient
-    .from("payment_requests")
-    .update({status:"rejected"})
-    .eq("id",paymentId);
-
-  if(error){
-    alert("❌ ڕەتکردنەوە سەرکەوتوو نەبوو:\n\n" + error.message);
-    return;
-  }
-
-  alert("❌ داواکارییەکە ڕەتکرایەوە.");
-  await loadAdminRequests();
+if(error){
+alert("❌ ڕەتکردنەوە سەرکەوتوو نەبوو:\n\n"+error.message);return;
 }
 
+alert("❌ داواکارییەکە ڕەتکرایەوە.");
+await loadAdminRequests();
+}
+
+/* =========================
+ADMIN FREE PREMIUM
+========================= */
 async function activateAdminPremium(plan){
-  if(!isAdmin()) return;
+if(!isAdmin())return;
 
-  const days = getPlanDays(plan);
-  const expires = new Date();
-  expires.setDate(expires.getDate() + days);
+const days=getPlanDays(plan);
+const expires=new Date();
+expires.setDate(expires.getDate()+days);
 
-  const {data,error} = await supabaseClient
-    .from("profiles")
-    .update({
-      is_admin:true,
-      premium_active:true,
-      premium_plan:plan,
-      premium_expires_at:expires.toISOString()
-    })
-    .eq("id",currentUser.id)
-    .select("*")
-    .maybeSingle();
+const {data,error}=await supabaseClient
+.from("profiles")
+.update({
+is_admin:true,
+premium_active:true,
+premium_plan:plan,
+premium_expires_at:expires.toISOString()
+})
+.eq("id",currentUser.id)
+.select("*")
+.maybeSingle();
 
-  if(error){
-    alert("❌ Premium ـی Admin چالاک نەکرا:\n\n" + error.message);
-    return;
-  }
+if(error){
+alert("❌ Premium ـی Admin چالاک نەکرا:\n\n"+error.message);
+console.error("ADMIN PREMIUM ERROR:",error);
+return;
+}
 
-  if(!data){
-    alert(
-      "❌ Profile ـی Admin نەدۆزرایەوە.\n\n" +
-      "تکایە Logout بکە و دووبارە Login بکە."
-    );
-    return;
-  }
+if(!data){
+alert("❌ Profile ـی Admin نەدۆزرایەوە.\n\nتکایە Logout بکە و دووبارە Login بکە.");
+return;
+}
 
-  currentProfile = data;
+currentProfile=data;
 
-  alert(
-    "👑 Premium ـی Admin بە سەرکەوتوویی چالاک کرا!\n\n" +
-    "پلان: " + plan + "\n\nپارەدان پێویست نییە."
-  );
+alert("👑 Premium ـی Admin بە سەرکەوتوویی چالاک کرا!\n\nپلان: "+plan+"\n\nپارەدان پێویست نییە.");
 
-  await showDashboard();
+await showDashboard();
+renderPremiumContent();
 
-  setTimeout(() => {
-    document.getElementById("premiumSection")
-      ?.scrollIntoView({behavior:"smooth"});
-  },200);
+/* ڕاستەوخۆ بۆ بەشی Premium دەچێت */
+setTimeout(()=>{
+const section=document.getElementById("premiumSection");
+if(section)section.scrollIntoView({behavior:"smooth"});
+},200);
 }
 
 async function choosePlan(plan,price){
-  if(!currentUser){
-    alert("❌ تکایە سەرەتا Login بکە.");
-    openModal("loginModal");
-    return;
-  }
+if(!currentUser){
+alert("❌ تکایە سەرەتا Login بکە.");
+openLogin();
+return;
+}
 
-  selectedPlan = plan;
-  selectedPrice = Number(price);
+selectedPlan=plan;
+selectedPrice=Number(price);
 
-  if(isAdmin()){
-    await activateAdminPremium(plan);
-    return;
-  }
+/* ADMIN = FREE */
+if(isAdmin()){
+await activateAdminPremium(plan);
+return;
+}
 
-  await ensureProfile();
+/* NORMAL USER */
+const selectedPlanEl=document.getElementById("selectedPlan");
+const selectedPriceEl=document.getElementById("selectedPrice");
+const userName=document.getElementById("userName");
+const userPhone=document.getElementById("userPhone");
 
-  document.getElementById("selectedPlan").textContent = plan;
-  document.getElementById("selectedPrice").textContent =
-    selectedPrice.toLocaleString("en-US");
+if(selectedPlanEl)selectedPlanEl.textContent=plan;
+if(selectedPriceEl)selectedPriceEl.textContent=selectedPrice.toLocaleString("en-US");
 
-  document.getElementById("userName").value =
-    currentProfile?.full_name ||
-    currentUser.user_metadata?.full_name || "";
+if(userName)userName.value=currentProfile?.full_name||currentUser.user_metadata?.full_name||"";
+if(userPhone)userPhone.value=currentUser.user_metadata?.phone||"";
 
-  document.getElementById("userPhone").value =
-    currentUser.user_metadata?.phone || "";
+const receiptImage=document.getElementById("receiptImage");
+const message=document.getElementById("message");
+if(receiptImage)receiptImage.value="";
+if(message)message.value="";
 
-  document.getElementById("receiptImage").value = "";
-  document.getElementById("message").value = "";
+const paymentForm=document.getElementById("paymentForm");
+const paymentSuccess=document.getElementById("paymentSuccess");
+const paymentModal=document.getElementById("paymentModal");
 
-  document.getElementById("paymentForm").style.display = "block";
-  document.getElementById("paymentSuccess").style.display = "none";
-  showError("paymentError","");
-
-  openModal("paymentModal");
+if(paymentForm)paymentForm.style.display="block";
+if(paymentSuccess)paymentSuccess.style.display="none";
+if(paymentModal)paymentModal.style.display="flex";
 }
 
 async function sendPayment(){
-  showError("paymentError","");
+if(!currentUser){alert("❌ تکایە Login بکە.");return;}
 
-  if(!currentUser){
-    showError("paymentError","❌ تکایە Login بکە.");
-    return;
-  }
+if(isAdmin()){
+alert("👑 تۆ Admin ـیت.\n\nPremium ـەکەت بێ پارەدان چالاک دەکرێت.");
+return;
+}
 
-  if(!selectedPlan){
-    showError("paymentError","❌ تکایە پلانێک هەڵبژێرە.");
-    return;
-  }
+if(!selectedPlan){alert("❌ تکایە پلانێک هەڵبژێرە.");return;}
 
-  if(isAdmin()){
-    alert("👑 تۆ Admin ـیت. Premium بێ پارەدان چالاک دەکرێت.");
-    return;
-  }
+const name=document.getElementById("userName").value.trim();
+const phone=document.getElementById("userPhone").value.trim();
+const file=document.getElementById("receiptImage").files[0];
 
-  const name = document.getElementById("userName").value.trim();
-  const phone = document.getElementById("userPhone").value.trim();
-  const file = document.getElementById("receiptImage").files[0];
+if(!name||!phone){
+alert("❌ تکایە ناو و ژمارەی مۆبایل پڕ بکەرەوە.");return;
+}
 
-  if(!name || !phone){
-    showError("paymentError","❌ تکایە ناو و ژمارەی مۆبایل پڕ بکەرەوە.");
-    return;
-  }
+if(!file){
+alert("❌ تکایە وێنەی وەسڵ دابنێ.");return;
+}
 
-  if(!file){
-    showError("paymentError","❌ تکایە وێنەی وەسڵ دابنێ.");
-    return;
-  }
+if(file.size>5*1024*1024){
+alert("❌ قەبارەی وێنەکە زۆرە. کەمتر لە 5MB بێت.");return;
+}
 
-  if(file.size > 5 * 1024 * 1024){
-    showError("paymentError","❌ قەبارەی وێنەکە دەبێت کەمتر لە 5MB بێت.");
-    return;
-  }
+try{
+const extension=file.name.split(".").pop().toLowerCase();
+const fileName=currentUser.id+"_"+Date.now()+"."+extension;
 
-  try{
-    const extension =
-      (file.name.split(".").pop() || "jpg").toLowerCase();
+const {error:uploadError}=await supabaseClient.storage
+.from("receipts")
+.upload(fileName,file,{
+cacheControl:"3600",
+upsert:false,
+contentType:file.type
+});
 
-    const fileName =
-      currentUser.id + "_" + Date.now() + "." + extension;
+if(uploadError){
+alert("❌ ناردنی وەسڵ سەرکەوتوو نەبوو:\n\n"+uploadError.message);
+return;
+}
 
-    const {error:uploadError} = await supabaseClient.storage
-      .from("receipts")
-      .upload(fileName,file,{
-        cacheControl:"3600",
-        upsert:false,
-        contentType:file.type
-      });
+const {data:urlData}=supabaseClient.storage
+.from("receipts")
+.getPublicUrl(fileName);
 
-    if(uploadError){
-      showError(
-        "paymentError",
-        "❌ ناردنی وەسڵ سەرکەوتوو نەبوو: " +
-        uploadError.message
-      );
-      return;
-    }
+const receiptUrl=urlData?.publicUrl||"";
 
-    const {data:urlData} = supabaseClient.storage
-      .from("receipts")
-      .getPublicUrl(fileName);
+if(!receiptUrl){
+alert("❌ لینکی وەسڵ دروست نەکرا.");return;
+}
 
-    const receiptUrl = urlData?.publicUrl || "";
+const {error}=await supabaseClient
+.from("payment_requests")
+.insert({
+user_id:currentUser.id,
+plan:selectedPlan,
+amount:selectedPrice,
+receipt_url:receiptUrl,
+status:"pending"
+});
 
-    if(!receiptUrl){
-      showError("paymentError","❌ لینکی وەسڵ دروست نەکرا.");
-      return;
-    }
+if(error){
+alert("❌ داواکارییەکە نەنێردرا:\n\n"+error.message);
+return;
+}
 
-    const {error} = await supabaseClient
-      .from("payment_requests")
-      .insert({
-        user_id:currentUser.id,
-        plan:selectedPlan,
-        amount:selectedPrice,
-        receipt_url:receiptUrl,
-        status:"pending"
-      });
+const paymentForm=document.getElementById("paymentForm");
+const paymentSuccess=document.getElementById("paymentSuccess");
 
-    if(error){
-      showError(
-        "paymentError",
-        "❌ داواکارییەکە نەنێردرا: " + error.message
-      );
-      return;
-    }
+if(paymentForm)paymentForm.style.display="none";
+if(paymentSuccess)paymentSuccess.style.display="block";
 
-    document.getElementById("paymentForm").style.display = "none";
-    document.getElementById("paymentSuccess").style.display = "block";
+await loadMyPayments();
 
-    await loadMyPayments();
-
-  }catch(error){
-    showError(
-      "paymentError",
-      "❌ هەڵەیەک ڕوویدا: " + (error.message || error)
-    );
-  }
+}catch(error){
+alert("❌ هەڵەیەک ڕوویدا:\n\n"+(error.message||error));
+}
 }
 
 async function loadMyPayments(){
-  const box = document.getElementById("myPayments");
-  if(!box || !currentUser) return;
+const box=document.getElementById("myPayments");
+if(!box||!currentUser)return;
 
-  const {data,error} = await supabaseClient
-    .from("payment_requests")
-    .select("*")
-    .eq("user_id",currentUser.id)
-    .order("created_at",{ascending:false});
+const {data,error}=await supabaseClient
+.from("payment_requests")
+.select("*")
+.eq("user_id",currentUser.id)
+.order("created_at",{ascending:false});
 
-  if(error){
-    box.innerHTML = "";
-    console.error(error);
-    return;
-  }
+if(error){console.error(error);box.innerHTML="";return;}
 
-  if(!data || data.length === 0){
-    box.innerHTML =
-      "<div class='payment-item'>هیچ داواکارییەکت نییە.</div>";
-    return;
-  }
+if(!data||data.length===0){
+box.innerHTML="<p style='color:#777'>هیچ داواکارییەکت نییە.</p>";
+return;
+}
 
-  let html = "<h3 style='margin:22px 0 10px'>📋 داواکارییەکانت</h3>";
+let html="<h3 style='margin-bottom:12px'>📋 داواکارییەکانت</h3>";
 
-  data.forEach(item => {
-    let status = "⏳ چاوەڕوان";
-    if(item.status === "accepted") status = "✅ پەسەندکراو";
-    if(item.status === "rejected") status = "❌ ڕەتکرایەوە";
+data.forEach(item=>{
+let status="⏳ چاوەڕوان";
+if(item.status==="accepted")status="✅ پەسەندکراو";
+if(item.status==="rejected")status="❌ ڕەتکرایەوە";
 
-    html +=
-      "<div class='payment-item'>" +
-      "<strong>پلان:</strong> " +
-      escapeHTML(item.plan || "") + "<br>" +
-      "<strong>بڕ:</strong> " +
-      escapeHTML(item.amount || "") + " د.ع<br>" +
-      "<strong>دۆخ:</strong> " + status +
-      "</div>";
-  });
+html+="<div class='payment-item'>"+
+"<strong>پلان:</strong> "+escapeHTML(item.plan||"")+"<br>"+
+"<strong>بڕ:</strong> "+escapeHTML(item.amount||"")+" د.ع<br>"+
+"<strong>دۆخ:</strong> "+status+
+"</div>";
+});
 
-  box.innerHTML = html;
+box.innerHTML=html;
 }
 
 async function logout(){
-  if(!supabaseClient) return;
+if(!supabaseClient)return;
 
-  if(!confirm("🚪 ئایا دڵنیایت لە چوونەدەرەوە؟")) return;
+const answer=confirm("🚪 ئایا دڵنیایت لە چوونەدەرەوە؟");
+if(!answer)return;
 
-  const {error} = await supabaseClient.auth.signOut();
+const {error}=await supabaseClient.auth.signOut();
 
-  if(error){
-    alert("❌ چوونەدەرەوە سەرکەوتوو نەبوو:\n\n" + error.message);
-    return;
-  }
+if(error){
+alert("❌ چوونەدەرەوە سەرکەوتوو نەبوو:\n\n"+error.message);
+return;
+}
 
-  currentUser = null;
-  currentProfile = null;
+currentUser=null;
+currentProfile=null;
 
-  document.getElementById("dashboard").style.display = "none";
-  document.getElementById("premiumSection").style.display = "none";
+const dashboard=document.getElementById("dashboard");
+if(dashboard)dashboard.style.display="none";
 
-  updateHeader();
+const section=document.getElementById("premiumSection");
+if(section)section.style.display="none";
+
+updateHeader();
 }
 
 function scrollToPlans(){
-  document.getElementById("plans")
-    ?.scrollIntoView({behavior:"smooth"});
+const plans=document.getElementById("plans");
+if(plans)plans.scrollIntoView({behavior:"smooth"});
 }
 
 document.addEventListener("click",function(e){
-  if(e.target.classList.contains("modal")){
-    e.target.style.display = "none";
-  }
+if(e.target&&e.target.classList&&e.target.classList.contains("modal")){
+e.target.style.display="none";
+}
 });
 
 function setupAuthListener(){
-  if(!supabaseClient) return;
+if(!supabaseClient)return;
 
-  supabaseClient.auth.onAuthStateChange((event,session)=>{
-    if(session?.user){
-      currentUser = session.user;
-      updateHeader();
+supabaseClient.auth.onAuthStateChange((event,session)=>{
+if(session?.user){
+currentUser=session.user;
+updateHeader();
 
-      setTimeout(async()=>{
-        await ensureProfile();
-        await showDashboard();
-      },100);
+setTimeout(async()=>{
+await loadProfile();
+await showDashboard();
+},100);
+}else{
+currentUser=null;
+currentProfile=null;
+updateHeader();
 
-    }else{
-      currentUser = null;
-      currentProfile = null;
-      updateHeader();
+const dashboard=document.getElementById("dashboard");
+if(dashboard)dashboard.style.display="none";
 
-      document.getElementById("dashboard").style.display = "none";
-      document.getElementById("premiumSection").style.display = "none";
-    }
-  });
+const section=document.getElementById("premiumSection");
+if(section)section.style.display="none";
+}
+});
 }
 
 async function startApp(){
-  if(!initSupabase()) return;
+try{
+if(!initSupabase()){
+alert("❌ Supabase نەکرایەوە.");
+return;
+}
 
-  setupAuthListener();
+setupAuthListener();
 
-  const {data,error} = await supabaseClient.auth.getSession();
+const {data,error}=await supabaseClient.auth.getSession();
 
-  if(error){
-    console.error("SESSION ERROR:",error);
-    return;
-  }
+if(error){
+console.error("SESSION ERROR:",error);
+return;
+}
 
-  if(data?.session?.user){
-    currentUser = data.session.user;
-    await ensureProfile();
-    updateHeader();
-    await showDashboard();
-  }else{
-    currentUser = null;
-    currentProfile = null;
-    updateHeader();
-  }
+if(data?.session?.user){
+currentUser=data.session.user;
+await loadProfile();
+updateHeader();
+await showDashboard();
+}else{
+currentUser=null;
+currentProfile=null;
+updateHeader();
+}
+}catch(error){
+console.error("START APP ERROR:",error);
+}
 }
 
 startApp();
