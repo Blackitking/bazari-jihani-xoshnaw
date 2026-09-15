@@ -1,3383 +1,2059 @@
 <!DOCTYPE html>
 <html lang="ku" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>XOSHNAW AI PREMIUM</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Tahoma,Arial,sans-serif;
 }
 
 body{
-font-family:Arial,Tahoma,sans-serif;
-background:#f5f7fb;
-color:#151515;
-direction:rtl;
+  background:#080b12;
+  color:#fff;
+  min-height:100vh;
 }
 
 header{
-background:#111827;
-color:white;
-padding:15px 20px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-position:sticky;
-top:0;
-z-index:50;
+  background:#101522;
+  padding:18px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:100;
+  border-bottom:1px solid #222b3d;
 }
 
 .logo{
-font-size:21px;
-font-weight:bold;
+  font-size:22px;
+  font-weight:bold;
+  color:#00e5ff;
 }
 
-.header-actions{
-display:flex;
-gap:8px;
+nav{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
 button{
-border:0;
-cursor:pointer;
-font-family:inherit;
+  border:none;
+  cursor:pointer;
+  border-radius:10px;
+  padding:11px 18px;
+  font-size:15px;
+  font-weight:bold;
 }
 
-.header-btn{
-padding:10px 15px;
-border-radius:10px;
-background:#fff;
-color:#111827;
-font-weight:bold;
+.btn-login{
+  background:#182235;
+  color:#fff;
 }
 
-.dark-btn{
-background:#2563eb;
-color:white;
+.btn-register{
+  background:#00d9ff;
+  color:#001018;
 }
 
-.logout-header{
-background:#dc2626;
-color:white;
+.btn-logout{
+  background:#e53935;
+  color:#fff;
 }
 
 .hero{
-padding:70px 20px;
-text-align:center;
-background:linear-gradient(135deg,#111827,#2563eb);
-color:white;
+  text-align:center;
+  padding:75px 20px;
+  background:
+    radial-gradient(circle at top,#123b55 0,#080b12 55%);
 }
 
-.big-emoji{
-font-size:65px;
-margin-bottom:15px;
+.robot{
+  font-size:75px;
+  margin-bottom:20px;
 }
 
 .hero h1{
-font-size:38px;
-margin-bottom:15px;
+  font-size:38px;
+  color:#00e5ff;
+  margin-bottom:18px;
 }
 
 .hero p{
-max-width:700px;
-margin:auto;
-line-height:1.9;
-font-size:17px;
+  max-width:700px;
+  margin:auto;
+  line-height:2;
+  color:#cbd5e1;
+  font-size:17px;
 }
 
-.hero-btn{
-margin-top:25px;
-padding:14px 25px;
-border-radius:12px;
-background:#fff;
-color:#111827;
-font-size:16px;
-font-weight:bold;
+.section{
+  max-width:1100px;
+  margin:auto;
+  padding:45px 20px;
 }
 
-.container{
-width:min(1100px,92%);
-margin:auto;
-}
-
-section{
-padding:55px 0;
-}
-
-.section-title{
-text-align:center;
-font-size:28px;
-margin-bottom:30px;
+.section h2{
+  text-align:center;
+  margin-bottom:30px;
+  color:#fff;
 }
 
 .cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:20px;
 }
 
 .card{
-background:white;
-border-radius:18px;
-padding:28px;
-box-shadow:0 8px 30px rgba(0,0,0,.07);
-text-align:center;
+  background:#111827;
+  border:1px solid #263248;
+  border-radius:18px;
+  padding:25px;
+  text-align:center;
 }
 
-.emoji{
-font-size:45px;
-margin-bottom:15px;
+.card .icon{
+  font-size:45px;
+  margin-bottom:15px;
 }
 
 .card h3{
-margin-bottom:12px;
+  color:#00e5ff;
+  margin-bottom:12px;
 }
 
 .card p{
-color:#666;
-line-height:1.8;
+  color:#b7c0d0;
+  line-height:1.9;
 }
 
 .plans{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
 }
 
 .plan{
-position:relative;
-background:white;
-border-radius:20px;
-padding:30px 25px;
-box-shadow:0 8px 30px rgba(0,0,0,.08);
-text-align:center;
+  background:#101827;
+  border:1px solid #29364e;
+  border-radius:18px;
+  padding:25px;
+  text-align:center;
+  position:relative;
 }
 
-.plan.featured{
-border:3px solid #2563eb;
+.plan.best{
+  border:2px solid #00e5ff;
 }
 
-.badge{
-position:absolute;
-top:0;
-left:50%;
-transform:translate(-50%,-50%);
-background:#2563eb;
-color:white;
-padding:7px 15px;
-border-radius:20px;
-font-size:13px;
-white-space:nowrap;
+.best-label{
+  position:absolute;
+  top:-14px;
+  right:20px;
+  background:#00e5ff;
+  color:#001018;
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.plan h3{
+  font-size:23px;
+  margin-bottom:15px;
 }
 
 .price{
-font-size:34px;
-font-weight:bold;
-margin:18px 0;
-color:#2563eb;
-}
-
-.price small{
-font-size:14px;
+  font-size:28px;
+  color:#00e5ff;
+  margin-bottom:20px;
 }
 
 .plan ul{
-list-style:none;
-text-align:right;
-line-height:2.2;
-margin:15px 0 25px;
+  list-style:none;
+  line-height:2.2;
+  color:#d5dbea;
+  margin-bottom:20px;
 }
 
-.plan button,
-.submit-btn{
-width:100%;
-padding:13px;
-border-radius:11px;
-background:#2563eb;
-color:white;
-font-weight:bold;
-font-size:15px;
+.plan button{
+  width:100%;
+  background:#00e5ff;
+  color:#001018;
 }
 
 .dashboard{
-display:none;
-margin:30px auto;
-width:min(1100px,92%);
-background:white;
-padding:30px;
-border-radius:20px;
-box-shadow:0 8px 30px rgba(0,0,0,.08);
+  display:none;
+  max-width:1000px;
+  margin:35px auto;
+  padding:25px;
 }
 
-.status{
-padding:15px;
-border-radius:12px;
-margin:15px 0;
-font-weight:bold;
+.user-box{
+  background:#111827;
+  border:1px solid #29364e;
+  border-radius:18px;
+  padding:25px;
+  margin-bottom:20px;
 }
 
-.status.pending{
-background:#fff3cd;
-color:#856404;
+.premium-status{
+  padding:15px;
+  margin-top:15px;
+  border-radius:12px;
+  background:#182235;
 }
 
-.status.active{
-background:#d1fae5;
-color:#065f46;
-}
-
-.admin-box{
-display:none;
-background:#ede9fe;
-color:#5b21b6;
-padding:18px;
-border-radius:14px;
-margin:20px 0;
-font-weight:bold;
-}
-
-.admin-title{
-font-size:24px;
-margin-bottom:20px;
-text-align:center;
-}
-
-.admin-request{
-background:#f8fafc;
-border:1px solid #e5e7eb;
-padding:18px;
-border-radius:15px;
-margin-bottom:15px;
-line-height:2;
-}
-
-.receipt-btn{
-display:inline-block;
-background:#2563eb;
-color:white;
-padding:9px 15px;
-border-radius:9px;
-text-decoration:none;
-font-weight:bold;
-margin:8px 0;
-}
-
-.accept-btn{
-background:#16a34a;
-color:white;
-padding:10px 16px;
-border-radius:9px;
-font-weight:bold;
-margin:5px;
-}
-
-.reject-btn{
-background:#dc2626;
-color:white;
-padding:10px 16px;
-border-radius:9px;
-font-weight:bold;
-margin:5px;
-}
-
-.logout{
-margin-top:20px;
-padding:12px 20px;
-border-radius:10px;
-background:#dc2626;
-color:white;
-font-weight:bold;
-}
-
-.payment-list{
-margin-top:20px;
+.admin-panel{
+  background:#101827;
+  border:1px solid #31405b;
+  border-radius:18px;
+  padding:25px;
+  margin-top:25px;
 }
 
 .payment-item{
-background:#f8fafc;
-padding:18px;
-border-radius:14px;
-margin-bottom:12px;
-line-height:1.9;
+  background:#151e2e;
+  padding:18px;
+  border-radius:12px;
+  margin-top:12px;
+}
+
+.payment-item button{
+  margin:5px;
+}
+
+.accept{
+  background:#16a34a;
+  color:#fff;
+}
+
+.reject{
+  background:#dc2626;
+  color:#fff;
 }
 
 .modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.65);
-z-index:100;
-align-items:center;
-justify-content:center;
-padding:15px;
-overflow:auto;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.75);
+  z-index:500;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
 .modal-box{
-width:min(520px,100%);
-max-height:92vh;
-overflow:auto;
-background:white;
-border-radius:20px;
-padding:25px;
-position:relative;
+  width:100%;
+  max-width:430px;
+  background:#111827;
+  border:1px solid #334155;
+  border-radius:18px;
+  padding:25px;
+  position:relative;
 }
 
 .close{
-position:absolute;
-top:10px;
-left:12px;
-width:35px;
-height:35px;
-border-radius:50%;
-background:#f1f5f9;
-font-size:25px;
+  position:absolute;
+  top:10px;
+  left:12px;
+  background:transparent;
+  color:#fff;
+  font-size:25px;
+  padding:5px;
 }
 
-.modal-title{
-text-align:center;
-margin-bottom:25px;
+.modal-box h2{
+  text-align:center;
+  margin-bottom:25px;
+  color:#00e5ff;
 }
 
-.form-group{
-margin-bottom:16px;
+.input{
+  width:100%;
+  padding:13px;
+  margin-bottom:14px;
+  border-radius:10px;
+  border:1px solid #334155;
+  background:#0b1220;
+  color:#fff;
+  outline:none;
 }
 
-.form-group label{
-display:block;
-margin-bottom:7px;
-font-weight:bold;
+.input:focus{
+  border-color:#00e5ff;
 }
 
-input,
-textarea{
-width:100%;
-padding:12px;
-border:1px solid #d1d5db;
-border-radius:10px;
-font-family:inherit;
-font-size:15px;
+.modal-box button.main-btn{
+  width:100%;
+  background:#00e5ff;
+  color:#001018;
 }
 
-textarea{
-min-height:90px;
-resize:vertical;
-}
-
-.selected-plan{
-background:#eff6ff;
-padding:15px;
-border-radius:12px;
-text-align:center;
-line-height:2;
-margin-bottom:20px;
-}
-
-.fib-box{
-background:#eff6ff;
-border:1px solid #bfdbfe;
-padding:20px;
-border-radius:15px;
-margin-bottom:20px;
-}
-
-.fib-number{
-background:white;
-padding:15px;
-text-align:center;
-font-size:24px;
-font-weight:bold;
-letter-spacing:2px;
-border-radius:10px;
-margin:15px 0;
-}
-
-.notice{
-background:#dcfce7;
-color:#166534;
-padding:10px;
-border-radius:8px;
-text-align:center;
-}
-
-.warning{
-margin-top:12px;
-background:#fee2e2;
-color:#991b1b;
-padding:12px;
-border-radius:10px;
-line-height:1.8;
-text-align:center;
-}
-
-.success{
-display:none;
-background:#dcfce7;
-color:#166534;
-padding:18px;
-border-radius:12px;
-text-align:center;
-line-height:1.8;
-}
-
-.empty{
-text-align:center;
-padding:20px;
-color:#777;
-background:#f8fafc;
-border-radius:12px;
-}
-
-.verify-code{
-text-align:center;
-font-size:28px !important;
-letter-spacing:8px;
-font-weight:bold;
-direction:ltr;
+.payment-info{
+  background:#0b1220;
+  padding:18px;
+  border-radius:12px;
+  margin-bottom:18px;
+  line-height:2;
 }
 
 footer{
-background:#111827;
-color:white;
-text-align:center;
-padding:30px 15px;
-margin-top:30px;
+  text-align:center;
+  padding:35px 20px;
+  margin-top:40px;
+  border-top:1px solid #222b3d;
+  color:#8e99aa;
 }
 
-@media(max-width:800px){
-
-.cards,
-.plans{
-grid-template-columns:1fr;
+.hidden{
+  display:none!important;
 }
 
-header{
-flex-direction:column;
-}
+@media(max-width:600px){
+  .hero h1{
+    font-size:28px;
+  }
 
-.hero h1{
-font-size:30px;
-}
+  header{
+    flex-direction:column;
+    gap:15px;
+  }
 
+  nav{
+    justify-content:center;
+  }
 }
-
 </style>
-
 </head>
 
 <body>
 
-
 <header>
 
-<div class="logo">
-XOSHNAW AI PREMIUM
-</div>
+  <div class="logo">
+    XOSHNAW AI PREMIUM
+  </div>
 
-<div class="header-actions"
-id="authButtons">
+  <nav id="mainNav">
 
-<button
-class="header-btn"
-onclick="openLogin()">
+    <button class="btn-login" onclick="openLogin()">
+      👤 چوونەژوورەوە
+    </button>
 
-👤 چوونەژوورەوە
+    <button class="btn-register" onclick="openRegister()">
+      📝 تۆمارکردن
+    </button>
 
-</button>
+    <button
+      id="logoutBtn"
+      class="btn-logout hidden"
+      onclick="logoutUser()">
+      🚪 چوونەدەرەوە
+    </button>
 
-<button
-class="header-btn dark-btn"
-onclick="openRegister()">
-
-📝 تۆمارکردن
-
-</button>
-
-</div>
-
-
-<div
-class="header-actions"
-id="logoutArea"
-style="display:none">
-
-<button
-class="header-btn logout-header"
-onclick="logout()">
-
-🚪 چوونەدەرەوە
-
-</button>
-
-</div>
+  </nav>
 
 </header>
 
 
-
 <section class="hero">
 
-<div class="big-emoji">
-🤖
-</div>
+  <div class="robot">🤖</div>
 
-<h1>
-بەخێربێیت بۆ XOSHNAW AI
-</h1>
+  <h1>
+    بەخێربێیت بۆ XOSHNAW AI
+  </h1>
 
-<p>
+  <p>
+    شوێنێکی تایبەت بۆ فێربوونی AI Tools،
+    ڤیدیۆی فێرکاری، ئامرازە زیرەکەکان و
+    ناوەڕۆکی Premium.
+  </p>
 
-شوێنێکی تایبەت بۆ فێربوونی AI Tools،
-ڤیدیۆی فێرکاری، ئامرازە زیرەکەکان
-و ناوەڕۆکی Premium.
+  <br>
 
-</p>
-
-<button
-class="hero-btn"
-onclick="scrollToPlans()">
-
-👑 بەژداربوونی Premium
-
-</button>
+  <button
+    class="btn-register"
+    onclick="scrollToPlans()">
+    👑 بەژداربوونی Premium
+  </button>
 
 </section>
 
 
+<section class="section">
 
-<section>
+  <h2>
+    🚀 چی بەدەست دەهێنیت؟
+  </h2>
 
-<div class="container">
+  <div class="cards">
 
-<h2 class="section-title">
-🚀 چی بەدەست دەهێنیت؟
-</h2>
+    <div class="card">
 
-<div class="cards">
+      <div class="icon">🤖</div>
 
-<div class="card">
+      <h3>
+        AI Tools
+      </h3>
 
-<div class="emoji">🤖</div>
+      <p>
+        فێربوونی ئامرازەکانی AI
+        و چۆنیەتی بەکارهێنانیان.
+      </p>
 
-<h3>
-AI Tools
-</h3>
-
-<p>
-فێربوونی ئامرازەکانی AI
-و چۆنیەتی بەکارهێنانیان.
-</p>
-
-</div>
+    </div>
 
 
-<div class="card">
+    <div class="card">
 
-<div class="emoji">🎬</div>
+      <div class="icon">🎬</div>
 
-<h3>
-ڤیدیۆی فێرکاری
-</h3>
+      <h3>
+        ڤیدیۆی فێرکاری
+      </h3>
 
-<p>
-ڤیدیۆی نوێی فێرکاری
-بە شێوەی ڕوون و ئاسان.
-</p>
+      <p>
+        ڤیدیۆی نوێی فێرکاری
+        بە شێوەی ڕوون و ئاسان.
+      </p>
 
-</div>
+    </div>
 
 
-<div class="card">
+    <div class="card">
 
-<div class="emoji">👑</div>
+      <div class="icon">👑</div>
 
-<h3>
-Premium
-</h3>
+      <h3>
+        Premium
+      </h3>
 
-<p>
-دەستگەیشتن بە ناوەڕۆکی تایبەت
-بۆ ئەندامانی Premium.
-</p>
+      <p>
+        دەستگەیشتن بە ناوەڕۆکی تایبەت
+        بۆ ئەندامانی Premium.
+      </p>
 
-</div>
+    </div>
 
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
+<section class="section" id="plansSection">
 
-<section id="plans">
+  <h2>
+    👑 پلانەکانی Premium
+  </h2>
 
-<div class="container">
-
-<h2 class="section-title">
-👑 پلانەکانی Premium
-</h2>
-
-<div class="plans">
+  <div class="plans">
 
 
-<div class="plan">
+    <div class="plan">
 
-<h3>
-هەفتانە
-</h3>
+      <h3>
+        هەفتانە
+      </h3>
 
-<div class="price">
-1,500 <small>د.ع</small>
-</div>
+      <div class="price">
+        1,500 د.ع
+      </div>
 
-<ul>
+      <ul>
+        <li>✓ دەستگەیشتن بە Premium</li>
+        <li>✓ ڤیدیۆی فێرکاری</li>
+        <li>✓ AI Tools</li>
+      </ul>
 
-<li>✓ دەستگەیشتن بە Premium</li>
-<li>✓ ڤیدیۆی فێرکاری</li>
-<li>✓ AI Tools</li>
+      <button onclick="choosePlan('weekly')">
+        هەڵبژاردن
+      </button>
 
-</ul>
-
-<button
-onclick="choosePlan('هەفتانە',1500)">
-
-هەڵبژاردن
-
-</button>
-
-</div>
+    </div>
 
 
+    <div class="plan best">
 
-<div class="plan featured">
+      <div class="best-label">
+        باشترین هەڵبژاردە
+      </div>
 
-<div class="badge">
-باشترین هەڵبژاردە
-</div>
+      <h3>
+        مانگانە
+      </h3>
 
-<h3>
-مانگانە
-</h3>
+      <div class="price">
+        4,000 د.ع
+      </div>
 
-<div class="price">
-4,000 <small>د.ع</small>
-</div>
+      <ul>
+        <li>✓ دەستگەیشتن بە Premium</li>
+        <li>✓ هەموو ڤیدیۆکان</li>
+        <li>✓ AI Tools</li>
+        <li>✓ ناوەڕۆکی نوێ</li>
+      </ul>
 
-<ul>
+      <button onclick="choosePlan('monthly')">
+        هەڵبژاردن
+      </button>
 
-<li>✓ دەستگەیشتن بە Premium</li>
-<li>✓ هەموو ڤیدیۆکان</li>
-<li>✓ AI Tools</li>
-<li>✓ ناوەڕۆکی نوێ</li>
-
-</ul>
-
-<button
-onclick="choosePlan('مانگانە',4000)">
-
-هەڵبژاردن
-
-</button>
-
-</div>
+    </div>
 
 
+    <div class="plan">
 
-<div class="plan">
+      <h3>
+        ساڵانە
+      </h3>
 
-<h3>
-ساڵانە
-</h3>
+      <div class="price">
+        15,000 د.ع
+      </div>
 
-<div class="price">
-15,000 <small>د.ع</small>
-</div>
+      <ul>
+        <li>✓ Premium بۆ ساڵێک</li>
+        <li>✓ هەموو ڤیدیۆکان</li>
+        <li>✓ AI Tools</li>
+        <li>✓ هەموو ناوەڕۆکی داهاتوو</li>
+      </ul>
 
-<ul>
+      <button onclick="choosePlan('yearly')">
+        هەڵبژاردن
+      </button>
 
-<li>✓ Premium بۆ ساڵێک</li>
-<li>✓ هەموو ڤیدیۆکان</li>
-<li>✓ AI Tools</li>
-<li>✓ هەموو ناوەڕۆکی داهاتوو</li>
+    </div>
 
-</ul>
-
-<button
-onclick="choosePlan('ساڵانە',15000)">
-
-هەڵبژاردن
-
-</button>
-
-</div>
-
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
+<section id="dashboard" class="dashboard">
 
-<!-- DASHBOARD -->
+  <div class="user-box">
 
-<div
-id="dashboard"
-class="dashboard">
+    <h2>
+      👤 بەخێربێیت
+    </h2>
 
-<h2>
-👤 بەخێربێیت
-</h2>
+    <p id="userName">
+      -
+    </p>
 
-<p id="dashboardName"></p>
+    <p id="userEmail">
+      -
+    </p>
 
+    <div
+      id="premiumStatus"
+      class="premium-status">
+      Premium هێشتا چالاک نەکراوە.
+    </div>
 
-<div
-id="adminBox"
-class="admin-box">
-
-<div class="admin-title">
-👑 ADMIN PANEL
-</div>
-
-<p>
-بەخێربێیت بەڕێوەبەر ❤️
-</p>
-
-<br>
-
-<div id="adminRequests">
-داواکارییەکان لێرە دەردەکەون.
-</div>
-
-</div>
+  </div>
 
 
+  <div
+    id="adminPanel"
+    class="admin-panel hidden">
 
-<div
-id="premiumStatus"
-class="status pending">
+    <h2>
+      👑 ADMIN PANEL
+    </h2>
 
-Premium هێشتا چالاک نەکراوە.
+    <p style="margin-top:10px">
+      بەخێربێیت بەڕێوەبەر ❤️
+    </p>
 
-</div>
+    <p style="margin-top:10px">
+      داواکارییەکان لێرە دەردەکەون.
+    </p>
 
+    <div id="paymentRequests">
+      بارکردن...
+    </div>
 
-<div id="dashboardPlan"></div>
+  </div>
 
-
-<div
-id="myPayments"
-class="payment-list">
-</div>
-
-
-<button
-class="logout"
-onclick="logout()">
-
-🚪 چوونەدەرەوە
-
-</button>
-
-</div>
-
+</section>
 
 
 <!-- REGISTER -->
 
 <div
-id="registerModal"
-class="modal">
+  id="registerModal"
+  class="modal">
 
-<div class="modal-box">
+  <div class="modal-box">
 
-<button
-class="close"
-onclick="closeAll()">
+    <button
+      class="close"
+      onclick="closeAll()">
+      ×
+    </button>
 
-×
+    <h2>
+      📝 تۆمارکردنی ئەکاونت
+    </h2>
 
-</button>
+    <input
+      id="registerName"
+      class="input"
+      type="text"
+      placeholder="ناوی تەواو">
 
-<h2 class="modal-title">
-📝 تۆمارکردنی ئەکاونت
-</h2>
+    <input
+      id="registerEmail"
+      class="input"
+      type="email"
+      placeholder="ئیمەیڵ">
 
+    <input
+      id="registerPassword"
+      class="input"
+      type="password"
+      placeholder="وشەی نهێنی">
 
-<div class="form-group">
+    <button
+      class="main-btn"
+      onclick="registerUser()">
+      📝 تۆمارکردن
+    </button>
 
-<label>
-ناوی تەواو
-</label>
-
-<input
-id="regName"
-type="text"
-placeholder="ناوی تەواو">
-
-</div>
-
-
-
-<div class="form-group">
-
-<label>
-ئیمەیڵ
-</label>
-
-<input
-id="regEmail"
-type="email"
-placeholder="example@gmail.com">
+  </div>
 
 </div>
-
-
-
-<div class="form-group">
-
-<label>
-وشەی نهێنی
-</label>
-
-<input
-id="regPassword"
-type="password"
-placeholder="لانیکەم 6 پیت">
-
-</div>
-
-
-
-<button
-class="submit-btn"
-onclick="registerUser()">
-
-📝 تۆمارکردن
-
-</button>
-
-</div>
-
-</div>
-
-
-
-<!-- VERIFY EMAIL -->
-
-<div
-id="verifyModal"
-class="modal">
-
-<div class="modal-box">
-
-<button
-class="close"
-onclick="closeAll()">
-
-×
-
-</button>
-
-
-<h2 class="modal-title">
-📧 پشتڕاستکردنەوەی ئیمەیڵ
-</h2>
-
-
-<p
-style="
-text-align:center;
-line-height:1.9;
-margin-bottom:20px;
-">
-
-کۆدی پشتڕاستکردنەوەمان بۆ Gmail ـەکەت ناردووە.
-
-<br>
-
-تکایە کۆدەکە لێرە داخڵ بکە.
-
-</p>
-
-
-<div class="form-group">
-
-<label style="text-align:center">
-
-کۆدی 6 ژمارەیی
-
-</label>
-
-<input
-id="verifyCode"
-class="verify-code"
-type="text"
-inputmode="numeric"
-maxlength="6"
-placeholder="000000">
-
-</div>
-
-
-<button
-class="submit-btn"
-onclick="verifyEmailCode()">
-
-✅ پشتڕاستکردنەوە
-
-</button>
-
-
-<p
-id="verifyEmailText"
-style="
-text-align:center;
-margin-top:15px;
-color:#666;
-line-height:1.7;
-">
-
-</p>
-
-</div>
-
-</div>
-
 
 
 <!-- LOGIN -->
 
 <div
-id="loginModal"
-class="modal">
+  id="loginModal"
+  class="modal">
 
-<div class="modal-box">
+  <div class="modal-box">
 
-<button
-class="close"
-onclick="closeAll()">
+    <button
+      class="close"
+      onclick="closeAll()">
+      ×
+    </button>
 
-×
+    <h2>
+      🔐 چوونەژوورەوە
+    </h2>
 
-</button>
+    <input
+      id="loginEmail"
+      class="input"
+      type="email"
+      placeholder="ئیمەیڵ">
 
+    <input
+      id="loginPassword"
+      class="input"
+      type="password"
+      placeholder="وشەی نهێنی">
 
-<h2 class="modal-title">
-🔐 چوونەژوورەوە
-</h2>
+    <button
+      class="main-btn"
+      onclick="loginUser()">
+      🔐 Login
+    </button>
 
-
-<div class="form-group">
-
-<label>
-ئیمەیڵ
-</label>
-
-<input
-id="loginEmail"
-type="email"
-placeholder="example@gmail.com">
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-وشەی نهێنی
-</label>
-
-<input
-id="loginPassword"
-type="password"
-placeholder="وشەی نهێنی">
+  </div>
 
 </div>
-
-
-<button
-class="submit-btn"
-onclick="loginUser()">
-
-🔐 Login
-
-</button>
-
-</div>
-
-</div>
-
 
 
 <!-- PAYMENT -->
 
 <div
-id="paymentModal"
-class="modal">
+  id="paymentModal"
+  class="modal">
 
-<div class="modal-box">
+  <div class="modal-box">
 
-<button
-class="close"
-onclick="closePayment()">
+    <button
+      class="close"
+      onclick="closeAll()">
+      ×
+    </button>
 
-×
+    <h2>
+      💳 تەواوکردنی بەژداری
+    </h2>
 
-</button>
+    <div class="payment-info">
 
+      <h3>
+        پلان:
+        <span id="selectedPlan">
+          ****
+        </span>
+      </h3>
 
-<h2 class="modal-title">
-💳 تەواوکردنی بەژداری
-</h2>
+      <h3>
+        بڕ:
+        <span id="selectedAmount">
+          ****
+        </span>
+        د.ع
+      </h3>
 
-
-<div class="selected-plan">
-
-پلان:
-<strong id="selectedPlan">
----
-</strong>
-
-<br>
-
-بڕ:
-<strong id="selectedPrice">
----
-</strong>
-
-د.ع
-
-</div>
+    </div>
 
 
+    <div class="payment-info">
 
-<div class="fib-box">
+      <h3>
+        🔵 پارەدان بە FIB
+      </h3>
 
-<h3>
-🔵 پارەدان بە FIB
-</h3>
+      <p>
+        تکایە بچۆرە ناو ئەپی FIB ـەکەتەوە
+        و بڕی پارەکە بۆ ئەم ژمارەیە بنێرە:
+      </p>
 
+      <h2 style="color:#00e5ff;margin:15px 0">
+        7515176569
+      </h2>
 
-<p style="margin-top:10px">
+      <p>
+        تکایە بڕی پارەکە بە وردی بنێرە.
+      </p>
 
-تکایە بچۆرە ناو ئەپی FIB ـەکەتەوە
-و بڕی پارەکە بۆ ئەم ژمارەیە بنێرە:
+      <br>
 
-</p>
+      <p>
+        بەژداربووی بەڕێز ❤️
+      </p>
 
+      <p>
+        تکایە لە بڕی پارەکە و ژمارەکە
+        دڵنیا ببەرەوە.
+      </p>
 
-<div class="fib-number">
-7515176569
-</div>
+      <p>
+        لە کاتی بە هەڵە ڕۆشتنی پارە بۆ هەر
+        هەژمارێک، بەرپرسیار نین!
+      </p>
 
-
-<div class="notice">
-
-تکایە بڕی پارەکە بە وردی بنێرە.
-
-</div>
-
-
-<div class="warning">
-
-بەژداربووی بەڕێز ❤️
-
-<br>
-
-تکایە لە بڕی پارەکە و ژمارەکە دڵنیا ببەرەوە.
-
-<br>
-
-لە کاتی بە هەڵە ڕۆشتنی پارە بۆ هەر هەژمارێک،
-بەرپرسیار نین!
-
-</div>
-
-</div>
+    </div>
 
 
-
-<div id="paymentForm">
-
-
-<div class="form-group">
-
-<label>
-ناوی تەواو
-</label>
-
-<input id="userName">
-
-</div>
+    <input
+      id="paymentName"
+      class="input"
+      type="text"
+      placeholder="ناوی تەواو">
 
 
-<div class="form-group">
-
-<label>
-ژمارەی مۆبایل
-</label>
-
-<input
-id="userPhone"
-type="tel"
-placeholder="ژمارەی مۆبایل">
-
-</div>
+    <input
+      id="paymentPhone"
+      class="input"
+      type="text"
+      placeholder="ژمارەی مۆبایل">
 
 
-<div class="form-group">
+    <input
+      id="paymentReceipt"
+      class="input"
+      type="file"
+      accept="image/*">
 
-<label>
-وێنەی رسید / مامەڵە
-</label>
 
-<input
-id="receiptImage"
-type="file"
-accept="image/*">
+    <textarea
+      id="paymentNote"
+      class="input"
+      rows="4"
+      placeholder="تێبینی"></textarea>
+
+
+    <button
+      class="main-btn"
+      onclick="sendPayment()">
+      📤 ناردنی وەسڵ بۆ ئەدمین
+    </button>
+
+  </div>
 
 </div>
-
-
-<div class="form-group">
-
-<label>
-تێبینی
-</label>
-
-<textarea id="message"></textarea>
-
-</div>
-
-
-<button
-class="submit-btn"
-style="background:#00a85a"
-onclick="sendPayment()">
-
-📤 ناردنی وەسڵ بۆ ئەدمین
-
-</button>
-
-</div>
-
-
-
-<div
-class="success"
-id="paymentSuccess">
-
-✅ داواکارییەکەت تۆمارکرا!
-
-<br>
-
-وەسڵەکەت نێردراوە بۆ پشکنین.
-
-</div>
-
-</div>
-
-</div>
-
 
 
 <footer>
 
-<strong>
-XOSHNAW AI PREMIUM
-</strong>
+  <strong>
+    XOSHNAW AI PREMIUM
+  </strong>
 
-<br><br>
+  <br><br>
 
-فێربوون • AI • Technology • Premium
+  فێربوون • AI • Technology • Premium
 
 </footer>
 
 
-
 <script>
 
-
 /* =========================
-SUPABASE
+   SUPABASE
 ========================= */
 
 const SUPABASE_URL =
 "https://wpjqvpcqaufrpstnziad.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_9ALxJWahJqUFvtMXR7-5TA_XHBIF6ZK";
 
+const supabaseClient =
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* =========================
+   SETTINGS
+========================= */
 
 const ADMIN_EMAIL =
 "lawaking24@gmail.com";
 
+const plans = {
 
-let supabaseClient = null;
+  weekly:{
+    name:"هەفتانە",
+    amount:1500,
+    days:7
+  },
+
+  monthly:{
+    name:"مانگانە",
+    amount:4000,
+    days:30
+  },
+
+  yearly:{
+    name:"ساڵانە",
+    amount:15000,
+    days:365
+  }
+
+};
 
 let currentUser = null;
-
-let currentProfile = null;
-
-let selectedPlan = "";
-
-let selectedPrice = 0;
+let selectedPlanKey = null;
 
 
 /* =========================
-VERIFICATION
+   MODALS
 ========================= */
-
-let verificationEmail = "";
-
-let verificationName = "";
-
-
-/* =========================
-INIT
-========================= */
-
-function initSupabase(){
-
-if(!window.supabase){
-
-console.error(
-"Supabase library نەهاتووە."
-);
-
-return false;
-
-}
-
-supabaseClient =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
-);
-
-return true;
-
-}
-
-
-/* =========================
-ADMIN
-========================= */
-
-function isAdmin(){
-
-return !!(
-currentUser &&
-currentUser.email &&
-currentUser.email.toLowerCase() ===
-ADMIN_EMAIL.toLowerCase()
-);
-
-}
-
-
-/* =========================
-ESCAPE
-========================= */
-
-function escapeHTML(value){
-
-if(
-value === null ||
-value === undefined
-)
-return "";
-
-return String(value)
-
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================
-PLAN DAYS
-========================= */
-
-function getPlanDays(plan){
-
-if(plan === "هەفتانە")
-return 7;
-
-if(plan === "مانگانە")
-return 30;
-
-if(plan === "ساڵانە")
-return 365;
-
-return 7;
-
-}
-
-
-/* =========================
-HEADER
-========================= */
-
-function updateHeader(){
-
-const authButtons =
-document.getElementById("authButtons");
-
-const logoutArea =
-document.getElementById("logoutArea");
-
-if(!authButtons || !logoutArea)
-return;
-
-if(currentUser){
-
-authButtons.style.display =
-"none";
-
-logoutArea.style.display =
-"flex";
-
-}else{
-
-authButtons.style.display =
-"flex";
-
-logoutArea.style.display =
-"none";
-
-}
-
-}
-
-
-/* =========================
-MODALS
-========================= */
-
-function openLogin(){
-
-closeAll();
-
-document.getElementById(
-"loginModal"
-).style.display = "flex";
-
-}
-
 
 function openRegister(){
 
-closeAll();
+  closeAll();
 
-document.getElementById(
-"registerModal"
-).style.display = "flex";
+  document
+    .getElementById("registerModal")
+    .style.display="flex";
+}
 
+
+function openLogin(){
+
+  closeAll();
+
+  document
+    .getElementById("loginModal")
+    .style.display="flex";
 }
 
 
 function closeAll(){
 
-const ids = [
-
-"loginModal",
-"registerModal",
-"verifyModal",
-"paymentModal"
-
-];
-
-ids.forEach(id=>{
-
-const element =
-document.getElementById(id);
-
-if(element)
-element.style.display = "none";
-
-});
+  document
+    .querySelectorAll(".modal")
+    .forEach(m=>{
+      m.style.display="none";
+    });
 
 }
 
 
-function closePayment(){
+function scrollToPlans(){
 
-document.getElementById(
-"paymentModal"
-).style.display = "none";
+  document
+    .getElementById("plansSection")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
 
 }
 
 
 /* =========================
-PROFILE
-========================= */
-
-async function ensureProfile(){
-
-if(!currentUser)
-return null;
-
-
-const {
-data,
-error
-} =
-await supabaseClient
-.from("profiles")
-.select("*")
-.eq("id",currentUser.id)
-.maybeSingle();
-
-
-if(!error && data){
-
-currentProfile = data;
-
-return data;
-
-}
-
-
-/*
-Profile نەبوو
-*/
-
-const name =
-currentUser.user_metadata?.full_name ||
-"";
-
-
-const {
-error:createError
-} =
-await supabaseClient
-.from("profiles")
-.upsert({
-
-id:currentUser.id,
-
-full_name:name,
-
-is_admin:isAdmin(),
-
-premium_active:false
-
-},{
-onConflict:"id"
-
-});
-
-
-if(createError){
-
-console.error(
-"PROFILE CREATE ERROR:",
-createError
-);
-
-return null;
-
-}
-
-
-const {
-data:createdProfile,
-error:readError
-} =
-await supabaseClient
-.from("profiles")
-.select("*")
-.eq("id",currentUser.id)
-.maybeSingle();
-
-
-if(readError){
-
-console.error(
-"PROFILE READ ERROR:",
-readError
-);
-
-return null;
-
-}
-
-
-currentProfile =
-createdProfile;
-
-return createdProfile;
-
-}
-
-
-async function loadProfile(){
-
-if(!currentUser)
-return null;
-
-return await ensureProfile();
-
-}
-
-
-/* =========================
-REGISTER
+   REGISTER
 ========================= */
 
 async function registerUser(){
 
-if(!supabaseClient){
+  const name =
+    document
+      .getElementById("registerName")
+      .value
+      .trim();
 
-alert(
-"❌ Supabase ئامادە نییە."
-);
+  const email =
+    document
+      .getElementById("registerEmail")
+      .value
+      .trim();
 
-return;
+  const password =
+    document
+      .getElementById("registerPassword")
+      .value;
 
-}
 
+  if(!name || !email || !password){
 
-const name =
-document.getElementById(
-"regName"
-).value.trim();
+    alert(
+      "❌ تکایە هەموو خانەکان پڕ بکەرەوە."
+    );
 
+    return;
+  }
 
-const email =
-document.getElementById(
-"regEmail"
-).value.trim();
 
+  if(password.length < 6){
 
-const password =
-document.getElementById(
-"regPassword"
-).value;
+    alert(
+      "❌ وشەی نهێنی دەبێت لانیکەم 6 پیت بێت."
+    );
 
+    return;
+  }
 
-if(!name || !email || !password){
 
-alert(
-"❌ تکایە ناو، ئیمەیڵ و وشەی نهێنی پڕ بکەرەوە."
-);
+  const {
+    data,
+    error
+  } =
+  await supabaseClient.auth.signUp({
 
-return;
+    email:email,
 
-}
+    password:password,
 
+    options:{
+      data:{
+        full_name:name
+      }
+    }
 
-if(password.length < 6){
+  });
 
-alert(
-"❌ وشەی نهێنی دەبێت لانیکەم 6 پیت بێت."
-);
 
-return;
+  if(error){
 
-}
+    alert(
+      "❌ تۆمارکردن سەرکەوتوو نەبوو:\n\n"
+      + error.message
+    );
 
+    return;
+  }
 
-try{
 
+  if(!data.user){
 
-/*
-SIGN UP
-*/
+    alert(
+      "❌ ئەکاونتەکە دروست نەکرا."
+    );
 
-const {
-data,
-error
-} =
-await supabaseClient.auth.signUp({
+    return;
+  }
 
-email:email,
 
-password:password,
+  /*
+    چونکە Trigger ـی کۆن لابراوە،
+    profile لێرە خۆمان دروست دەکەین.
+  */
 
-options:{
+  const {
+    error:profileError
+  } =
+  await supabaseClient
+    .from("profiles")
+    .upsert({
 
-data:{
+      id:data.user.id,
 
-full_name:name
+      full_name:name,
 
-}
+      is_admin:
+        email.toLowerCase()
+        === ADMIN_EMAIL.toLowerCase(),
 
-}
+      premium_active:false
 
-});
+    },{
+      onConflict:"id"
+    });
 
 
-if(error){
+  if(profileError){
 
-alert(
-"❌ تۆمارکردن سەرکەوتوو نەبوو:\n\n"+
-error.message
-);
+    console.log(
+      "Profile error:",
+      profileError
+    );
 
-return;
+    /*
+      ئەگەر policy ـی profiles
+      ڕێگری کرد، ئەکاونتەکە هەر دروست بوو.
+    */
+  }
 
-}
 
+  closeAll();
 
-if(!data?.user){
+  document
+    .getElementById("registerName")
+    .value="";
 
-alert(
-"❌ ئەکاونتەکە دروست نەکرا."
-);
+  document
+    .getElementById("registerEmail")
+    .value="";
 
-return;
+  document
+    .getElementById("registerPassword")
+    .value="";
 
-}
 
+  alert(
+    "✅ ئەکاونتەکەت بە سەرکەوتوویی دروست کرا!"
+  );
 
-/*
-زانیارییەکانی Verify
-*/
 
-verificationEmail =
-email;
+  currentUser = data.user;
 
-verificationName =
-name;
-
-
-closeAll();
-
-
-const verifyModal =
-document.getElementById(
-"verifyModal"
-);
-
-verifyModal.style.display =
-"flex";
-
-
-const text =
-document.getElementById(
-"verifyEmailText"
-);
-
-text.textContent =
-"کۆدەکە بۆ "+email+" نێردراوە.";
-
-
-/*
-ئەگەر Supabase session دابین کرد
-*/
-
-if(data.session){
-
-currentUser =
-data.user;
-
-await loadProfile();
-
-updateHeader();
-
-}
-
-}catch(error){
-
-alert(
-"❌ هەڵەیەک ڕوویدا:\n\n"+
-(error.message || error)
-);
-
-}
+  await startApp();
 
 }
 
 
 /* =========================
-VERIFY EMAIL
-========================= */
-
-async function verifyEmailCode(){
-
-const input =
-document.getElementById(
-"verifyCode"
-);
-
-
-const code =
-input.value.trim();
-
-
-if(!verificationEmail){
-
-alert(
-"❌ ئیمەیڵی پشتڕاستکردنەوە نەدۆزرایەوە."
-);
-
-return;
-
-}
-
-
-if(!/^\d{6}$/.test(code)){
-
-alert(
-"❌ تکایە کۆدی 6 ژمارەیی بە دروستی داخڵ بکە."
-);
-
-return;
-
-}
-
-
-try{
-
-
-const {
-data,
-error
-} =
-await supabaseClient.auth.verifyOtp({
-
-email:
-verificationEmail,
-
-token:
-code,
-
-type:
-"email"
-
-});
-
-
-if(error){
-
-alert(
-"❌ کۆدەکە هەڵەیە یان بەسەرچووە:\n\n"+
-error.message
-);
-
-return;
-
-}
-
-
-if(!data?.user){
-
-alert(
-"❌ پشتڕاستکردنەوە سەرکەوتوو نەبوو."
-);
-
-return;
-
-}
-
-
-currentUser =
-data.user;
-
-
-/*
-Profile دروست بکە
-*/
-
-const {
-error:profileError
-} =
-await supabaseClient
-.from("profiles")
-.upsert({
-
-id:data.user.id,
-
-full_name:
-verificationName ||
-data.user.user_metadata?.full_name ||
-"",
-
-is_admin:
-data.user.email?.toLowerCase() ===
-ADMIN_EMAIL.toLowerCase(),
-
-premium_active:false
-
-},{
-onConflict:"id"
-
-});
-
-
-if(profileError){
-
-console.error(
-"PROFILE ERROR:",
-profileError
-);
-
-}
-
-
-await loadProfile();
-
-
-updateHeader();
-
-
-input.value = "";
-
-
-closeAll();
-
-
-verificationEmail = "";
-
-verificationName = "";
-
-
-await showDashboard();
-
-
-alert(
-"✅ ئیمەیڵەکەت پشتڕاست کرایەوە!\n\n"+
-"بەخێربێیت بۆ XOSHNAW AI."
-);
-
-
-}catch(error){
-
-alert(
-"❌ هەڵەیەک ڕوویدا:\n\n"+
-(error.message || error)
-);
-
-}
-
-}
-
-
-/* =========================
-LOGIN
+   LOGIN
 ========================= */
 
 async function loginUser(){
 
-if(!supabaseClient){
+  const email =
+    document
+      .getElementById("loginEmail")
+      .value
+      .trim();
 
-alert(
-"❌ Supabase ئامادە نییە."
-);
-
-return;
-
-}
-
-
-const email =
-document.getElementById(
-"loginEmail"
-).value.trim();
+  const password =
+    document
+      .getElementById("loginPassword")
+      .value;
 
 
-const password =
-document.getElementById(
-"loginPassword"
-).value;
+  if(!email || !password){
+
+    alert(
+      "❌ تکایە ئیمەیڵ و وشەی نهێنی بنووسە."
+    );
+
+    return;
+  }
 
 
-if(!email || !password){
+  const {
+    data,
+    error
+  } =
+  await supabaseClient.auth.signInWithPassword({
 
-alert(
-"❌ تکایە ئیمەیڵ و وشەی نهێنی بنووسە."
-);
+    email:email,
 
-return;
+    password:password
 
-}
-
-
-try{
-
-
-const {
-data,
-error
-} =
-await supabaseClient.auth
-.signInWithPassword({
-
-email:email,
-
-password:password
-
-});
+  });
 
 
-if(error){
+  if(error){
 
-const msg =
-error.message || "";
+    alert(
+      "❌ چوونەژوورەوە سەرکەوتوو نەبوو:\n\n"
+      + error.message
+    );
 
-
-/*
-Email پشتڕاست نەکراوەتەوە
-*/
-
-if(
-msg.toLowerCase().includes(
-"email not confirmed"
-)
-||
-msg.toLowerCase().includes(
-"email_not_confirmed"
-)
-){
-
-verificationEmail =
-email;
+    return;
+  }
 
 
-closeAll();
+  closeAll();
 
+  currentUser = data.user;
 
-document.getElementById(
-"verifyModal"
-).style.display =
-"flex";
-
-
-document.getElementById(
-"verifyEmailText"
-).textContent =
-"ئیمەیڵەکەت هێشتا پشتڕاست نەکراوەتەوە. تکایە کۆدەکە لە Gmail ـەکەت ببینە.";
-
-
-alert(
-"📧 سەرەتا ئیمەیڵەکەت پشتڕاست بکەرەوە."
-);
-
-return;
-
-}
-
-
-alert(
-"❌ Login سەرکەوتوو نەبوو:\n\n"+
-msg
-);
-
-return;
-
-}
-
-
-currentUser =
-data.user;
-
-
-await loadProfile();
-
-
-updateHeader();
-
-
-closeAll();
-
-
-await showDashboard();
-
-
-}catch(error){
-
-alert(
-"❌ هەڵەیەک ڕوویدا:\n\n"+
-(error.message || error)
-);
-
-}
+  await startApp();
 
 }
 
 
 /* =========================
-DASHBOARD
+   LOGOUT
 ========================= */
 
-async function showDashboard(){
+async function logoutUser(){
 
-if(!currentUser)
-return;
+  await supabaseClient.auth.signOut();
 
+  currentUser=null;
 
-await loadProfile();
+  document
+    .getElementById("dashboard")
+    .style.display="none";
 
+  document
+    .getElementById("logoutBtn")
+    .classList.add("hidden");
 
-const dashboard =
-document.getElementById(
-"dashboard"
-);
-
-
-if(!dashboard)
-return;
-
-
-dashboard.style.display =
-"block";
-
-
-const name =
-currentProfile?.full_name ||
-currentUser.user_metadata?.full_name ||
-currentUser.email;
-
-
-document.getElementById(
-"dashboardName"
-).textContent =
-"سڵاو "+name;
-
-
-/*
-ADMIN
-*/
-
-const adminBox =
-document.getElementById(
-"adminBox"
-);
-
-
-if(isAdmin()){
-
-adminBox.style.display =
-"block";
-
-await loadAdminRequests();
-
-}else{
-
-adminBox.style.display =
-"none";
-
-}
-
-
-/*
-PREMIUM
-*/
-
-const status =
-document.getElementById(
-"premiumStatus"
-);
-
-
-const plan =
-document.getElementById(
-"dashboardPlan"
-);
-
-
-const active =
-currentProfile &&
-currentProfile.premium_active === true;
-
-
-if(active){
-
-status.className =
-"status active";
-
-status.innerHTML =
-"👑 Premium ـەکەت چالاکە.";
-
-
-let expiresText = "";
-
-if(currentProfile.premium_expires_at){
-
-const date =
-new Date(
-currentProfile.premium_expires_at
-);
-
-expiresText =
-"<br><small>بەسەرچوون: "+
-escapeHTML(
-date.toLocaleString("ku-IQ")
-)+
-"</small>";
-
-}
-
-
-plan.innerHTML =
-"<p><strong>پلان:</strong> "+
-escapeHTML(
-currentProfile.premium_plan || ""
-)+
-expiresText+
-"</p>";
-
-}else{
-
-status.className =
-"status pending";
-
-status.innerHTML =
-"Premium هێشتا چالاک نەکراوە.";
-
-plan.innerHTML = "";
-
-}
-
-
-/*
-PAYMENTS
-*/
-
-if(!isAdmin()){
-
-await loadMyPayments();
-
-}else{
-
-document.getElementById(
-"myPayments"
-).innerHTML = "";
-
-}
+  alert(
+    "✅ بە سەرکەوتوویی چوویتە دەرەوە."
+  );
 
 }
 
 
 /* =========================
-ADMIN REQUESTS
+   ADMIN
 ========================= */
 
-async function loadAdminRequests(){
+function isAdmin(){
 
-if(!isAdmin())
-return;
-
-
-const box =
-document.getElementById(
-"adminRequests"
-);
-
-
-box.innerHTML =
-"⏳ داواکارییەکان بار دەکرێن...";
-
-
-const {
-data,
-error
-} =
-await supabaseClient
-.from("payment_requests")
-.select("*")
-.order(
-"created_at",
-{ascending:false}
-);
-
-
-if(error){
-
-box.innerHTML =
-"<div class='empty'>"+
-"❌ هەڵە:<br>"+
-escapeHTML(error.message)+
-"</div>";
-
-return;
-
-}
-
-
-if(!data || data.length === 0){
-
-box.innerHTML =
-"<div class='empty'>"+
-"📭 هیچ داواکارییەک نییە."+
-"</div>";
-
-return;
-
-}
-
-
-let html = "";
-
-
-data.forEach(item=>{
-
-const created =
-item.created_at
-?
-new Date(
-item.created_at
-).toLocaleString("ku-IQ")
-:
-"";
-
-
-let statusText =
-"⏳ چاوەڕوان";
-
-
-if(item.status === "accepted")
-statusText =
-"✅ پەسەندکراو";
-
-
-if(item.status === "rejected")
-statusText =
-"❌ ڕەتکراوە";
-
-
-html +=
-
-"<div class='admin-request'>"+
-
-"<strong>👤 User ID:</strong><br>"+
-escapeHTML(item.user_id)+
-"<br><br>"+
-
-"<strong>👑 پلان:</strong> "+
-escapeHTML(item.plan || "")+
-"<br>"+
-
-"<strong>💰 بڕ:</strong> "+
-escapeHTML(item.amount || "")+
-" د.ع<br>"+
-
-"<strong>📅 کات:</strong> "+
-escapeHTML(created)+
-"<br>"+
-
-"<strong>📌 دۆخ:</strong> "+
-statusText+
-"<br>";
-
-
-if(item.receipt_url){
-
-html +=
-
-"<a class='receipt-btn' href='"+
-
-escapeHTML(item.receipt_url)+
-
-"' target='_blank'>"+
-
-"📷 بینینی وەسڵ"+
-
-"</a>";
-
-}
-
-
-if(item.status === "pending"){
-
-html +=
-
-"<div style='margin-top:10px'>"+
-
-"<button class='accept-btn' "+
-"onclick=\"acceptPayment('"+
-escapeHTML(item.id)+
-"','"+
-escapeHTML(item.user_id)+
-"','"+
-escapeHTML(item.plan)+
-"')\">"+
-
-"✅ پەسەندکردن"+
-
-"</button>"+
-
-
-"<button class='reject-btn' "+
-"onclick=\"rejectPayment('"+
-escapeHTML(item.id)+
-"')\">"+
-
-"❌ ڕەتکردنەوە"+
-
-"</button>"+
-
-"</div>";
-
-}
-
-
-html +=
-"</div>";
-
-});
-
-
-box.innerHTML =
-html;
+  return !!(
+    currentUser &&
+    currentUser.email &&
+    currentUser.email.toLowerCase()
+      === ADMIN_EMAIL.toLowerCase()
+  );
 
 }
 
 
 /* =========================
-ACTIVATE PREMIUM
+   PROFILE
 ========================= */
 
-async function activateUserPremium(
-userId,
-plan
-){
+async function ensureProfile(){
 
-const days =
-getPlanDays(plan);
+  if(!currentUser){
+    return null;
+  }
 
 
-const expires =
-new Date();
+  let {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("id",currentUser.id)
+    .maybeSingle();
 
 
-expires.setDate(
-expires.getDate()+days
-);
+  if(error){
+
+    console.log(
+      "Profile select error:",
+      error
+    );
+
+  }
 
 
-const {
-error
-} =
-await supabaseClient
-.from("profiles")
-.upsert({
+  if(!data){
 
-id:userId,
-
-premium_active:true,
-
-premium_plan:plan,
-
-premium_expires_at:
-expires.toISOString()
-
-},{
-onConflict:"id"
-});
+    const name =
+      currentUser.user_metadata?.full_name
+      || "";
 
 
-if(error){
+    const result =
+      await supabaseClient
+        .from("profiles")
+        .upsert({
 
-return {
+          id:currentUser.id,
 
-success:false,
+          full_name:name,
 
-error:error.message
+          is_admin:isAdmin(),
 
-};
+          premium_active:false
 
-}
-
-
-const {
-data,
-error:readError
-} =
-await supabaseClient
-.from("profiles")
-.select("*")
-.eq("id",userId)
-.maybeSingle();
+        },{
+          onConflict:"id"
+        });
 
 
-if(readError){
+    if(result.error){
 
-return {
+      console.log(
+        "Profile create error:",
+        result.error
+      );
 
-success:false,
-
-error:readError.message
-
-};
-
-}
+      return null;
+    }
 
 
-if(!data){
-
-return {
-
-success:false,
-
-error:
-"Profile ـی بەکارهێنەر نەدۆزرایەوە."
-
-};
-
-}
+    const second =
+      await supabaseClient
+        .from("profiles")
+        .select("*")
+        .eq("id",currentUser.id)
+        .maybeSingle();
 
 
-return {
+    data=second.data;
+  }
 
-success:true,
 
-data:data
-
-};
+  return data;
 
 }
 
 
 /* =========================
-ACCEPT PAYMENT
-========================= */
-
-async function acceptPayment(
-paymentId,
-userId,
-plan
-){
-
-if(!isAdmin()){
-
-alert(
-"❌ تەنها Admin دەتوانێت."
-);
-
-return;
-
-}
-
-
-if(!confirm(
-"ئایا دڵنیایت لە پەسەندکردنی ئەم داواکارییە؟"
-))
-return;
-
-
-const result =
-await activateUserPremium(
-userId,
-plan
-);
-
-
-if(!result.success){
-
-alert(
-"❌ Premium چالاک نەکرا:\n\n"+
-result.error
-);
-
-return;
-
-}
-
-
-const {
-error
-} =
-await supabaseClient
-.from("payment_requests")
-.update({
-
-status:"accepted"
-
-})
-.eq(
-"id",
-paymentId
-);
-
-
-if(error){
-
-alert(
-"⚠️ Premium چالاک بوو، بەڵام دۆخی وەسڵ نەگۆڕدرا:\n\n"+
-error.message
-);
-
-return;
-
-}
-
-
-alert(
-"✅ وەسڵ پەسەند کرا!\n\n"+
-"👑 Premium ـی بەکارهێنەر چالاک کرا."
-);
-
-
-await loadAdminRequests();
-
-}
-
-
-/* =========================
-REJECT
-========================= */
-
-async function rejectPayment(
-paymentId
-){
-
-if(!isAdmin()){
-
-alert(
-"❌ تەنها Admin دەتوانێت."
-);
-
-return;
-
-}
-
-
-if(!confirm(
-"ئایا دڵنیایت لە ڕەتکردنەوەی ئەم داواکارییە؟"
-))
-return;
-
-
-const {
-error
-} =
-await supabaseClient
-.from("payment_requests")
-.update({
-
-status:"rejected"
-
-})
-.eq(
-"id",
-paymentId
-);
-
-
-if(error){
-
-alert(
-"❌ ڕەتکردنەوە سەرکەوتوو نەبوو:\n\n"+
-error.message
-);
-
-return;
-
-}
-
-
-alert(
-"❌ داواکارییەکە ڕەتکرایەوە."
-);
-
-
-await loadAdminRequests();
-
-}
-
-
-/* =========================
-ADMIN FREE PREMIUM
-========================= */
-
-async function activateAdminPremium(
-plan
-){
-
-if(!isAdmin())
-return;
-
-
-const days =
-getPlanDays(plan);
-
-
-const expires =
-new Date();
-
-
-expires.setDate(
-expires.getDate()+days
-);
-
-
-const {
-error
-} =
-await supabaseClient
-.from("profiles")
-.upsert({
-
-id:currentUser.id,
-
-full_name:
-currentProfile?.full_name ||
-currentUser.user_metadata?.full_name ||
-"Admin",
-
-is_admin:true,
-
-premium_active:true,
-
-premium_plan:plan,
-
-premium_expires_at:
-expires.toISOString()
-
-},{
-onConflict:"id"
-});
-
-
-if(error){
-
-alert(
-"❌ Premium ـی Admin چالاک نەکرا:\n\n"+
-error.message
-);
-
-return;
-
-}
-
-
-const {
-data,
-error:readError
-} =
-await supabaseClient
-.from("profiles")
-.select("*")
-.eq("id",currentUser.id)
-.maybeSingle();
-
-
-if(readError){
-
-alert(
-"⚠️ Premium چالاک کرا، بەڵام Profile نەخوێندرایەوە."
-);
-
-return;
-
-}
-
-
-currentProfile =
-data;
-
-
-alert(
-"👑 Premium ـی Admin بەخۆڕایی چالاک کرا!\n\n"+
-"پلان: "+plan
-);
-
-
-await showDashboard();
-
-}
-
-
-/* =========================
-CHOOSE PLAN
-========================= */
-
-async function choosePlan(
-plan,
-price
-){
-
-if(!currentUser){
-
-alert(
-"❌ تکایە سەرەتا Login بکە."
-);
-
-openLogin();
-
-return;
-
-}
-
-
-selectedPlan =
-plan;
-
-selectedPrice =
-Number(price);
-
-
-/*
-ADMIN FREE
-*/
-
-if(isAdmin()){
-
-await activateAdminPremium(
-plan
-);
-
-return;
-
-}
-
-
-/*
-NORMAL USER
-*/
-
-document.getElementById(
-"selectedPlan"
-).textContent =
-plan;
-
-
-document.getElementById(
-"selectedPrice"
-).textContent =
-selectedPrice.toLocaleString(
-"en-US"
-);
-
-
-document.getElementById(
-"userName"
-).value =
-currentProfile?.full_name ||
-currentUser.user_metadata?.full_name ||
-"";
-
-
-document.getElementById(
-"userPhone"
-).value = "";
-
-
-document.getElementById(
-"receiptImage"
-).value = "";
-
-
-document.getElementById(
-"message"
-).value = "";
-
-
-document.getElementById(
-"paymentForm"
-).style.display =
-"block";
-
-
-document.getElementById(
-"paymentSuccess"
-).style.display =
-"none";
-
-
-document.getElementById(
-"paymentModal"
-).style.display =
-"flex";
-
-}
-
-
-/* =========================
-SEND PAYMENT
-========================= */
-
-async function sendPayment(){
-
-if(!currentUser){
-
-alert(
-"❌ تکایە Login بکە."
-);
-
-return;
-
-}
-
-
-if(isAdmin()){
-
-alert(
-"👑 تۆ Admin ـیت.\n\n"+
-"Premium ـەکەت بەخۆڕایی چالاک دەکرێت."
-);
-
-return;
-
-}
-
-
-if(!selectedPlan){
-
-alert(
-"❌ تکایە پلانێک هەڵبژێرە."
-);
-
-return;
-
-}
-
-
-const name =
-document.getElementById(
-"userName"
-).value.trim();
-
-
-const phone =
-document.getElementById(
-"userPhone"
-).value.trim();
-
-
-const file =
-document.getElementById(
-"receiptImage"
-).files[0];
-
-
-if(!name || !phone){
-
-alert(
-"❌ تکایە ناو و ژمارەی مۆبایل پڕ بکەرەوە."
-);
-
-return;
-
-}
-
-
-if(!file){
-
-alert(
-"❌ تکایە وێنەی وەسڵ دابنێ."
-);
-
-return;
-
-}
-
-
-if(file.size > 5 * 1024 * 1024){
-
-alert(
-"❌ قەبارەی وێنەکە زۆرە. کەمتر لە 5MB بێت."
-);
-
-return;
-
-}
-
-
-try{
-
-
-const extension =
-file.name
-.split(".")
-.pop()
-.toLowerCase();
-
-
-const fileName =
-currentUser.id+
-"_"+Date.now()+
-"."+extension;
-
-
-const {
-error:uploadError
-} =
-await supabaseClient
-.storage
-.from("receipts")
-.upload(
-fileName,
-file,
-{
-cacheControl:"3600",
-upsert:false,
-contentType:file.type
-}
-);
-
-
-if(uploadError){
-
-alert(
-"❌ ناردنی وەسڵ سەرکەوتوو نەبوو:\n\n"+
-uploadError.message
-);
-
-return;
-
-}
-
-
-const {
-data:urlData
-} =
-supabaseClient
-.storage
-.from("receipts")
-.getPublicUrl(fileName);
-
-
-const receiptUrl =
-urlData?.publicUrl || "";
-
-
-if(!receiptUrl){
-
-alert(
-"❌ لینکی وەسڵ دروست نەکرا."
-);
-
-return;
-
-}
-
-
-const {
-error
-} =
-await supabaseClient
-.from("payment_requests")
-.insert({
-
-user_id:
-currentUser.id,
-
-plan:
-selectedPlan,
-
-amount:
-selectedPrice,
-
-receipt_url:
-receiptUrl,
-
-status:
-"pending"
-
-});
-
-
-if(error){
-
-alert(
-"❌ داواکارییەکە نەنێردرا:\n\n"+
-error.message
-);
-
-return;
-
-}
-
-
-document.getElementById(
-"paymentForm"
-).style.display =
-"none";
-
-
-document.getElementById(
-"paymentSuccess"
-).style.display =
-"block";
-
-
-await loadMyPayments();
-
-
-}catch(error){
-
-alert(
-"❌ هەڵەیەک ڕوویدا:\n\n"+
-(error.message || error)
-);
-
-}
-
-}
-
-
-/* =========================
-MY PAYMENTS
-========================= */
-
-async function loadMyPayments(){
-
-const box =
-document.getElementById(
-"myPayments"
-);
-
-
-if(!box || !currentUser)
-return;
-
-
-const {
-data,
-error
-} =
-await supabaseClient
-.from("payment_requests")
-.select("*")
-.eq(
-"user_id",
-currentUser.id
-)
-.order(
-"created_at",
-{ascending:false}
-);
-
-
-if(error){
-
-console.error(error);
-
-box.innerHTML = "";
-
-return;
-
-}
-
-
-if(!data || data.length === 0){
-
-box.innerHTML =
-"<p style='color:#777'>"+
-"هیچ داواکارییەکت نییە."+
-"</p>";
-
-return;
-
-}
-
-
-let html =
-"<h3 style='margin-bottom:12px'>"+
-"📋 داواکارییەکانت"+
-"</h3>";
-
-
-data.forEach(item=>{
-
-let status =
-"⏳ چاوەڕوان";
-
-
-if(item.status === "accepted")
-status =
-"✅ پەسەندکراو";
-
-
-if(item.status === "rejected")
-status =
-"❌ ڕەتکرایەوە";
-
-
-html +=
-
-"<div class='payment-item'>"+
-
-"<strong>پلان:</strong> "+
-escapeHTML(item.plan || "")+
-
-"<br>"+
-
-"<strong>بڕ:</strong> "+
-escapeHTML(item.amount || "")+
-" د.ع"+
-
-"<br>"+
-
-"<strong>دۆخ:</strong> "+
-status+
-
-"</div>";
-
-});
-
-
-box.innerHTML =
-html;
-
-}
-
-
-/* =========================
-LOGOUT
-========================= */
-
-async function logout(){
-
-if(!supabaseClient)
-return;
-
-
-if(!confirm(
-"🚪 ئایا دڵنیایت لە چوونەدەرەوە؟"
-))
-return;
-
-
-const {
-error
-} =
-await supabaseClient.auth.signOut();
-
-
-if(error){
-
-alert(
-"❌ چوونەدەرەوە سەرکەوتوو نەبوو:\n\n"+
-error.message
-);
-
-return;
-
-}
-
-
-currentUser = null;
-
-currentProfile = null;
-
-
-document.getElementById(
-"dashboard"
-).style.display =
-"none";
-
-
-updateHeader();
-
-}
-
-
-/* =========================
-SCROLL
-========================= */
-
-function scrollToPlans(){
-
-const plans =
-document.getElementById(
-"plans"
-);
-
-
-if(plans){
-
-plans.scrollIntoView({
-behavior:"smooth"
-});
-
-}
-
-}
-
-
-/* =========================
-MODAL CLICK
-========================= */
-
-document.addEventListener(
-"click",
-function(e){
-
-if(
-e.target &&
-e.target.classList &&
-e.target.classList.contains("modal")
-){
-
-e.target.style.display =
-"none";
-
-}
-
-}
-);
-
-
-/* =========================
-AUTH LISTENER
-========================= */
-
-function setupAuthListener(){
-
-if(!supabaseClient)
-return;
-
-
-supabaseClient.auth
-.onAuthStateChange(
-(event,session)=>{
-
-if(session?.user){
-
-currentUser =
-session.user;
-
-updateHeader();
-
-
-setTimeout(
-async()=>{
-
-await loadProfile();
-
-await showDashboard();
-
-},
-100
-);
-
-
-}else{
-
-currentUser = null;
-
-currentProfile = null;
-
-updateHeader();
-
-
-const dashboard =
-document.getElementById(
-"dashboard"
-);
-
-
-if(dashboard)
-dashboard.style.display =
-"none";
-
-}
-
-}
-);
-
-}
-
-
-/* =========================
-START APP
+   START APP
 ========================= */
 
 async function startApp(){
 
-try{
+  if(!currentUser){
+
+    document
+      .getElementById("dashboard")
+      .style.display="none";
+
+    return;
+  }
 
 
-if(!initSupabase()){
+  document
+    .getElementById("dashboard")
+    .style.display="block";
 
-alert(
-"❌ Supabase نەکرایەوە."
+
+  document
+    .getElementById("logoutBtn")
+    .classList.remove("hidden");
+
+
+  const profile =
+    await ensureProfile();
+
+
+  document
+    .getElementById("userEmail")
+    .textContent =
+      currentUser.email || "";
+
+
+  document
+    .getElementById("userName")
+    .textContent =
+      profile?.full_name
+      || currentUser.user_metadata?.full_name
+      || "بەکارهێنەر";
+
+
+  if(
+    isAdmin() ||
+    profile?.is_admin
+  ){
+
+    document
+      .getElementById("adminPanel")
+      .classList.remove("hidden");
+
+    await loadPaymentRequests();
+
+  }else{
+
+    document
+      .getElementById("adminPanel")
+      .classList.add("hidden");
+
+  }
+
+
+  updatePremiumStatus(profile);
+
+}
+
+
+/* =========================
+   PREMIUM STATUS
+========================= */
+
+function updatePremiumStatus(profile){
+
+  const box =
+    document.getElementById(
+      "premiumStatus"
+    );
+
+
+  if(!profile){
+
+    box.textContent =
+      "Premium هێشتا چالاک نەکراوە.";
+
+    return;
+  }
+
+
+  if(profile.premium_active){
+
+    let text =
+      "👑 Premium ـەکەت چالاکە.";
+
+    if(profile.premium_plan){
+
+      text +=
+        " پلان: "
+        + profile.premium_plan;
+    }
+
+
+    if(profile.premium_expires_at){
+
+      const date =
+        new Date(
+          profile.premium_expires_at
+        );
+
+
+      text +=
+        " — بەرواری کۆتایی: "
+        + date.toLocaleDateString(
+            "ku-IQ"
+          );
+    }
+
+
+    box.textContent=text;
+
+  }else{
+
+    box.textContent =
+      "Premium هێشتا چالاک نەکراوە.";
+
+  }
+
+}
+
+
+/* =========================
+   CHOOSE PLAN
+========================= */
+
+async function choosePlan(planKey){
+
+  if(!currentUser){
+
+    alert(
+      "❌ سەرەتا دەبێت بچیتە ژوورەوە یان ئەکاونت دروست بکەیت."
+    );
+
+    openLogin();
+
+    return;
+  }
+
+
+  if(!plans[planKey]){
+
+    alert(
+      "❌ پلانەکە نەدۆزرایەوە."
+    );
+
+    return;
+  }
+
+
+  /*
+    Admin Premium ـەکە بە خۆڕایی چالاک دەکات.
+  */
+
+  if(isAdmin()){
+
+    await activateAdminPremium(
+      planKey
+    );
+
+    return;
+  }
+
+
+  selectedPlanKey=planKey;
+
+
+  document
+    .getElementById("selectedPlan")
+    .textContent =
+      plans[planKey].name;
+
+
+  document
+    .getElementById("selectedAmount")
+    .textContent =
+      plans[planKey].amount.toLocaleString();
+
+
+  document
+    .getElementById("paymentModal")
+    .style.display="flex";
+
+}
+
+
+/* =========================
+   ADMIN PREMIUM
+========================= */
+
+async function activateAdminPremium(
+  planKey
+){
+
+  const plan =
+    plans[planKey];
+
+
+  const expires =
+    new Date();
+
+
+  expires.setDate(
+    expires.getDate()
+    + plan.days
+  );
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("profiles")
+    .update({
+
+      premium_active:true,
+
+      premium_plan:plan.name,
+
+      premium_expires_at:
+        expires.toISOString()
+
+    })
+    .eq(
+      "id",
+      currentUser.id
+    );
+
+
+  if(error){
+
+    alert(
+      "❌ هەڵە:\n\n"
+      + error.message
+    );
+
+    return;
+  }
+
+
+  alert(
+    "👑 Premium بە خۆڕایی بۆ Admin چالاک کرا!"
+  );
+
+
+  await startApp();
+
+}
+
+
+/* =========================
+   SEND PAYMENT
+========================= */
+
+async function sendPayment(){
+
+  if(!currentUser){
+
+    alert(
+      "❌ تکایە سەرەتا بچۆ ژوورەوە."
+    );
+
+    return;
+  }
+
+
+  if(!selectedPlanKey){
+
+    alert(
+      "❌ پلانێک هەڵبژێرە."
+    );
+
+    return;
+  }
+
+
+  const name =
+    document
+      .getElementById("paymentName")
+      .value
+      .trim();
+
+
+  const phone =
+    document
+      .getElementById("paymentPhone")
+      .value
+      .trim();
+
+
+  const note =
+    document
+      .getElementById("paymentNote")
+      .value
+      .trim();
+
+
+  const file =
+    document
+      .getElementById("paymentReceipt")
+      .files[0];
+
+
+  if(!name || !phone || !file){
+
+    alert(
+      "❌ تکایە ناو، ژمارەی مۆبایل و وێنەی وەسڵ پڕ بکەرەوە."
+    );
+
+    return;
+  }
+
+
+  try{
+
+    const extension =
+      file.name
+        .split(".")
+        .pop();
+
+
+    const fileName =
+      currentUser.id
+      + "_"
+      + Date.now()
+      + "."
+      + extension;
+
+
+    const {
+      error:uploadError
+    } =
+    await supabaseClient
+      .storage
+      .from("receipts")
+      .upload(
+        fileName,
+        file,
+        {
+          upsert:false
+        }
+      );
+
+
+    if(uploadError){
+
+      throw uploadError;
+    }
+
+
+    const {
+      data:urlData
+    } =
+    supabaseClient
+      .storage
+      .from("receipts")
+      .getPublicUrl(fileName);
+
+
+    const receiptUrl =
+      urlData.publicUrl;
+
+
+    const {
+      error:insertError
+    } =
+    await supabaseClient
+      .from("payment_requests")
+      .insert({
+
+        user_id:currentUser.id,
+
+        plan:
+          plans[selectedPlanKey].name,
+
+        amount:
+          plans[selectedPlanKey].amount,
+
+        receipt_url:receiptUrl,
+
+        status:"pending",
+
+        created_at:
+          new Date().toISOString()
+
+      });
+
+
+    if(insertError){
+
+      throw insertError;
+    }
+
+
+    closeAll();
+
+
+    document
+      .getElementById("paymentName")
+      .value="";
+
+    document
+      .getElementById("paymentPhone")
+      .value="";
+
+    document
+      .getElementById("paymentNote")
+      .value="";
+
+    document
+      .getElementById("paymentReceipt")
+      .value="";
+
+
+    alert(
+      "✅ داواکارییەکەت تۆمارکرا!\n\nوەسڵەکەت نێردراوە بۆ پشکنین."
+    );
+
+
+  }catch(error){
+
+    console.log(error);
+
+    alert(
+      "❌ ناردنی وەسڵ سەرکەوتوو نەبوو:\n\n"
+      + error.message
+    );
+
+  }
+
+}
+
+
+/* =========================
+   LOAD PAYMENTS
+========================= */
+
+async function loadPaymentRequests(){
+
+  const box =
+    document.getElementById(
+      "paymentRequests"
+    );
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("payment_requests")
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
+
+
+  if(error){
+
+    box.innerHTML =
+      "<p>❌ هەڵە لە وەرگرتنی داواکارییەکان</p>";
+
+    console.log(error);
+
+    return;
+  }
+
+
+  if(!data || data.length===0){
+
+    box.innerHTML =
+      "<p>هیچ داواکارییەک نییە.</p>";
+
+    return;
+  }
+
+
+  box.innerHTML="";
+
+
+  data.forEach(request=>{
+
+    const item =
+      document.createElement("div");
+
+    item.className=
+      "payment-item";
+
+
+    item.innerHTML=`
+
+      <p>
+        👤 User ID:
+        ${escapeHtml(request.user_id || "")}
+      </p>
+
+      <p>
+        👑 پلان:
+        ${escapeHtml(request.plan || "")}
+      </p>
+
+      <p>
+        💰 بڕ:
+        ${Number(request.amount || 0).toLocaleString()}
+        د.ع
+      </p>
+
+      <p>
+        📌 Status:
+        ${escapeHtml(request.status || "")}
+      </p>
+
+      ${
+        request.receipt_url
+        ?
+        `<p style="margin-top:10px">
+          <a
+            href="${request.receipt_url}"
+            target="_blank"
+            style="color:#00e5ff">
+            📷 بینینی وەسڵ
+          </a>
+        </p>`
+        :
+        ""
+      }
+
+      ${
+        request.status==="pending"
+        ?
+        `
+        <div style="margin-top:15px">
+
+          <button
+            class="accept"
+            onclick="acceptPayment('${request.id}','${request.user_id}','${request.plan}')">
+            ✅ قبوڵکردن
+          </button>
+
+          <button
+            class="reject"
+            onclick="rejectPayment('${request.id}')">
+            ❌ ڕەتکردنەوە
+          </button>
+
+        </div>
+        `
+        :
+        ""
+      }
+
+    `;
+
+
+    box.appendChild(item);
+
+  });
+
+}
+
+
+/* =========================
+   ACCEPT PAYMENT
+========================= */
+
+async function acceptPayment(
+  requestId,
+  userId,
+  planName
+){
+
+  if(!confirm(
+    "دڵنیایت ئەم داواکارییە قبوڵ دەکەیت؟"
+  )){
+
+    return;
+  }
+
+
+  let planKey="monthly";
+
+
+  if(planName==="هەفتانە"){
+    planKey="weekly";
+  }
+
+  if(planName==="ساڵانە"){
+    planKey="yearly";
+  }
+
+
+  const plan =
+    plans[planKey];
+
+
+  const expires =
+    new Date();
+
+
+  expires.setDate(
+    expires.getDate()
+    + plan.days
+  );
+
+
+  const {
+    error:profileError
+  } =
+  await supabaseClient
+    .from("profiles")
+    .update({
+
+      premium_active:true,
+
+      premium_plan:plan.name,
+
+      premium_expires_at:
+        expires.toISOString()
+
+    })
+    .eq(
+      "id",
+      userId
+    );
+
+
+  if(profileError){
+
+    alert(
+      "❌ چالاککردنی Premium سەرکەوتوو نەبوو:\n\n"
+      + profileError.message
+    );
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("payment_requests")
+    .update({
+      status:"accepted"
+    })
+    .eq(
+      "id",
+      requestId
+    );
+
+
+  if(error){
+
+    alert(
+      "⚠️ Premium چالاک کرا، بەڵام Status ـەکە نوێ نەکرایەوە."
+    );
+
+  }else{
+
+    alert(
+      "✅ داواکارییەکە قبوڵ کرا و Premium چالاک کرا."
+    );
+
+  }
+
+
+  await loadPaymentRequests();
+
+}
+
+
+/* =========================
+   REJECT PAYMENT
+========================= */
+
+async function rejectPayment(
+  requestId
+){
+
+  if(!confirm(
+    "دڵنیایت ئەم داواکارییە ڕەت دەکەیتەوە؟"
+  )){
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("payment_requests")
+    .update({
+      status:"rejected"
+    })
+    .eq(
+      "id",
+      requestId
+    );
+
+
+  if(error){
+
+    alert(
+      "❌ هەڵە:\n\n"
+      + error.message
+    );
+
+    return;
+  }
+
+
+  alert(
+    "✅ داواکارییەکە ڕەتکرایەوە."
+  );
+
+
+  await loadPaymentRequests();
+
+}
+
+
+/* =========================
+   SECURITY HTML
+========================= */
+
+function escapeHtml(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   AUTH LISTENER
+========================= */
+
+supabaseClient.auth.onAuthStateChange(
+  async (event,session)=>{
+
+    currentUser =
+      session?.user || null;
+
+    if(currentUser){
+
+      await startApp();
+
+    }else{
+
+      document
+        .getElementById("dashboard")
+        .style.display="none";
+
+      document
+        .getElementById("logoutBtn")
+        .classList.add("hidden");
+
+    }
+
+  }
 );
 
-return;
+
+/* =========================
+   INITIAL LOAD
+========================= */
+
+async function init(){
+
+  const {
+    data
+  } =
+  await supabaseClient
+    .auth
+    .getSession();
+
+
+  currentUser =
+    data.session?.user || null;
+
+
+  if(currentUser){
+
+    await startApp();
+
+  }
 
 }
 
 
-setupAuthListener();
-
-
-const {
-data,
-error
-} =
-await supabaseClient
-.auth
-.getSession();
-
-
-if(error){
-
-console.error(
-"SESSION ERROR:",
-error
-);
-
-return;
-
-}
-
-
-if(data?.session?.user){
-
-currentUser =
-data.session.user;
-
-await loadProfile();
-
-updateHeader();
-
-await showDashboard();
-
-}else{
-
-currentUser = null;
-
-currentProfile = null;
-
-updateHeader();
-
-}
-
-}catch(error){
-
-console.error(
-"START APP ERROR:",
-error
-);
-
-}
-
-}
-
-
-startApp();
+init();
 
 </script>
 
 </body>
-
 </html>
