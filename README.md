@@ -9,387 +9,385 @@
 
 <style>
 *{
-box-sizing:border-box;
-margin:0;
-padding:0
+  box-sizing:border-box;
+  margin:0;
+  padding:0
 }
 
 body{
-font-family:Arial,Tahoma,sans-serif;
-background:#f5f7fb;
-color:#151515;
-direction:rtl
+  font-family:Arial,Tahoma,sans-serif;
+  background:#f5f7fb;
+  color:#151515;
+  direction:rtl
 }
 
 header{
-background:#111827;
-color:white;
-padding:15px 20px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-position:sticky;
-top:0;
-z-index:50
+  background:#111827;
+  color:white;
+  padding:15px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  position:sticky;
+  top:0;
+  z-index:50
 }
 
 .logo{
-font-size:21px;
-font-weight:bold
+  font-size:21px;
+  font-weight:bold
 }
 
 .header-actions{
-display:flex;
-gap:8px
+  display:flex;
+  gap:8px
 }
 
 button{
-border:0;
-cursor:pointer
+  border:0;
+  cursor:pointer
 }
 
 .header-btn{
-padding:10px 15px;
-border-radius:10px;
-background:#fff;
-color:#111827;
-font-weight:bold
+  padding:10px 15px;
+  border-radius:10px;
+  background:#fff;
+  color:#111827;
+  font-weight:bold
 }
 
 .dark-btn{
-background:#2563eb;
-color:white
+  background:#2563eb;
+  color:white
 }
 
 .hero{
-padding:70px 20px;
-text-align:center;
-background:linear-gradient(135deg,#111827,#2563eb);
-color:white
+  padding:70px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#111827,#2563eb);
+  color:white
 }
 
 .hero .big-emoji{
-font-size:65px;
-margin-bottom:15px
+  font-size:65px;
+  margin-bottom:15px
 }
 
 .hero h1{
-font-size:38px;
-margin-bottom:15px
+  font-size:38px;
+  margin-bottom:15px
 }
 
 .hero p{
-max-width:700px;
-margin:auto;
-line-height:1.9;
-font-size:17px
+  max-width:700px;
+  margin:auto;
+  line-height:1.9;
+  font-size:17px
 }
 
 .hero-btn{
-margin-top:25px;
-padding:14px 25px;
-border-radius:12px;
-background:#fff;
-color:#111827;
-font-size:16px;
-font-weight:bold
+  margin-top:25px;
+  padding:14px 25px;
+  border-radius:12px;
+  background:#fff;
+  color:#111827;
+  font-size:16px;
+  font-weight:bold
 }
 
 .container{
-width:min(1100px,92%);
-margin:auto
+  width:min(1100px,92%);
+  margin:auto
 }
 
 section{
-padding:55px 0
+  padding:55px 0
 }
 
 .section-title{
-text-align:center;
-font-size:28px;
-margin-bottom:30px
+  text-align:center;
+  font-size:28px;
+  margin-bottom:30px
 }
 
 .cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px
 }
 
 .card{
-background:white;
-border-radius:18px;
-padding:28px;
-box-shadow:0 8px 30px rgba(0,0,0,.07);
-text-align:center
+  background:white;
+  border-radius:18px;
+  padding:28px;
+  box-shadow:0 8px 30px rgba(0,0,0,.07);
+  text-align:center
 }
 
 .emoji{
-font-size:45px;
-margin-bottom:15px
+  font-size:45px;
+  margin-bottom:15px
 }
 
 .card h3{
-margin-bottom:12px
+  margin-bottom:12px
 }
 
 .card p{
-color:#666;
-line-height:1.8
+  color:#666;
+  line-height:1.8
 }
 
 .plans{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px
 }
 
 .plan{
-position:relative;
-background:white;
-border-radius:20px;
-padding:30px 25px;
-box-shadow:0 8px 30px rgba(0,0,0,.08);
-text-align:center
+  position:relative;
+  background:white;
+  border-radius:20px;
+  padding:30px 25px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+  text-align:center
 }
 
 .plan.featured{
-border:3px solid #2563eb
+  border:3px solid #2563eb
 }
 
 .badge{
-position:absolute;
-top:0;
-left:50%;
-transform:translate(-50%,-50%);
-background:#2563eb;
-color:white;
-padding:7px 15px;
-border-radius:20px;
-font-size:13px;
-white-space:nowrap
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#2563eb;
+  color:white;
+  padding:7px 15px;
+  border-radius:20px;
+  font-size:13px;
+  white-space:nowrap
 }
 
 .price{
-font-size:34px;
-font-weight:bold;
-margin:18px 0;
-color:#2563eb
+  font-size:34px;
+  font-weight:bold;
+  margin:18px 0;
+  color:#2563eb
 }
 
 .price small{
-font-size:14px
+  font-size:14px
 }
 
 .plan ul{
-list-style:none;
-text-align:right;
-line-height:2.2;
-margin:15px 0 25px
+  list-style:none;
+  text-align:right;
+  line-height:2.2;
+  margin:15px 0 25px
 }
 
 .plan button,
 .submit-btn{
-width:100%;
-padding:13px;
-border-radius:11px;
-background:#2563eb;
-color:white;
-font-weight:bold;
-font-size:15px
+  width:100%;
+  padding:13px;
+  border-radius:11px;
+  background:#2563eb;
+  color:white;
+  font-weight:bold;
+  font-size:15px
 }
 
 .dashboard{
-display:none;
-margin:30px auto;
-width:min(1100px,92%);
-background:white;
-padding:30px;
-border-radius:20px;
-box-shadow:0 8px 30px rgba(0,0,0,.08)
+  display:none;
+  margin:30px auto;
+  width:min(1100px,92%);
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08)
 }
 
 .status{
-padding:15px;
-border-radius:12px;
-margin:15px 0;
-font-weight:bold
+  padding:15px;
+  border-radius:12px;
+  margin:15px 0;
+  font-weight:bold
 }
 
 .status.pending{
-background:#fff3cd;
-color:#856404
+  background:#fff3cd;
+  color:#856404
 }
 
 .status.active{
-background:#d1fae5;
-color:#065f46
+  background:#d1fae5;
+  color:#065f46
 }
 
 .logout{
-margin-top:20px;
-padding:12px 20px;
-border-radius:10px;
-background:#dc2626;
-color:white;
-font-weight:bold
+  margin-top:20px;
+  padding:12px 20px;
+  border-radius:10px;
+  background:#dc2626;
+  color:white;
+  font-weight:bold
 }
 
 .payment-list{
-margin-top:20px
+  margin-top:20px
 }
 
 .payment-item{
-background:#f8fafc;
-padding:18px;
-border-radius:14px;
-margin-bottom:12px;
-line-height:1.9
+  background:#f8fafc;
+  padding:18px;
+  border-radius:14px;
+  margin-bottom:12px;
+  line-height:1.9
 }
 
 .modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.65);
-z-index:100;
-align-items:center;
-justify-content:center;
-padding:15px;
-overflow:auto
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:100;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  overflow:auto
 }
 
 .modal-box{
-width:min(520px,100%);
-max-height:92vh;
-overflow:auto;
-background:white;
-border-radius:20px;
-padding:25px;
-position:relative
+  width:min(520px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:white;
+  border-radius:20px;
+  padding:25px;
+  position:relative
 }
 
 .close{
-position:absolute;
-top:10px;
-left:12px;
-width:35px;
-height:35px;
-border-radius:50%;
-background:#f1f5f9;
-font-size:25px
+  position:absolute;
+  top:10px;
+  left:12px;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  background:#f1f5f9;
+  font-size:25px
 }
 
 .modal-title{
-text-align:center;
-margin-bottom:25px
+  text-align:center;
+  margin-bottom:25px
 }
 
 .form-group{
-margin-bottom:16px
+  margin-bottom:16px
 }
 
 .form-group label{
-display:block;
-margin-bottom:7px;
-font-weight:bold
+  display:block;
+  margin-bottom:7px;
+  font-weight:bold
 }
 
 input,
 textarea{
-width:100%;
-padding:12px;
-border:1px solid #d1d5db;
-border-radius:10px;
-font-family:inherit;
-font-size:15px
+  width:100%;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-family:inherit;
+  font-size:15px
 }
 
 textarea{
-min-height:90px;
-resize:vertical
+  min-height:90px;
+  resize:vertical
 }
 
 .selected-plan{
-background:#eff6ff;
-padding:15px;
-border-radius:12px;
-text-align:center;
-line-height:2;
-margin-bottom:20px
+  background:#eff6ff;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  line-height:2;
+  margin-bottom:20px
 }
 
 .fib-box{
-background:#eff6ff;
-border:1px solid #bfdbfe;
-padding:20px;
-border-radius:15px;
-margin-bottom:20px
+  background:#eff6ff;
+  border:1px solid #bfdbfe;
+  padding:20px;
+  border-radius:15px;
+  margin-bottom:20px
 }
 
 .fib-number{
-background:white;
-padding:15px;
-text-align:center;
-font-size:24px;
-font-weight:bold;
-letter-spacing:2px;
-border-radius:10px;
-margin:15px 0
+  background:white;
+  padding:15px;
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
+  letter-spacing:2px;
+  border-radius:10px;
+  margin:15px 0
 }
 
 .notice{
-background:#dcfce7;
-color:#166534;
-padding:10px;
-border-radius:8px;
-text-align:center
+  background:#dcfce7;
+  color:#166534;
+  padding:10px;
+  border-radius:8px;
+  text-align:center
 }
 
 .warning{
-margin-top:12px;
-background:#fee2e2;
-color:#991b1b;
-padding:12px;
-border-radius:10px;
-line-height:1.8;
-text-align:center
+  margin-top:12px;
+  background:#fee2e2;
+  color:#991b1b;
+  padding:12px;
+  border-radius:10px;
+  line-height:1.8;
+  text-align:center
 }
 
 .success{
-display:none;
-background:#dcfce7;
-color:#166534;
-padding:18px;
-border-radius:12px;
-text-align:center;
-line-height:1.8
+  display:none;
+  background:#dcfce7;
+  color:#166534;
+  padding:18px;
+  border-radius:12px;
+  text-align:center;
+  line-height:1.8
 }
 
 footer{
-background:#111827;
-color:white;
-text-align:center;
-padding:30px 15px;
-margin-top:30px
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+  margin-top:30px
 }
 
 @media(max-width:800px){
+  .cards,
+  .plans{
+    grid-template-columns:1fr
+  }
 
-.cards,
-.plans{
-grid-template-columns:1fr
-}
+  header{
+    flex-direction:column
+  }
 
-header{
-flex-direction:column
-}
-
-.hero h1{
-font-size:30px
-}
-
+  .hero h1{
+    font-size:30px
+  }
 }
 </style>
 </head>
@@ -428,8 +426,8 @@ XOSHNAW AI PREMIUM
 </h1>
 
 <p>
-شوێنێکی تایبەت بۆ فێربوونی AI Tools،
-ڤیدیۆی فێرکاری، ئامرازە زیرەکەکان و ناوەڕۆکی Premium.
+شوێنێکی تایبەت بۆ فێربوونی AI Tools، ڤیدیۆی فێرکاری،
+ئامرازە زیرەکەکان و ناوەڕۆکی Premium.
 </p>
 
 <button class="hero-btn" onclick="scrollToPlans()">
@@ -558,7 +556,6 @@ XOSHNAW AI PREMIUM
 </button>
 
 </div>
-
 
 </div>
 
@@ -730,34 +727,69 @@ Premium هێشتا چالاک نەکراوە.
 <div id="paymentForm">
 
 <div class="form-group">
-<label>ناوی تەواو</label>
+
+<label>
+ناوی تەواو
+</label>
+
 <input id="userName">
+
 </div>
 
+
 <div class="form-group">
-<label>ژمارەی مۆبایل</label>
+
+<label>
+ژمارەی مۆبایل
+</label>
+
 <input id="userPhone">
+
 </div>
 
+
 <div class="form-group">
-<label>ژمارەی مامەڵە</label>
+
+<label>
+ژمارەی مامەڵە
+</label>
+
 <input id="transactionId">
+
 </div>
 
-<div class="form-group">
-<label>وێنەی رسید / مامەڵە</label>
-<input id="receiptImage" type="file" accept="image/*">
-</div>
 
 <div class="form-group">
-<label>تێبینی</label>
+
+<label>
+وێنەی رسید / مامەڵە
+</label>
+
+<input
+id="receiptImage"
+type="file"
+accept="image/*"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+تێبینی
+</label>
+
 <textarea id="message"></textarea>
+
 </div>
+
 
 <button
 class="submit-btn"
 style="background:#00a85a"
-onclick="sendPayment()">
+onclick="sendPayment()"
+>
 
 📤 ناردنی وەسڵ بۆ ئەدمین
 
@@ -809,16 +841,16 @@ SUPABASE_KEY
 );
 
 
-let currentUser=null;
-let currentProfile=null;
+let currentUser = null;
+let currentProfile = null;
 
-let selectedPlan="";
-let selectedPrice=0;
+let selectedPlan = "";
+let selectedPrice = 0;
 
 
 function escapeHTML(value){
 
-if(value===null || value===undefined)
+if(value === null || value === undefined)
 return "";
 
 return String(value)
@@ -892,16 +924,20 @@ document.getElementById("regPassword").value;
 
 if(!name || !phone || !email || !password){
 
-alert("❌ تکایە هەموو خانەکان پڕ بکەرەوە.");
+alert(
+"❌ تکایە هەموو خانەکان پڕ بکەرەوە."
+);
 
 return;
 
 }
 
 
-if(password.length<6){
+if(password.length < 6){
 
-alert("❌ وشەی نهێنی دەبێت لانیکەم 6 پیت بێت.");
+alert(
+"❌ وشەی نهێنی دەبێت لانیکەم 6 پیت بێت."
+);
 
 return;
 
@@ -931,8 +967,7 @@ if(error){
 
 alert(
 "❌ تۆمارکردن سەرکەوتوو نەبوو:\n"
-+
-error.message
++ error.message
 );
 
 return;
@@ -1028,8 +1063,7 @@ if(error){
 
 alert(
 "❌ Login سەرکەوتوو نەبوو:\n"
-+
-error.message
++ error.message
 );
 
 return;
@@ -1091,7 +1125,7 @@ return data;
 }
 
 
-/* USER DASHBOARD */
+/* DASHBOARD */
 
 async function showDashboard(){
 
@@ -1113,29 +1147,30 @@ currentUser.email;
 
 
 document.getElementById("dashboardName")
-.textContent="سڵاو "+name;
+.textContent =
+"سڵاو " + name;
 
 
 const status =
 document.getElementById("premiumStatus");
 
-
 const plan =
 document.getElementById("dashboardPlan");
 
 
-if(currentProfile?.premium_active===true){
+if(currentProfile?.premium_active === true){
 
 status.className="status active";
 
-status.innerHTML=
+status.innerHTML =
 "👑 Premium ـەکەت چالاکە.";
 
-
-plan.innerHTML=
+plan.innerHTML =
 "<p><strong>پلان:</strong> "
 +
-escapeHTML(currentProfile.premium_plan||"")
+escapeHTML(
+currentProfile.premium_plan || ""
+)
 +
 "</p>";
 
@@ -1143,7 +1178,7 @@ escapeHTML(currentProfile.premium_plan||"")
 
 status.className="status pending";
 
-status.innerHTML=
+status.innerHTML =
 "Premium هێشتا چالاک نەکراوە.";
 
 plan.innerHTML="";
@@ -1187,9 +1222,9 @@ return;
 }
 
 
-if(!data || data.length===0){
+if(!data || data.length === 0){
 
-box.innerHTML=
+box.innerHTML =
 "<p style='color:#777'>هیچ داواکارییەکت نییە.</p>";
 
 return;
@@ -1197,7 +1232,7 @@ return;
 }
 
 
-let html=
+let html =
 "<h3 style='margin-bottom:12px'>📋 داواکارییەکانت</h3>";
 
 
@@ -1209,37 +1244,44 @@ let status="⏳ چاوەڕوان";
 if(item.status==="accepted")
 status="✅ پەسەندکراو";
 
+
 if(item.status==="rejected")
 status="❌ ڕەتکرایەوە";
 
 
-html+=
+html +=
 
 "<div class='payment-item'>"
 
 +
+
 "<strong>پلان:</strong> "
 +
-escapeHTML(item.plan||"")
+escapeHTML(item.plan || "")
 +
+
 "<br>"
 
 +
+
 "<strong>بڕ:</strong> "
 +
-escapeHTML(item.amount||"")
+escapeHTML(item.amount || "")
 +
 " د.ع"
 
 +
+
 "<br>"
 
 +
+
 "<strong>دۆخ:</strong> "
 +
 status
 
 +
+
 "</div>";
 
 });
@@ -1282,24 +1324,29 @@ selectedPrice.toLocaleString("en-US");
 
 
 document.getElementById("userName")
-.value=
+.value =
 currentProfile?.full_name ||
 currentUser.user_metadata?.full_name ||
 "";
 
 
 document.getElementById("userPhone")
-.value=
+.value =
 currentProfile?.phone ||
 currentUser.user_metadata?.phone ||
 "";
 
 
-document.getElementById("transactionId").value="";
+document.getElementById("transactionId")
+.value="";
 
-document.getElementById("receiptImage").value="";
 
-document.getElementById("message").value="";
+document.getElementById("receiptImage")
+.value="";
+
+
+document.getElementById("message")
+.value="";
 
 
 document.getElementById("paymentForm")
@@ -1316,13 +1363,15 @@ document.getElementById("paymentModal")
 }
 
 
-/* SEND PAYMENT */
+/* SEND PAYMENT - FIXED */
 
 async function sendPayment(){
 
 if(!currentUser){
 
-alert("❌ تکایە Login بکە.");
+alert(
+"❌ تکایە Login بکە."
+);
 
 return;
 
@@ -1333,21 +1382,15 @@ const name =
 document.getElementById("userName")
 .value.trim();
 
+
 const phone =
 document.getElementById("userPhone")
 .value.trim();
 
-const transactionId =
-document.getElementById("transactionId")
-.value.trim();
 
 const file =
 document.getElementById("receiptImage")
 .files[0];
-
-const message =
-document.getElementById("message")
-.value.trim();
 
 
 if(!name || !phone){
@@ -1365,6 +1408,19 @@ if(!file){
 
 alert(
 "❌ تکایە وێنەی وەسڵ دابنێ."
+);
+
+return;
+
+}
+
+
+/* CHECK FILE SIZE */
+
+if(file.size > 5 * 1024 * 1024){
+
+alert(
+"❌ قەبارەی وێنەکە زۆرە. تکایە وێنەیەکی کەمتر لە 5MB هەڵبژێرە."
 );
 
 return;
@@ -1416,7 +1472,7 @@ if(uploadError){
 console.error(uploadError);
 
 alert(
-"❌ ناردنی وێنەی وەسڵ سەرکەوتوو نەبوو:\n"
+"❌ ناردنی وێنەی وەسڵ سەرکەوتوو نەبوو:\n\n"
 +
 uploadError.message
 );
@@ -1452,7 +1508,7 @@ return;
 
 /* INSERT PAYMENT REQUEST */
 
-const paymentData={
+const paymentData = {
 
 user_id:currentUser.id,
 
@@ -1462,24 +1518,29 @@ amount:selectedPrice,
 
 receipt_url:receiptUrl,
 
-status:"pending",
-
-transaction_id:
-transactionId || null,
-
-message:
-message || null
+status:"pending"
 
 };
 
 
-const {data,error} =
+/*
+IMPORTANT:
+
+تەنها ئەو column ـانە دەنێرین
+کە لە payment_requests بوونیان دڵنیاین.
+
+message و transaction_id
+بۆیە لێرە نەنێردراون.
+*/
+
+
+const {error} =
 await supabaseClient
 .from("payment_requests")
-.insert(paymentData)
-.select()
-.single();
+.insert(paymentData);
 
+
+/* ERROR */
 
 if(error){
 
@@ -1540,8 +1601,10 @@ currentUser=null;
 
 currentProfile=null;
 
+
 document.getElementById("dashboard")
 .style.display="none";
+
 
 alert(
 "✅ چوویتە دەرەوە."
@@ -1574,7 +1637,8 @@ e.target.style.display="none";
 
 }
 
-});
+}
+);
 
 
 /* AUTH STATE */
@@ -1585,6 +1649,7 @@ supabaseClient.auth.onAuthStateChange(
 if(session?.user){
 
 currentUser=session.user;
+
 
 setTimeout(
 async()=>{
@@ -1603,12 +1668,14 @@ currentUser=null;
 
 currentProfile=null;
 
+
 document.getElementById("dashboard")
 .style.display="none";
 
 }
 
-});
+}
+);
 
 
 /* START */
